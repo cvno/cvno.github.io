@@ -2,6 +2,6 @@
 
 <https://cvno.github.io>
 
-<https://blog.cvno.me>
+<http://blog.cvno.me>
 
 
