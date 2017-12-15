@@ -1,7 +1,7 @@
 # cvno.github.io
 
-<https://cvno.github.io>
+[cvno.github.io](https://cvno.github.io)
 
-<http://blog.cvno.me>
+[blog.cvno.me](http://blog.cvno.me)
 
 
