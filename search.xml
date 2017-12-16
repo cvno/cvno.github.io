@@ -6,18 +6,12 @@
       <title><![CDATA[密码学基础]]></title>
       <url>/2017/11/01/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80/</url>
       <content type="html"><![CDATA[<p>平常用的登录密码不叫密码，叫口令</p>
-<p>密码有一个加密和解密的过程</p>
 <a id="more"></a>
+<p>密码有一个加密和解密的过程</p>
 <p><strong>video:</strong> <a href="https://youtu.be/loJ62rvH8aE" target="_blank" rel="external">https://youtu.be/loJ62rvH8aE</a></p>
-<h2 id="古典密码"><a href="#古典密码" class="headerlink" title="古典密码"></a>古典密码</h2><ul>
-<li>凯撒密码</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ABC</div><div class="line">CDE</div><div class="line">// 往后移动3位或者多位</div></pre></td></tr></table></figure>
+<h2 id="古典密码"><a href="#古典密码" class="headerlink" title="古典密码"></a>古典密码</h2><h3 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ABC</div><div class="line">CDE</div><div class="line">// 往后移动3位或者多位</div></pre></td></tr></table></figure>
 <p>非常容易破解</p>
-<ul>
-<li>维吉尼亚密码</li>
-</ul>
-<blockquote>
+<h3 id="维吉尼亚密码"><a href="#维吉尼亚密码" class="headerlink" title="维吉尼亚密码"></a>维吉尼亚密码</h3><blockquote>
 <p>不知道密钥是破解不了的</p>
 </blockquote>
 <p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-14-15132363172963.jpg" alt=""></p>
