@@ -1,42 +1,340 @@
-<?xml version="1.0" encoding="utf-8"?>
-<search> 
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="http://onk83djzp.bkt.clouddn.com/2017-12-18-180.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="http://onk83djzp.bkt.clouddn.com/2017-12-18-32.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="http://onk83djzp.bkt.clouddn.com/2017-12-18-16.png?v=5.1.3">
+
+
+  <link rel="mask-icon" href="http://onk83djzp.bkt.clouddn.com/noun_248010_cc.svg?v=5.1.3" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Rabbitmq," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CVNO-Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="为什么用Rabbitmq instead of python queue ?">
+<meta name="keywords" content="Rabbitmq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="消息队列Rabbitmq基本使用">
+<meta property="og:url" content="http://blog.cvno.me/2017/12/18/消息队列Rabbitmq基本使用/index.html">
+<meta property="og:site_name" content="CVNO-Blog">
+<meta property="og:description" content="为什么用Rabbitmq instead of python queue ?">
+<meta property="og:image" content="http://onk83djzp.bkt.clouddn.com/15021926446211.png">
+<meta property="og:image" content="http://onk83djzp.bkt.clouddn.com/15022009754020.png">
+<meta property="og:image" content="http://onk83djzp.bkt.clouddn.com/15022012187733.jpg">
+<meta property="og:updated_time" content="2017-12-18T06:58:20.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="消息队列Rabbitmq基本使用">
+<meta name="twitter:description" content="为什么用Rabbitmq instead of python queue ?">
+<meta name="twitter:image" content="http://onk83djzp.bkt.clouddn.com/15021926446211.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"Gemini"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://blog.cvno.me/2017/12/18/消息队列Rabbitmq基本使用/"/>
+
+
+
+
+
+  <title>消息队列Rabbitmq基本使用 | CVNO-Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-111334129-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
   
     
-    <entry>
-      <title><![CDATA[hexo:ERROR Process failed: _posts/]]></title>
-      <url>/2017/12/18/hexo-ERROR-Process-failed-posts/</url>
-      <content type="html"><![CDATA[<p>文章的格式出现错误了</p>
-<a id="more"></a>
-<ul>
-<li>错误提示</li>
-</ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div><div class="line">ERROR Process failed: _posts/消息队列Rabbitmq基本使用.md</div><div class="line">Error at </div><div class="line">.....</div></pre></td></tr></table></figure>
-<ul>
-<li>原因</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">title: Hexo</div><div class="line">date: 2017-12-13 12:21:33</div><div class="line">tags:Hexo #tags冒号后面应当有个空格,其他地方也应当注意</div></pre></td></tr></table></figure>
-<ul>
-<li>正确格式(加上那个空格就好了)</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">title: Hexo</div><div class="line">date: 2017-12-13 12:21:33</div><div class="line">tags: Hexo</div></pre></td></tr></table></figure>
-<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
-<li><a href="http://shitaibin.github.io/2015/12/13/hexo-errors/" target="_blank" rel="external">http://shitaibin.github.io/2015/12/13/hexo-errors/</a></li>
-</ul>
-]]></content>
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CVNO-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
       
         
-        <tags>
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
             
-            <tag> hexo </tag>
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-        </tags>
+            首页
+          </a>
+        </li>
+      
         
-    </entry>
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
     
-    <entry>
-      <title><![CDATA[消息队列Rabbitmq基本使用]]></title>
-      <url>/2017/12/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97Rabbitmq%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
-      <content type="html"><![CDATA[<p>为什么用Rabbitmq instead of python queue ?</p>
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://blog.cvno.me/2017/12/18/消息队列Rabbitmq基本使用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CVNO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CVNO-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">消息队列Rabbitmq基本使用</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-12-18T14:24:45+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>为什么用Rabbitmq instead of python queue ?</p>
 <a id="more"></a>
 <blockquote>
 <p>是因为python queue 不能跨进程 </p>
@@ -170,47 +468,402 @@
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pika, threading, uuid</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 自定义线程类，继承threading.Thread</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span><span class="params">(threading.Thread)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func, num)</span>:</span></div><div class="line">        super(MyThread, self).__init__()</div><div class="line">        self.func = func</div><div class="line">        self.num = num</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></div><div class="line">        print(<span class="string">" [x] Requesting increase(%d)"</span> % self.num)</div><div class="line">        response = self.func(self.num)</div><div class="line">        print(<span class="string">" [.] increase(%d)=%d"</span> % (self.num, response))</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment"># 控制中心类</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Center</span><span class="params">(object)</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></div><div class="line">        self.connection = pika.BlockingConnection(pika.ConnectionParameters(</div><div class="line">            host=<span class="string">'10.211.55.10'</span>))</div><div class="line"></div><div class="line">        self.channel = self.connection.channel()</div><div class="line"></div><div class="line">        <span class="comment"># 定义接收返回消息的队列</span></div><div class="line">        result = self.channel.queue_declare(exclusive=<span class="keyword">True</span>)</div><div class="line">        self.callback_queue = result.method.queue</div><div class="line"></div><div class="line">        self.channel.basic_consume(self.on_response,</div><div class="line">                                   no_ack=<span class="keyword">True</span>,</div><div class="line">                                   queue=self.callback_queue)</div><div class="line"></div><div class="line">        <span class="comment"># 返回的结果都会存储在该字典里</span></div><div class="line">        self.response = &#123;&#125;</div><div class="line"></div><div class="line">    <span class="comment"># 定义接收到返回消息的处理方法</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_response</span><span class="params">(self, ch, method, props, body)</span>:</span></div><div class="line">        self.response[props.correlation_id] = body</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(self, n)</span>:</span></div><div class="line">        corr_id = str(uuid.uuid4())     <span class="comment">#  产生 id</span></div><div class="line">        self.response[corr_id] = <span class="keyword">None</span></div><div class="line"></div><div class="line">        <span class="comment"># 发送计算请求，并设定返回队列和correlation_id</span></div><div class="line">        self.channel.basic_publish(exchange=<span class="string">''</span>,</div><div class="line">                                   routing_key=<span class="string">'compute_queue'</span>,</div><div class="line">                                   properties=pika.BasicProperties(</div><div class="line">                                       reply_to=self.callback_queue,</div><div class="line">                                       correlation_id=corr_id,</div><div class="line">                                   ),</div><div class="line">                                   body=str(n))</div><div class="line">        <span class="comment"># 接收返回的数据</span></div><div class="line">        <span class="keyword">while</span> self.response[corr_id] <span class="keyword">is</span> <span class="keyword">None</span>:</div><div class="line">            self.connection.process_data_events()</div><div class="line">        <span class="keyword">return</span> int(self.response[corr_id])</div><div class="line"></div><div class="line"></div><div class="line">center = Center()</div><div class="line"><span class="comment"># 发起5次计算请求</span></div><div class="line">nums = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>]</div><div class="line">threads = []</div><div class="line"><span class="keyword">for</span> num <span class="keyword">in</span> nums:</div><div class="line">    threads.append(MyThread(center.request, num))</div><div class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</div><div class="line">    thread.start()</div><div class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</div><div class="line">    thread.join()</div></pre></td></tr></table></figure>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://blog.csdn.net/chenjiebin/article/details/8253433" target="_blank" rel="external">http://blog.csdn.net/chenjiebin/article/details/8253433</a></p>
-]]></content>
+
       
-        
-        <tags>
-            
-            <tag> Rabbitmq </tag>
-            
-        </tags>
-        
-    </entry>
+    </div>
     
-    <entry>
-      <title><![CDATA[密码学基础]]></title>
-      <url>/2017/11/01/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80/</url>
-      <content type="html"><![CDATA[<p>平常用的登录密码不叫密码，是登录口令</p>
-<a id="more"></a>
-<p>密码有一个加密和解密的过程</p>
-<p><strong>video:</strong> <a href="https://youtu.be/loJ62rvH8aE" target="_blank" rel="external">https://youtu.be/loJ62rvH8aE</a></p>
-<h2 id="古典密码"><a href="#古典密码" class="headerlink" title="古典密码"></a>古典密码</h2><h3 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ABC</div><div class="line">CDE</div><div class="line">// 往后移动3位或者多位</div></pre></td></tr></table></figure>
-<p>非常容易破解</p>
-<h3 id="维吉尼亚密码"><a href="#维吉尼亚密码" class="headerlink" title="维吉尼亚密码"></a>维吉尼亚密码</h3><blockquote>
-<p>不知道密钥是非常非常难破解的</p>
-</blockquote>
-<p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-14-15132363172963.jpg" alt=""></p>
-<ul>
-<li>RSA<ul>
-<li>公钥</li>
-<li>私钥 </li>
-</ul>
-</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">明文--&gt; 公钥 --&gt; 密文</div><div class="line">密文--&gt; 私钥 --&gt; 明文</div></pre></td></tr></table></figure>
-<p>基于<code>大数难分解</code><br>两个质数相乘</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">p1 = <span class="number">53</span></div><div class="line">p2 = <span class="number">59</span></div><div class="line">n = <span class="number">3127</span>  <span class="comment"># 53 * 59 = 3127</span></div><div class="line"><span class="comment"># 欧拉函数</span></div><div class="line">Φ(n)(p1<span class="number">-1</span>)*(p2<span class="number">-1</span>)= <span class="number">3016</span> <span class="comment"># fai 小写 φ</span></div><div class="line">e = <span class="number">3</span>   <span class="comment"># e 和欧拉函数互质 只要互质随便取</span></div><div class="line"><span class="comment"># 公钥是 n，e</span></div><div class="line">d = (k*φ(n)+<span class="number">1</span>)/e = <span class="number">2011</span> <span class="comment"># 私钥 (2**3016+1)/3 = 2011</span></div><div class="line"></div><div class="line"><span class="comment"># 验证</span></div><div class="line">m = <span class="number">89</span> <span class="comment"># 加密信息 </span></div><div class="line">c = (m**e)%n = <span class="number">1394</span>   <span class="comment"># 密文 (89**3)%3127 = 1394</span></div><div class="line">明文 = (x**d)%n = <span class="number">89</span> <span class="comment"># 明文 (1394**2011)%3127 = 89</span></div></pre></td></tr></table></figure>
-<p>扩展:</p>
-<p><strong>费马小定理</strong>来验证.</p>
-]]></content>
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
       
-        
-    </entry>
-    
+        <div class="post-tags">
+          
+            <a href="/tags/Rabbitmq/" rel="tag"># Rabbitmq</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/01/密码学基础/" rel="next" title="密码学基础">
+                <i class="fa fa-chevron-left"></i> 密码学基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/18/hexo-ERROR-Process-failed-posts/" rel="prev" title="hexo:ERROR Process failed: _posts/">
+                hexo:ERROR Process failed: _posts/ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
   
   
-</search>
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CVNO</p>
+              <p class="site-description motion-element" itemprop="description">何以解忧</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cvno" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/cvno/cvno.github.io" title="Repository" target="_blank">Repository</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用实现"><span class="nav-number">1.</span> <span class="nav-text">基本使用实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发送端"><span class="nav-number">1.1.</span> <span class="nav-text">发送端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接收端"><span class="nav-number">1.2.</span> <span class="nav-text">接收端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作队列"><span class="nav-number">2.</span> <span class="nav-text">工作队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息不丢失"><span class="nav-number">2.1.</span> <span class="nav-text">消息不丢失</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者"><span class="nav-number">2.1.1.</span> <span class="nav-text">生产者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费者"><span class="nav-number">2.1.2.</span> <span class="nav-text">消费者</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息持久化"><span class="nav-number">3.</span> <span class="nav-text">消息持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公平调度"><span class="nav-number">3.1.</span> <span class="nav-text">公平调度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广播"><span class="nav-number">4.</span> <span class="nav-text">广播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消费者-接收端receive-py代码分析"><span class="nav-number">4.1.</span> <span class="nav-text">消费者/接收端receive.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者-发送端send-py代码分析"><span class="nav-number">4.2.</span> <span class="nav-text">生产者/发送端send.py代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组播-路由"><span class="nav-number">5.</span> <span class="nav-text">组播/路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者-send-py代码分析"><span class="nav-number">5.1.</span> <span class="nav-text">生产者/send.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消费者-receive-py代码分析"><span class="nav-number">5.2.</span> <span class="nav-text">消费者/receive.py代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按规则发送-正则"><span class="nav-number">6.</span> <span class="nav-text">按规则发送/正则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#send-py代码分析"><span class="nav-number">6.1.</span> <span class="nav-text">send.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#receive-py代码分析"><span class="nav-number">6.2.</span> <span class="nav-text">receive.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验运行"><span class="nav-number">6.3.</span> <span class="nav-text">实验运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#难点"><span class="nav-number">6.4.</span> <span class="nav-text">难点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程结果返回RPC"><span class="nav-number">7.</span> <span class="nav-text">远程结果返回RPC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#compute-py代码分析"><span class="nav-number">7.1.</span> <span class="nav-text">compute.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#center-py代码分析"><span class="nav-number">7.2.</span> <span class="nav-text">center.py代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相互关联编号correlation-id"><span class="nav-number">8.</span> <span class="nav-text">相互关联编号correlation id</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#compute-py代码分析-1"><span class="nav-number">8.1.</span> <span class="nav-text">compute.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#center-py代码分析-1"><span class="nav-number">8.2.</span> <span class="nav-text">center.py代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">9.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CVNO</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
