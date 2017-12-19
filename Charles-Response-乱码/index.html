@@ -66,7 +66,7 @@
 
 
 
-  <meta name="keywords" content="Hello, cvno" />
+  <meta name="keywords" content="Charles," />
 
 
 
@@ -79,15 +79,22 @@
 
 
 
-<meta name="description" content="何以解忧">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CVNO-Blog">
-<meta property="og:url" content="https://cvno.github.io/tags/hexo/index.html">
+<meta name="description" content="使用 Charles 抓 https 包的时候, Reponse 出现乱码">
+<meta name="keywords" content="Charles">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Charles: Response 出现乱码">
+<meta property="og:url" content="https://cvno.github.io/Charles-Response-乱码/index.html">
 <meta property="og:site_name" content="CVNO-Blog">
-<meta property="og:description" content="何以解忧">
+<meta property="og:description" content="使用 Charles 抓 https 包的时候, Reponse 出现乱码">
+<meta property="og:image" content="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136035793600.jpg">
+<meta property="og:image" content="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136036377739.jpg">
+<meta property="og:image" content="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136049282237.jpg">
+<meta property="og:image" content="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136042401360.jpg">
+<meta property="og:updated_time" content="2017-12-19T01:38:33.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CVNO-Blog">
-<meta name="twitter:description" content="何以解忧">
+<meta name="twitter:title" content="Charles: Response 出现乱码">
+<meta name="twitter:description" content="使用 Charles 抓 https 包的时候, Reponse 出现乱码">
+<meta name="twitter:image" content="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136035793600.jpg">
 
 
 
@@ -117,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="https://cvno.github.io/tags/hexo/"/>
+  <link rel="canonical" href="https://cvno.github.io/Charles-Response-乱码/"/>
 
 
 
 
 
-  <title>标签: hexo | CVNO-Blog</title>
+  <title>Charles: Response 出现乱码 | CVNO-Blog</title>
   
 
 
@@ -151,7 +158,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -245,54 +252,157 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h2>hexo<small>标签</small>
-        </h2>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cvno.github.io/Charles-Response-乱码/">
 
-      <h3 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CVNO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CVNO-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/hexo-ERROR-Process-failed-posts/" itemprop="url">
-              
-                <span itemprop="name">hexo: ERROR Process failed: _posts/*</span>
-              
-            </a>
         
-      </h3>
+          <h2 class="post-title" itemprop="name headline">Charles: Response 出现乱码</h2>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2017-12-18T14:49:12+08:00"
-              content="2017-12-18" >
-          12-18
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-18T21:19:42+08:00">
+                2017-09-18
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>使用 Charles 抓 https 包的时候, Reponse 出现乱码<br><a id="more"></a></p>
+<p>系统环境: MAC<br>软件版本: 4.2.1<br>浏览器: Google Chrome</p>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>没有信任 Charles 的证书,信任 Charles 的证书就好了</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><h2 id="安装-Charles-证书"><a href="#安装-Charles-证书" class="headerlink" title="安装 Charles 证书"></a>安装 Charles 证书</h2><p><code>Help</code> &gt; <code>SSL Proxying</code> &gt; <code>Install Charles Root Certificate</code></p>
+<p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136035793600.jpg" alt="安装 Charles 证书"></p>
+<h2 id="信任-Charles-证书"><a href="#信任-Charles-证书" class="headerlink" title="信任 Charles 证书"></a>信任 Charles 证书</h2><p>安装完成后会自动弹出钥匙串,找到 Charles 的证书信任即可</p>
+<p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136036377739.jpg" alt="信任 Charles 证书1"></p>
+<p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136049282237.jpg" alt="信任 Charles 证书2"></p>
+<h2 id="Charles-设置"><a href="#Charles-设置" class="headerlink" title="Charles 设置"></a>Charles 设置</h2><p><code>Proxy</code> &gt; <code>SSL Proxying Settings</code></p>
+<p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136042401360.jpg" alt="Charles 设置"></p>
+<h2 id="ok"><a href="#ok" class="headerlink" title="ok"></a>ok</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>发布这篇文章的时候问题已经被解决,但是没有问题截图,有时间的话再补上.</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Charles/" rel="tag"># Charles</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/密码学基础/" rel="prev" title="密码学基础">
+                密码学基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -300,6 +410,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -320,8 +434,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -403,6 +526,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#原因"><span class="nav-number">1.</span> <span class="nav-text">原因</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解决方法"><span class="nav-number">2.</span> <span class="nav-text">解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-Charles-证书"><span class="nav-number">2.1.</span> <span class="nav-text">安装 Charles 证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信任-Charles-证书"><span class="nav-number">2.2.</span> <span class="nav-text">信任 Charles 证书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Charles-设置"><span class="nav-number">2.3.</span> <span class="nav-text">Charles 设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ok"><span class="nav-number">2.4.</span> <span class="nav-text">ok</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#后记"><span class="nav-number">3.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -532,6 +671,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
 
   
 

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>CVNO-Blog</title>
-  
+  <subtitle>何以解忧</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://blog.cvno.me/"/>
-  <updated>2017-12-18T07:25:06.000Z</updated>
-  <id>http://blog.cvno.me/</id>
+  <link href="https://cvno.github.io/"/>
+  <updated>2017-12-19T01:38:12.000Z</updated>
+  <id>https://cvno.github.io/</id>
   
   <author>
     <name>CVNO</name>
@@ -16,18 +16,18 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>hexo:ERROR Process failed: _posts/</title>
-    <link href="http://blog.cvno.me/2017/12/18/hexo-ERROR-Process-failed-posts/"/>
-    <id>http://blog.cvno.me/2017/12/18/hexo-ERROR-Process-failed-posts/</id>
+    <title>hexo: ERROR Process failed: _posts/*</title>
+    <link href="https://cvno.github.io/hexo-ERROR-Process-failed-posts/"/>
+    <id>https://cvno.github.io/hexo-ERROR-Process-failed-posts/</id>
     <published>2017-12-18T06:49:12.000Z</published>
-    <updated>2017-12-18T07:25:06.000Z</updated>
+    <updated>2017-12-19T01:38:12.000Z</updated>
     
     <content type="html"><![CDATA[<p>文章的格式出现错误了</p>
 <a id="more"></a>
 <ul>
 <li>错误提示</li>
 </ul>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div><div class="line">ERROR Process failed: _posts/消息队列Rabbitmq基本使用.md</div><div class="line">Error at </div><div class="line">.....</div></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ hexo s</div><div class="line">ERROR Process failed: _posts/*</div><div class="line">Error at </div><div class="line">.....</div></pre></td></tr></table></figure>
 <ul>
 <li>原因</li>
 </ul>
@@ -48,16 +48,16 @@
     </summary>
     
     
-      <category term="hexo" scheme="http://blog.cvno.me/tags/hexo/"/>
+      <category term="hexo" scheme="https://cvno.github.io/tags/hexo/"/>
     
   </entry>
   
   <entry>
-    <title>消息队列Rabbitmq基本使用</title>
-    <link href="http://blog.cvno.me/2017/12/18/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97Rabbitmq%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
-    <id>http://blog.cvno.me/2017/12/18/消息队列Rabbitmq基本使用/</id>
+    <title>Python:消息队列Rabbitmq基本使用</title>
+    <link href="https://cvno.github.io/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97Rabbitmq%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/"/>
+    <id>https://cvno.github.io/消息队列Rabbitmq基本使用/</id>
     <published>2017-12-18T06:24:45.000Z</published>
-    <updated>2017-12-18T06:58:20.000Z</updated>
+    <updated>2017-12-18T12:05:43.000Z</updated>
     
     <content type="html"><![CDATA[<p>为什么用Rabbitmq instead of python queue ?</p>
 <a id="more"></a>
@@ -71,12 +71,12 @@
 </code></pre><figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 斐波那契数列</span></div><div class="line">1 1 2 3 5 8 13 ...</div><div class="line"><span class="comment"># 启动rabbitmq，并验证启动情况 </span></div><div class="line">rabbitmq-server --detached &amp;ps aux |grep rabbitmq</div><div class="line"><span class="comment"># 以服务的方式启动</span></div><div class="line">service rabbitmq-server start</div><div class="line"><span class="comment"># 启用维护插件</span></div><div class="line">rabbitmq-plugins <span class="built_in">enable</span> rabbitmq_management </div><div class="line"><span class="comment"># 重启</span></div><div class="line">service rabbitmq-server restart</div><div class="line"></div><div class="line"><span class="comment"># erroe</span></div><div class="line">pika.exceptions.ProbableAuthenticationError</div><div class="line"><span class="comment"># 解决方法</span></div><div class="line"><span class="comment"># 写入信息 并保存/关闭防火墙 'systemctl stop filewallf'</span></div><div class="line">vim /etc/rabbitmq/rabbitmq.config</div><div class="line">[&#123;rabbit, [&#123;loopback_users, []&#125;]&#125;].</div><div class="line"><span class="comment"># 查看当前队列</span></div><div class="line">rabbitmqctl list_queues</div></pre></td></tr></table></figure>
 <h2 id="基本使用实现"><a href="#基本使用实现" class="headerlink" title="基本使用实现"></a>基本使用实现</h2><h3 id="发送端"><a href="#发送端" class="headerlink" title="发送端"></a>发送端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pika</div><div class="line"></div><div class="line"><span class="comment"># 创建连接</span></div><div class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(<span class="string">'10.211.55.10'</span>))</div><div class="line">channel = connection.channel()</div><div class="line"></div><div class="line"><span class="comment"># 声明消息队列</span></div><div class="line">channel.queue_declare(queue=<span class="string">'hello'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 发送消息到上面声明的hello队列，</span></div><div class="line"><span class="comment"># 其中exchange表示交换器，能精确指定消息应该发送到哪个队列，</span></div><div class="line"><span class="comment"># routing_key设置为队列的名称，</span></div><div class="line"><span class="comment"># body就是发送的内容，</span></div><div class="line">channel.basic_publish(exchange=<span class="string">''</span>,routing_key=<span class="string">'hello'</span>,body=<span class="string">'Hello World!'</span>)</div><div class="line"></div><div class="line">print(<span class="string">'[x] Sent "Hello World!"'</span>)</div><div class="line"></div><div class="line"><span class="comment"># sh命令</span></div><div class="line"><span class="comment"># 用 rabbitmqctl list_queues 查看队列</span></div><div class="line"><span class="string">'''</span></div><div class="line">Listing queues</div><div class="line">hello	1</div><div class="line">'''</div></pre></td></tr></table></figure>
 <p><img src="http://onk83djzp.bkt.clouddn.com/15021926446211.png" alt=""></p>
-<h3 id="接收端"><a href="#接收端" class="headerlink" title="接收端"></a>接收端</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">import pika</div><div class="line"></div><div class="line"># 创建连接</div><div class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(&apos;10.211.55.10&apos;))</div><div class="line">channel = connection.channel()</div><div class="line"></div><div class="line"># 声明消息队列</div><div class="line">channel.queue_declare(queue=&apos;hello&apos;)</div><div class="line"></div><div class="line"># 接收消息 回调函数</div><div class="line">def callbcak(ch,method,properties,body):</div><div class="line">    print(&quot;Received %r&quot;%(body))</div><div class="line"></div><div class="line"># 告诉rabbitmq使用callback来接收信息</div><div class="line">channel.basic_consume(callbcak,queue=&apos;hello&apos;,no_ack=True)</div><div class="line"></div><div class="line">#开始接收信息，并进入阻塞状态，队列里有信息才会调用callback进行处理。按ctrl+c退出。</div><div class="line">channel.start_consuming()</div><div class="line"></div><div class="line"># 终端会阻塞住</div><div class="line">&apos;&apos;&apos;</div><div class="line">Received b&apos;Hello World!&apos;</div><div class="line">&apos;&apos;&apos;</div></pre></td></tr></table></figure>
-<h2 id="工作队列"><a href="#工作队列" class="headerlink" title="工作队列"></a>工作队列</h2><h3 id="消息不丢失"><a href="#消息不丢失" class="headerlink" title="消息不丢失"></a>消息不丢失</h3><h4 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">for i in range(5):</div><div class="line">    msg = &apos; &apos;.join(sys.argv[1:])or &apos;Hello World! %s&apos; % time.time()</div><div class="line">    channel.basic_publish(exchange=&apos;&apos;,</div><div class="line">                          routing_key=&apos;hello&apos;,</div><div class="line">                          body=bytes(msg,encoding=&apos;utf8&apos;),)</div></pre></td></tr></table></figure>
+<h3 id="接收端"><a href="#接收端" class="headerlink" title="接收端"></a>接收端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pika</div><div class="line"></div><div class="line"><span class="comment"># 创建连接</span></div><div class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(<span class="string">'10.211.55.10'</span>))</div><div class="line">channel = connection.channel()</div><div class="line"></div><div class="line"><span class="comment"># 声明消息队列</span></div><div class="line">channel.queue_declare(queue=<span class="string">'hello'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 接收消息 回调函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">callbcak</span><span class="params">(ch,method,properties,body)</span>:</span></div><div class="line">    print(<span class="string">"Received %r"</span>%(body))</div><div class="line"></div><div class="line"><span class="comment"># 告诉rabbitmq使用callback来接收信息</span></div><div class="line">channel.basic_consume(callbcak,queue=<span class="string">'hello'</span>,no_ack=<span class="keyword">True</span>)</div><div class="line"></div><div class="line"><span class="comment">#开始接收信息，并进入阻塞状态，队列里有信息才会调用callback进行处理。按ctrl+c退出。</span></div><div class="line">channel.start_consuming()</div><div class="line"></div><div class="line"><span class="comment"># 终端会阻塞住</span></div><div class="line"><span class="string">'''</span></div><div class="line">Received b'Hello World!'</div><div class="line">'''</div></pre></td></tr></table></figure>
+<h2 id="工作队列"><a href="#工作队列" class="headerlink" title="工作队列"></a>工作队列</h2><h3 id="消息不丢失"><a href="#消息不丢失" class="headerlink" title="消息不丢失"></a>消息不丢失</h3><h4 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</div><div class="line">    msg = <span class="string">' '</span>.join(sys.argv[<span class="number">1</span>:])<span class="keyword">or</span> <span class="string">'Hello World! %s'</span> % time.time()</div><div class="line">    channel.basic_publish(exchange=<span class="string">''</span>,</div><div class="line">                          routing_key=<span class="string">'hello'</span>,</div><div class="line">                          body=bytes(msg,encoding=<span class="string">'utf8'</span>),)</div></pre></td></tr></table></figure>
 <h4 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h4><ul>
 <li><code>no_ack=False</code> 消费者退出不消息不丢失</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># 修改回调函数</div><div class="line">def callbcak(ch, method, properties, body):</div><div class="line">    print(&quot;Received %r&quot; % (body))</div><div class="line">    time.sleep(5)</div><div class="line">    print(&quot;[x] Done&quot;)</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 修改回调函数</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">callbcak</span><span class="params">(ch, method, properties, body)</span>:</span></div><div class="line">    print(<span class="string">"Received %r"</span> % (body))</div><div class="line">    time.sleep(<span class="number">5</span>)</div><div class="line">    print(<span class="string">"[x] Done"</span>)</div></pre></td></tr></table></figure>
 <h2 id="消息持久化"><a href="#消息持久化" class="headerlink" title="消息持久化"></a>消息持久化</h2><ul>
 <li>消息持久化存储,</li>
 </ul>
@@ -112,7 +112,7 @@
 <li>定义交换机</li>
 <li>不使用hello队列了，随机生成一个临时队列，并绑定到交换机上</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">import pika</div><div class="line"></div><div class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</div><div class="line">    &apos;10.211.55.10&apos;))</div><div class="line">channel = connection.channel()</div><div class="line"></div><div class="line"># 定义交换机</div><div class="line">channel.exchange_declare(exchange=&apos;messages&apos;, type=&apos;fanout&apos;)</div><div class="line"></div><div class="line"># 随机生成队列，并绑定到交换机上</div><div class="line"># 参数&apos;exclusive=True&apos;表示当接收端退出时，销毁临时产生的队列，这样就不会占用资源。</div><div class="line">result = channel.queue_declare(exclusive=True)</div><div class="line">queue_name = result.method.queue</div><div class="line">channel.queue_bind(exchange=&apos;messages&apos;, queue=queue_name)</div><div class="line"></div><div class="line"></div><div class="line">def callback(ch, method, properties, body):</div><div class="line">    print(&quot; [x] Received %r&quot; % (body,))</div><div class="line"></div><div class="line"></div><div class="line">channel.basic_consume(callback, queue=queue_name, no_ack=True)</div><div class="line"></div><div class="line">print(&apos; [*] Waiting for messages. To exit press CTRL+C&apos;)</div><div class="line">channel.start_consuming()</div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> pika</div><div class="line"></div><div class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</div><div class="line">    <span class="string">'10.211.55.10'</span>))</div><div class="line">channel = connection.channel()</div><div class="line"></div><div class="line"><span class="comment"># 定义交换机</span></div><div class="line">channel.exchange_declare(exchange=<span class="string">'messages'</span>, type=<span class="string">'fanout'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 随机生成队列，并绑定到交换机上</span></div><div class="line"><span class="comment"># 参数'exclusive=True'表示当接收端退出时，销毁临时产生的队列，这样就不会占用资源。</span></div><div class="line">result = channel.queue_declare(exclusive=<span class="keyword">True</span>)</div><div class="line">queue_name = result.method.queue</div><div class="line">channel.queue_bind(exchange=<span class="string">'messages'</span>, queue=queue_name)</div><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(ch, method, properties, body)</span>:</span></div><div class="line">    print(<span class="string">" [x] Received %r"</span> % (body,))</div><div class="line"></div><div class="line"></div><div class="line">channel.basic_consume(callback, queue=queue_name, no_ack=<span class="keyword">True</span>)</div><div class="line"></div><div class="line">print(<span class="string">' [*] Waiting for messages. To exit press CTRL+C'</span>)</div><div class="line">channel.start_consuming()</div></pre></td></tr></table></figure>
 <p>执行<code>rabbitmqctl list_queues</code></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">task_queue	0</div><div class="line">hello	5</div><div class="line"><span class="comment"># 定义了交换机</span></div><div class="line">amq.gen-K0M17k_3LVYO0b7m0s-K1g	0</div></pre></td></tr></table></figure>
 <p><img src="http://onk83djzp.bkt.clouddn.com/15022012187733.jpg" alt=""></p>
@@ -202,14 +202,14 @@
     </summary>
     
     
-      <category term="Rabbitmq" scheme="http://blog.cvno.me/tags/Rabbitmq/"/>
+      <category term="Rabbitmq" scheme="https://cvno.github.io/tags/Rabbitmq/"/>
     
   </entry>
   
   <entry>
     <title>密码学基础</title>
-    <link href="http://blog.cvno.me/2017/11/01/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80/"/>
-    <id>http://blog.cvno.me/2017/11/01/密码学基础/</id>
+    <link href="https://cvno.github.io/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80/"/>
+    <id>https://cvno.github.io/密码学基础/</id>
     <published>2017-11-01T12:10:33.000Z</published>
     <updated>2017-12-16T13:01:01.000Z</updated>
     
@@ -243,6 +243,37 @@
     
     </summary>
     
+    
+  </entry>
+  
+  <entry>
+    <title>Charles: Response 出现乱码</title>
+    <link href="https://cvno.github.io/Charles-Response-%E4%B9%B1%E7%A0%81/"/>
+    <id>https://cvno.github.io/Charles-Response-乱码/</id>
+    <published>2017-09-18T13:19:42.000Z</published>
+    <updated>2017-12-19T01:38:33.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>使用 Charles 抓 https 包的时候, Reponse 出现乱码<br><a id="more"></a></p>
+<p>系统环境: MAC<br>软件版本: 4.2.1<br>浏览器: Google Chrome</p>
+<h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>没有信任 Charles 的证书,信任 Charles 的证书就好了</p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><h2 id="安装-Charles-证书"><a href="#安装-Charles-证书" class="headerlink" title="安装 Charles 证书"></a>安装 Charles 证书</h2><p><code>Help</code> &gt; <code>SSL Proxying</code> &gt; <code>Install Charles Root Certificate</code></p>
+<p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136035793600.jpg" alt="安装 Charles 证书"></p>
+<h2 id="信任-Charles-证书"><a href="#信任-Charles-证书" class="headerlink" title="信任 Charles 证书"></a>信任 Charles 证书</h2><p>安装完成后会自动弹出钥匙串,找到 Charles 的证书信任即可</p>
+<p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136036377739.jpg" alt="信任 Charles 证书1"></p>
+<p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136049282237.jpg" alt="信任 Charles 证书2"></p>
+<h2 id="Charles-设置"><a href="#Charles-设置" class="headerlink" title="Charles 设置"></a>Charles 设置</h2><p><code>Proxy</code> &gt; <code>SSL Proxying Settings</code></p>
+<p><img src="http://onk83djzp.bkt.clouddn.com/2017-12-18-15136042401360.jpg" alt="Charles 设置"></p>
+<h2 id="ok"><a href="#ok" class="headerlink" title="ok"></a>ok</h2><h1 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h1><p>发布这篇文章的时候问题已经被解决,但是没有问题截图,有时间的话再补上.</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 Charles 抓 https 包的时候, Reponse 出现乱码&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="Charles" scheme="https://cvno.github.io/tags/Charles/"/>
     
   </entry>
   
