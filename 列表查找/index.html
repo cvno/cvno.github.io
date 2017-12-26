@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/UA0m4Lc.jpg?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/IA5LPo2.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/ub6Qj0U.png?v=5.1.3">
+
+
+
+
+
+
+  <meta name="keywords" content="Hello, cvno" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CVNO-Blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="顺序查找与二分查找">
+<meta property="og:type" content="article">
+<meta property="og:title" content="列表查找">
+<meta property="og:url" content="https://cvno.github.io/列表查找/index.html">
+<meta property="og:site_name" content="CVNO-Blog">
+<meta property="og:description" content="顺序查找与二分查找">
+<meta property="og:updated_time" content="2017-12-21T13:39:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="列表查找">
+<meta name="twitter:description" content="顺序查找与二分查找">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"Gemini"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://cvno.github.io/列表查找/"/>
+
+
+
+
+
+  <title>列表查找 | CVNO-Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-111334129-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CVNO-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description">何以解忧</h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cvno.github.io/列表查找/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CVNO">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CVNO-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">列表查找</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-21T12:09:36+08:00">
+                2017-09-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/算法/" itemprop="url" rel="index">
+                    <span itemprop="name">算法</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  顺序查找与二分查找
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><ul>
+<li>从列表第一个元素开始，顺序进行搜索，直到找到为止。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">li = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</div><div class="line">index(<span class="number">1</span>)    <span class="comment"># 顺序查找</span></div><div class="line"></div><div class="line"><span class="comment"># 顺序查找 ipython  O(n) 复杂度</span></div><div class="line"><span class="keyword">import</span> random</div><div class="line">n = <span class="number">10000</span></div><div class="line">li = list(range(n))</div><div class="line">random.shuffle(li)</div><div class="line">%timeit li.index(<span class="number">3200</span>)</div><div class="line"><span class="comment">#221 µs ± 11.1 µs per loop (mean ± std. dev. of 7 runs, 1000 loops each)</span></div></pre></td></tr></table></figure>
+<h1 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h1><blockquote>
+<p>只能用于有序列表</p>
+</blockquote>
+<p>从有序列表的候选区<code>data[0:n]</code>开始，通过对待查找的值与候选区中间值的比较，可以使候选区减少一半。<code>O(logn)</code> 复杂度</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 二分查找</span></div><div class="line"><span class="comment"># 循环版本</span></div><div class="line"><span class="comment"># def bin_search(li,low,high):</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin_search</span><span class="params">(li, val)</span>:</span></div><div class="line">    <span class="string">'''循环二分 时间复杂度 O(logn)'''</span></div><div class="line">    low = <span class="number">0</span></div><div class="line">    high = len(li) - <span class="number">1</span></div><div class="line">    <span class="keyword">while</span> low &lt;= high:</div><div class="line">        mid = (low + high) // <span class="number">2</span></div><div class="line">        <span class="keyword">if</span> li[mid] == val:</div><div class="line">            <span class="keyword">return</span> mid</div><div class="line">        <span class="keyword">elif</span> li[mid] &lt; val:</div><div class="line">            low = mid + <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:  <span class="comment"># &gt;</span></div><div class="line">            high = mid - <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line"><span class="comment"># 5.6 µs ± 441 ns per loop (mean ± std. dev. of 7 runs, 100000 loops each)</span></div><div class="line"></div><div class="line"><span class="comment"># 递归版本  递归需要切换进出栈</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin_search_rec</span><span class="params">(data_set,value,low,high)</span>:</span></div><div class="line">    <span class="string">''' 尾递归 和 非递归的效率基本一样 '''</span></div><div class="line">    <span class="keyword">if</span> low &lt;= high:</div><div class="line">        mid = (low+high) // <span class="number">2</span></div><div class="line">        <span class="keyword">if</span> data_set[mid] == value:</div><div class="line">            <span class="keyword">return</span> mid</div><div class="line">        <span class="keyword">elif</span> data_set[mid] &gt; value:</div><div class="line">            <span class="comment"># 尾递归不用切换出栈</span></div><div class="line">            <span class="keyword">return</span> bin_search_rec(data_set,value,low,mid<span class="number">-1</span>)</div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            <span class="keyword">return</span> bin_search_rec(data_set,value,mid+<span class="number">1</span>,high)</div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        <span class="keyword">return</span></div><div class="line"></div><div class="line"><span class="comment"># %timeit l1.index(3200)</span></div><div class="line"><span class="comment"># l1.sort()   # 排序</span></div><div class="line"><span class="comment"># %timeit bin_search(l1,3200)</span></div><div class="line">print(bin_search(l1,<span class="number">4000</span>))</div></pre></td></tr></table></figure>
+<p>刷题：Letcode<br><a href="https://leetcode.com/problems/search-for-a-range/?tab=Description" target="_blank" rel="external">34. Search for a Range (二分查找升级版)</a><br><a href="https://leetcode.com/problems/two-sum/?tab=Description" target="_blank" rel="external">1. Two Sum</a></p>
+<h1 id="习题"><a href="#习题" class="headerlink" title="习题"></a>习题</h1><p>1  <a href="https://leetcode.com/problems/search-for-a-range/?tab=Description" target="_blank" rel="external">34. Search for a Range (二分查找升级版)</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin_search</span><span class="params">(li, val)</span>:</span></div><div class="line">    <span class="string">'''循环二分 时间复杂度 O(logn)'''</span></div><div class="line">    low = <span class="number">0</span></div><div class="line">    high = len(li) - <span class="number">1</span></div><div class="line">    <span class="keyword">while</span> low &lt;= high:</div><div class="line">        mid = (low + high) // <span class="number">2</span></div><div class="line">        <span class="keyword">if</span> li[mid] == val:</div><div class="line">            a = mid</div><div class="line">            b = mid</div><div class="line">            <span class="keyword">while</span> li[a] = value <span class="keyword">and</span> a &gt;= <span class="number">1</span>:</div><div class="line">                a -= <span class="number">1</span></div><div class="line">            <span class="keyword">while</span> li[b] = value <span class="keyword">and</span> b &lt; len(li):    <span class="comment"># b &lt;= len(li) - 1</span></div><div class="line">                b += <span class="number">1</span></div><div class="line">            <span class="keyword">return</span> (a+<span class="number">1</span>,b<span class="number">-1</span>)</div><div class="line">        <span class="keyword">elif</span> li[mid] &lt; val:</div><div class="line">            low = mid + <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:  <span class="comment"># &gt;</span></div><div class="line">            high = mid - <span class="number">1</span></div><div class="line">    <span class="keyword">return</span> <span class="keyword">None</span></div></pre></td></tr></table></figure>
+<p>2 . <a href="https://leetcode.com/problems/two-sum/?tab=Description" target="_blank" rel="external">1. Two Sum</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">two_sum</span><span class="params">(nums, target)</span>:</span></div><div class="line">    l = len(nums)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(l):</div><div class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,l):</div><div class="line">            print(nums[i],nums[j])</div><div class="line">            <span class="keyword">if</span> nums[i] + nums[j] == target:</div><div class="line">                <span class="keyword">return</span> (i,j)</div><div class="line">    <span class="keyword">return</span> <span class="keyword">None</span></div><div class="line">            </div><div class="line">print(two_sum([<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>],<span class="number">9</span>))</div></pre></td></tr></table></figure>
+<p>或者</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">bin_search</span><span class="params">(data_set, value)</span>:</span></div><div class="line">    low = <span class="number">0</span></div><div class="line">    high = len(data_set) - <span class="number">1</span></div><div class="line">    <span class="keyword">while</span> low &lt;= high:</div><div class="line">        mid = (low + high) // <span class="number">2</span></div><div class="line">        <span class="keyword">if</span> data_set[mid] == value:</div><div class="line">            <span class="keyword">return</span> mid</div><div class="line">        <span class="keyword">elif</span> data_set[mid] &gt; value:</div><div class="line">            high = mid - <span class="number">1</span></div><div class="line">        <span class="keyword">else</span>:</div><div class="line">            low = mid + <span class="number">1</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">two_sum_2</span><span class="params">(li, target)</span>:</span></div><div class="line">    li.sort()</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(li)):</div><div class="line">        b = target - li[i]</div><div class="line">        j = bin_search(li, b)</div><div class="line">        <span class="keyword">if</span> j != <span class="keyword">None</span> <span class="keyword">and</span> i != j:</div><div class="line">            <span class="keyword">return</span> i, j</div><div class="line"></div><div class="line">print(two_sum_2([<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>], <span class="number">14</span>))</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">two_sum_3</span><span class="params">(li, target)</span>:</span></div><div class="line">    li.sort()   <span class="comment"># nlogn</span></div><div class="line">    i = <span class="number">0</span></div><div class="line">    j = len(li) - <span class="number">1</span></div><div class="line">    <span class="keyword">while</span> i&lt;j:</div><div class="line">        sum = li[i]+li[j]</div><div class="line">        <span class="keyword">if</span> sum &gt; target:</div><div class="line">            j-=<span class="number">1</span></div><div class="line">        <span class="keyword">elif</span> sum &lt; target:</div><div class="line">            i+=<span class="number">1</span></div><div class="line">        <span class="keyword">else</span>: <span class="comment">#sum==target</span></div><div class="line">            <span class="keyword">return</span> (i,j)</div><div class="line">    <span class="keyword">return</span> <span class="keyword">None</span></div></pre></td></tr></table></figure>
+<h1 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h1><p><a href="https://leetcode.com/problems/two-sum/?tab=Description" target="_blank" rel="external">1. Two Sum</a> 如果是 3 个数 就把第一个数固定, 后面的列表用 two_sum_3 来计算</p>
+<blockquote>
+<p>如果这样时间复杂度<br>nlogn + n²<br>最终的时间复杂度是 n²</p>
+</blockquote>
+<p>如果用二分查找, 就需要先排序, 定住两个数, 排序(nlogn) + <code>定住两个数(n²)</code> <code>二分(n²logn)</code> 最终的复杂度是 <code>n²logn</code></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/时间复杂度与空间复杂度/" rel="next" title="时间复杂度与空间复杂度">
+                <i class="fa fa-chevron-left"></i> 时间复杂度与空间复杂度
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/密码学基础/" rel="prev" title="密码学基础">
+                密码学基础 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">CVNO</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cvno" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/cvno/cvno.github.io" title="Repository" target="_blank" rel="external nofollow">Repository</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#顺序查找"><span class="nav-number">1.</span> <span class="nav-text">顺序查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二分查找"><span class="nav-number">2.</span> <span class="nav-text">二分查找</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#习题"><span class="nav-number">3.</span> <span class="nav-text">习题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展"><span class="nav-number">4.</span> <span class="nav-text">扩展</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CVNO</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a> 强力驱动</div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
