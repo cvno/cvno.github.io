@@ -4,6 +4,26 @@
 
     
   <url>
+    <loc>https://cvno.github.io/%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F/</loc>
+    <lastmod>2017-12-27T04:04:30.000Z</lastmod>
+    <data>
+        <display>
+        <title>常用排序算法</title>
+        <pubTime>2017-12-22T07:22:38.000Z</pubTime>
+        
+        <tag>Python</tag>
+         
+         
+           
+             
+              <breadCrumb title="算法" url="https://cvno.github.io/categories/%E7%AE%97%E6%B3%95/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>https://cvno.github.io/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/</loc>
     <lastmod>2017-12-26T13:33:27.000Z</lastmod>
     <data>
@@ -43,26 +63,6 @@
          
          
            
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>https://cvno.github.io/%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F/</loc>
-    <lastmod>2017-12-26T08:57:49.000Z</lastmod>
-    <data>
-        <display>
-        <title>列表排序</title>
-        <pubTime>2017-12-22T07:22:38.000Z</pubTime>
-        
-        <tag>Python</tag>
-         
-         
-           
-             
-              <breadCrumb title="算法" url="https://cvno.github.io/categories/%E7%AE%97%E6%B3%95/"/>
-          
         </display>
     </data>
     </url>
