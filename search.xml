@@ -4,7 +4,7 @@
     
     <entry>
       <title><![CDATA[数据结构基础]]></title>
-      <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%9F%BA%E7%A1%80/</url>
+      <url>/data-structure-basis/</url>
       <content type="html"><![CDATA[<h1 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h1><p>数据结构是设计数据以何种方式组织并存储在计算机中。</p>
 <p>比如：<code>列表</code>、<code>集合</code>与<code>字典</code>等都是一种数据结构。</p>
 <p>详细的说：</p>
@@ -203,7 +203,7 @@
     
     <entry>
       <title><![CDATA[TOP 榜单算法（nlargest）]]></title>
-      <url>/TOP-%E6%A6%9C%E5%8D%95%E7%AE%97%E6%B3%95/</url>
+      <url>/top-list-algorithm/</url>
       <content type="html"><![CDATA[<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>现在有n个数（n&gt;10000），设计算法，按大小顺序得到前<del>10</del>m大的数。</p>
 <a id="more"></a>
 <ul>
@@ -240,13 +240,15 @@
             
             <tag> heapq </tag>
             
+            <tag> nlargest </tag>
+            
         </tags>
         
     </entry>
     
     <entry>
       <title><![CDATA[数据结构：树]]></title>
-      <url>/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%EF%BC%9A%E6%A0%91/</url>
+      <url>/data-structure-tree/</url>
       <content type="html"><![CDATA[<h1 id="树"><a href="#树" class="headerlink" title="树"></a>树</h1><p><img src="https://i.imgur.com/JH2f8TO.jpg" alt="树（数据结构）"></p>
 <ul>
 <li>是一种数据结构（如：目录结构） </li>
@@ -308,7 +310,7 @@
     
     <entry>
       <title><![CDATA[递归]]></title>
-      <url>/%E9%80%92%E5%BD%92/</url>
+      <url>/recursion/</url>
       <content type="html"><![CDATA[<p>在函数内部，可以调用其他函数。如果一个函数在内部调用自身本身，这个函数就是递归函数。</p>
 <p><strong>特点：</strong></p>
 <ul>
@@ -333,7 +335,7 @@
     
     <entry>
       <title><![CDATA[常用排序算法]]></title>
-      <url>/%E5%88%97%E8%A1%A8%E6%8E%92%E5%BA%8F/</url>
+      <url>/list-algorithm/</url>
       <content type="html"><![CDATA[<p><strong>重点:</strong></p>
 <ul>
 <li>有序区</li>
@@ -692,7 +694,7 @@
     
     <entry>
       <title><![CDATA[Python:消息队列Rabbitmq基本使用]]></title>
-      <url>/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97Rabbitmq%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8/</url>
+      <url>/rabbitmq-apply/</url>
       <content type="html"><![CDATA[<p>为什么用Rabbitmq instead of python queue ?</p>
 <a id="more"></a>
 <blockquote>
@@ -840,7 +842,7 @@
     
     <entry>
       <title><![CDATA[密码学基础]]></title>
-      <url>/%E5%AF%86%E7%A0%81%E5%AD%A6%E5%9F%BA%E7%A1%80/</url>
+      <url>/basis-of-cryptography/</url>
       <content type="html"><![CDATA[<p>平常用的登录密码不叫密码，是登录口令</p>
 <a id="more"></a>
 <p>密码有一个加密和解密的过程</p>
@@ -870,7 +872,7 @@
     
     <entry>
       <title><![CDATA[列表查找]]></title>
-      <url>/%E5%88%97%E8%A1%A8%E6%9F%A5%E6%89%BE/</url>
+      <url>/list-search/</url>
       <content type="html"><![CDATA[<a id="more"></a>
 <h1 id="顺序查找"><a href="#顺序查找" class="headerlink" title="顺序查找"></a>顺序查找</h1><ul>
 <li>从列表第一个元素开始，顺序进行搜索，直到找到为止。</li>
@@ -906,7 +908,7 @@
     
     <entry>
       <title><![CDATA[时间复杂度与空间复杂度]]></title>
-      <url>/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E4%B8%8E%E7%A9%BA%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6/</url>
+      <url>/algorithm-complexity/</url>
       <content type="html"><![CDATA[<p>算法的时间复杂度是一个函数，它定量描述了该算法的运行时间。用来评估算法运行效率的单位。<br><a id="more"></a></p>
 <h1 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h1><blockquote>
 <p>时间复杂度是用来估计算法运行时间的一个式子（单位） T(n) = O(n^2)</p>
@@ -955,7 +957,7 @@
     
     <entry>
       <title><![CDATA[Charles: Response 出现乱码]]></title>
-      <url>/Charles-Response-%E4%B9%B1%E7%A0%81/</url>
+      <url>/Charles-Response-error/</url>
       <content type="html"><![CDATA[<p>使用 Charles 抓 https 包的时候, Reponse 出现乱码<br><a id="more"></a></p>
 <p>系统环境: MAC<br>软件版本: 4.2.1<br>浏览器: Google Chrome</p>
 <h1 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h1><p>没有信任 Charles 的证书,信任 Charles 的证书就好了</p>
