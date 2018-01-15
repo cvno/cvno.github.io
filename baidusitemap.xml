@@ -4,15 +4,18 @@
 
     
   <url>
-    <loc>https://cvno.github.io/2018/01/design-patterns.html</loc>
-    <lastmod>2018-01-09T06:32:53.000Z</lastmod>
+    <loc>https://cvno.github.io/2018/01/GV-python-api.html</loc>
+    <lastmod>2018-01-15T06:16:35.000Z</lastmod>
     <data>
         <display>
-        <title>设计模式</title>
-        <pubTime>2018-01-03T08:18:23.000Z</pubTime>
+        <title>基于 GV 的 Python api</title>
+        <pubTime>2018-01-15T05:25:59.000Z</pubTime>
         
          
            
+             
+              <breadCrumb title="Project" url="https://cvno.github.io/categories/Project/"/>
+          
         </display>
     </data>
     </url>
@@ -20,7 +23,7 @@
     
   <url>
     <loc>https://cvno.github.io/2017/12/data-structure-tree.html</loc>
-    <lastmod>2018-01-09T04:05:06.000Z</lastmod>
+    <lastmod>2018-01-09T06:58:34.000Z</lastmod>
     <data>
         <display>
         <title>数据结构：树</title>
@@ -35,6 +38,21 @@
              
               <breadCrumb title="数据结构" url="https://cvno.github.io/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
           
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>https://cvno.github.io/2018/01/design-patterns.html</loc>
+    <lastmod>2018-01-09T06:38:33.000Z</lastmod>
+    <data>
+        <display>
+        <title>设计模式</title>
+        <pubTime>2018-01-03T08:18:23.000Z</pubTime>
+        
+         
+           
         </display>
     </data>
     </url>

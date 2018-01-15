@@ -3,6 +3,40 @@
   
     
     <entry>
+      <title><![CDATA[基于 GV 的 Python api]]></title>
+      <url>/2018/01/GV-python-api.html</url>
+      <content type="html"><![CDATA[<p>使用 Python3 来操作 Google Voice 的 API。 </p>
+<p>Git: <a href="https://github.com/cvno/GV-Python-API" target="_blank" rel="external">code here</a></p>
+<h1 id="2018-01-15-代码发布"><a href="#2018-01-15-代码发布" class="headerlink" title="2018-01-15 代码发布"></a>2018-01-15 代码发布</h1><p>功能列表:</p>
+<ul>
+<li>发送 SMS</li>
+<li>拨打电话</li>
+<li>取消拨打电话</li>
+<li>标记为已读或未读</li>
+<li>下载语音留言</li>
+<li>后台自动检测是否有新信息</li>
+<li>根据 SMS 的设置自动回复</li>
+</ul>
+<p>它也可能是一个廉价的短信验证码方法，目前国内至少有两家大型的互联网公司使用这种方案。</p>
+<p><strong>依赖模块:</strong></p>
+<ul>
+<li><code>pip install selenium</code></li>
+<li><code>pip install requests</code></li>
+<li><code>pip install BeautifulSoup</code></li>
+<li><code>PhantomJS</code> 一款无界面模拟浏览器, 不同的操作系统安装方法有差异</li>
+</ul>
+]]></content>
+      
+        <categories>
+            
+            <category> Project </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
       <title><![CDATA[Phantomjs]]></title>
       <url>/2018/01/Phantomjs.html</url>
       <content type="html"><![CDATA[<h1 id="无法打开https网站"><a href="#无法打开https网站" class="headerlink" title="无法打开https网站"></a>无法打开https网站</h1><p>用 <code>phantomjs</code> 自动登陆并爬取一些数据，发现爬取 <code>https</code> 类型的网站的时候无法正常操作</p>
@@ -837,12 +871,20 @@
 <p>比如，我们要找根节点左孩子的左孩子：（0*2+1）*2+1 = 3 （下标） 所以是<code>6</code></p>
 <h2 id="面向对象的存储方式"><a href="#面向对象的存储方式" class="headerlink" title="面向对象的存储方式"></a>面向对象的存储方式</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BinTreeNode</span>:</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, data)</span>:</span></div><div class="line">        self.data = data</div><div class="line">        self.lchild = <span class="keyword">None</span></div><div class="line">        self.rchild = <span class="keyword">None</span></div><div class="line"></div><div class="line">k = BinTreeNode(<span class="string">'K'</span>)</div><div class="line">g = BinTreeNode(<span class="string">'G'</span>)</div><div class="line">c = BinTreeNode(<span class="string">'C'</span>)</div><div class="line">a = BinTreeNode(<span class="string">'A'</span>)</div><div class="line">b = BinTreeNode(<span class="string">'B'</span>)</div><div class="line">d = BinTreeNode(<span class="string">'D'</span>)</div><div class="line">e = BinTreeNode(<span class="string">'E'</span>)</div><div class="line">f = BinTreeNode(<span class="string">'F'</span>)</div><div class="line">h = BinTreeNode(<span class="string">'H'</span>)</div><div class="line"></div><div class="line"></div><div class="line">root = a</div><div class="line">a.lchild = b</div><div class="line">a.rchild = e</div><div class="line">b.lchild = h</div><div class="line">b.rchild = f</div><div class="line">f.lchild = d</div><div class="line">e.rchild = c</div><div class="line">c.lchild = k</div><div class="line">c.rchild = g</div></pre></td></tr></table></figure>
 <p><img src="https://i.imgur.com/umYC031.jpg" alt="二叉树"></p>
-<h4 id="前序遍历"><a href="#前序遍历" class="headerlink" title="前序遍历"></a>前序遍历</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">PreBianli</span><span class="params">(root)</span>:</span></div><div class="line">    p = root</div><div class="line">    <span class="keyword">if</span> p:</div><div class="line">        print(p.data, end=<span class="string">' '</span>)</div><div class="line">        PreBianli(p.lchild)</div><div class="line">        PreBianli(p.rchild)</div><div class="line"></div><div class="line"><span class="comment"># PreBianli(root)   # A B H F D E C K G    前序遍历</span></div></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/4pl3DJs.jpg" alt="前序遍历"></p>
-<h4 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">MidBianli</span><span class="params">(root)</span>:</span></div><div class="line">    p = root</div><div class="line">    <span class="keyword">if</span> p:</div><div class="line">        MidBianli(p.lchild)</div><div class="line">        print(p.data, end=<span class="string">' '</span>)</div><div class="line">        MidBianli(p.rchild)</div><div class="line"><span class="comment"># MidBianli(root)   # H B D F A E K C G    中序遍历</span></div></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/jJGlzo8.jpg" alt="中序遍历"></p>
-<h4 id="后序遍历"><a href="#后序遍历" class="headerlink" title="后序遍历"></a>后序遍历</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">PostBianli</span><span class="params">(root)</span>:</span></div><div class="line">    p = root</div><div class="line">    <span class="keyword">if</span> p:</div><div class="line">        PostBianli(p.lchild)</div><div class="line">        PostBianli(p.rchild)</div><div class="line">        print(p.data, end=<span class="string">' '</span>)</div><div class="line"><span class="comment"># PostBianli(root)  # H D F B K G C E A    后序遍历</span></div></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/GyEjLF3.jpg" alt="后续遍历"></p>
+<ul>
+<li>前序遍历 </li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">PreBianli</span><span class="params">(root)</span>:</span></div><div class="line">    p = root</div><div class="line">    <span class="keyword">if</span> p:</div><div class="line">        print(p.data, end=<span class="string">' '</span>)</div><div class="line">        PreBianli(p.lchild)</div><div class="line">        PreBianli(p.rchild)</div><div class="line"></div><div class="line"><span class="comment"># PreBianli(root)   # A B H F D E C K G    前序遍历</span></div></pre></td></tr></table></figure>
+<ul>
+<li>中序遍历</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">MidBianli</span><span class="params">(root)</span>:</span></div><div class="line">    p = root</div><div class="line">    <span class="keyword">if</span> p:</div><div class="line">        MidBianli(p.lchild)</div><div class="line">        print(p.data, end=<span class="string">' '</span>)</div><div class="line">        MidBianli(p.rchild)</div><div class="line"><span class="comment"># MidBianli(root)   # H B D F A E K C G    中序遍历</span></div></pre></td></tr></table></figure>
+<ul>
+<li>后序遍历</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">PostBianli</span><span class="params">(root)</span>:</span></div><div class="line">    p = root</div><div class="line">    <span class="keyword">if</span> p:</div><div class="line">        PostBianli(p.lchild)</div><div class="line">        PostBianli(p.rchild)</div><div class="line">        print(p.data, end=<span class="string">' '</span>)</div><div class="line"><span class="comment"># PostBianli(root)  # H D F B K G C E A    后序遍历</span></div></pre></td></tr></table></figure>
+<p><em>在根据任意两个序列来推测第三个序列的时候，有中序比较好推测，因为能一眼看出二叉树的根</em></p>
+<p><img src="https://i.imgur.com/4pl3DJs.jpg" alt="前序遍历"><br><img src="https://i.imgur.com/jJGlzo8.jpg" alt="中序遍历"><br><img src="https://i.imgur.com/GyEjLF3.jpg" alt="后续遍历"></p>
 <h4 id="层级遍历"><a href="#层级遍历" class="headerlink" title="层级遍历"></a>层级遍历</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">LevelBianli</span><span class="params">(root)</span>:</span></div><div class="line">    curLevel = [root]</div><div class="line">    nextLevel = []</div><div class="line">    <span class="keyword">while</span> len(curLevel)&gt;<span class="number">0</span>:</div><div class="line">        <span class="keyword">for</span> node <span class="keyword">in</span>  curLevel:</div><div class="line">            print(node.data, end=<span class="string">' '</span>)</div><div class="line">            <span class="keyword">if</span> node.lchild:</div><div class="line">                nextLevel.append(node.lchild)</div><div class="line">            <span class="keyword">if</span> node.rchild:</div><div class="line">                nextLevel.append(node.rchild)</div><div class="line">        curLevel = nextLevel</div><div class="line">        nextLevel = []</div><div class="line"></div><div class="line">LevelBianli(root)   <span class="comment"># A B E H F C D K G</span></div></pre></td></tr></table></figure>
 <h2 id="二叉树小结"><a href="#二叉树小结" class="headerlink" title="二叉树小结"></a>二叉树小结</h2><ul>
 <li>二叉树是度不超过 2 的树</li>
