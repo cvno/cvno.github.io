@@ -79,18 +79,16 @@
 
 
 
-<meta name="description" content="算法的时间复杂度是一个函数，它定量描述了该算法的运行时间。">
+<meta name="description" content="通用数据加密">
 <meta property="og:type" content="article">
-<meta property="og:title" content="时间复杂度与空间复杂度">
-<meta property="og:url" content="https://cvno.github.io/2017/09/algorithm-complexity.html">
+<meta property="og:title" content="加密解密-[AES-RSA]">
+<meta property="og:url" content="https://cvno.github.io/2018/01/aes-rsa-jiami-jiemi.html">
 <meta property="og:site_name" content="CVNO-Blog">
-<meta property="og:description" content="算法的时间复杂度是一个函数，它定量描述了该算法的运行时间。">
-<meta property="og:image" content="https://i.imgur.com/A0jhF7s.jpg">
-<meta property="og:updated_time" content="2017-12-21T13:39:49.000Z">
+<meta property="og:description" content="通用数据加密">
+<meta property="og:updated_time" content="2018-01-30T08:04:02.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="时间复杂度与空间复杂度">
-<meta name="twitter:description" content="算法的时间复杂度是一个函数，它定量描述了该算法的运行时间。">
-<meta name="twitter:image" content="https://i.imgur.com/A0jhF7s.jpg">
+<meta name="twitter:title" content="加密解密-[AES-RSA]">
+<meta name="twitter:description" content="通用数据加密">
 
 
 
@@ -120,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://cvno.github.io/2017/09/algorithm-complexity.html"/>
+  <link rel="canonical" href="https://cvno.github.io/2018/01/aes-rsa-jiami-jiemi.html"/>
 
 
 
 
 
-  <title>时间复杂度与空间复杂度 | CVNO-Blog</title>
+  <title>加密解密-[AES-RSA] | CVNO-Blog</title>
   
 
 
@@ -262,7 +260,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://cvno.github.io/2017/09/algorithm-complexity.html">
+    <link itemprop="mainEntityOfPage" href="https://cvno.github.io/2018/01/aes-rsa-jiami-jiemi.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CVNO">
@@ -279,7 +277,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">时间复杂度与空间复杂度</h2>
+          <h2 class="post-title" itemprop="name headline">加密解密-[AES-RSA]</h2>
         
 
         <div class="post-meta">
@@ -291,8 +289,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-20T12:11:51+08:00">
-                2017-09-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-19T11:17:44+08:00">
+                2018-01-19
               </time>
             
 
@@ -301,28 +299,6 @@
             
           </span>
 
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/算法/" itemprop="url" rel="index">
-                    <span itemprop="name">算法</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
           
 
           
@@ -338,7 +314,7 @@
 
           
               <div class="post-description">
-                  算法的时间复杂度是一个函数，它定量描述了该算法的运行时间。
+                  通用数据加密
               </div>
           
 
@@ -355,41 +331,17 @@
       
 
       
-        <p>算法的时间复杂度是一个函数，它定量描述了该算法的运行时间。用来评估算法运行效率的单位。<br><a id="more"></a></p>
-<h1 id="时间复杂度"><a href="#时间复杂度" class="headerlink" title="时间复杂度"></a>时间复杂度</h1><blockquote>
-<p>时间复杂度是用来估计算法运行时间的一个式子（单位） T(n) = O(n^2)</p>
-</blockquote>
-<p>按数量级递增排列，常见的时间复杂度有：常数阶O(1),对数阶O(log2n),线性阶O(n), 线性对数阶O(nlog2n),平方阶O(n2)，立方阶O(n3),…， k次方阶O(nk),指数阶O(2n)。随着问题规模n的不断增大，上述时间复杂度不断增大，算法的执行效率越低。</p>
-<ul>
-<li>一般来说,时间复杂度高的算法比复杂度底的算法慢.</li>
+        <h1 id="RSA"><a href="#RSA" class="headerlink" title="RSA"></a>RSA</h1><p>加密数据长度是有限制的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">import</span> rsa</div><div class="line"><span class="keyword">import</span> base64</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment"># ######### 1. 生成公钥私钥 #########</span></div><div class="line">pub_key_obj, priv_key_obj = rsa.newkeys(<span class="number">256</span>)</div><div class="line"> </div><div class="line">pub_key_str = pub_key_obj.save_pkcs1()</div><div class="line">pub_key_code = base64.standard_b64encode(pub_key_str)</div><div class="line"> </div><div class="line">priv_key_str = priv_key_obj.save_pkcs1()</div><div class="line">priv_key_code = base64.standard_b64encode(priv_key_str)</div><div class="line"> </div><div class="line">print(pub_key_code)</div><div class="line">print(priv_key_code)</div><div class="line"> </div><div class="line"><span class="comment"># ######### 2. 加密 #########</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span><span class="params">(value)</span>:</span></div><div class="line">    key_str = base64.standard_b64decode(pub_key_code)</div><div class="line">    pk = rsa.PublicKey.load_pkcs1(key_str)</div><div class="line">    val = rsa.encrypt(value.encode(<span class="string">'utf-8'</span>), pk)</div><div class="line">    <span class="keyword">return</span> val</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment"># ######### 3. 解密 #########</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(value)</span>:</span></div><div class="line">    key_str = base64.standard_b64decode(priv_key_code)</div><div class="line">    pk = rsa.PrivateKey.load_pkcs1(key_str)</div><div class="line">    val = rsa.decrypt(value, pk)</div><div class="line">    <span class="keyword">return</span> val</div><div class="line"> </div><div class="line"> </div><div class="line"><span class="comment"># ######### 基本使用 #########</span></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</div><div class="line">    v = <span class="string">'wupeiqi'</span></div><div class="line">    v1 = encrypt(v)</div><div class="line">    print(v1)</div><div class="line">    v2 = decrypt(v1)</div><div class="line">    print(v2)</div></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://www.cnblogs.com/52python/p/6589869.html" target="_blank" rel="external">https://www.cnblogs.com/52python/p/6589869.html</a></li>
 </ul>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">print(<span class="string">'Hello World'</span>)    <span class="comment"># O(1)</span></div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):    <span class="comment"># O(n)</span></div><div class="line">    print(<span class="string">'Hello World'</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):    <span class="comment"># O(n²)</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">        print(<span class="string">'Hello World'</span>)</div><div class="line"></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):    <span class="comment"># O(n³)</span></div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> rnage(n):</div><div class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(n):</div><div class="line">            print(<span class="string">'Hello World'</span>)</div></pre></td></tr></table></figure>
-<h2 id="如何一眼判断时间复杂度"><a href="#如何一眼判断时间复杂度" class="headerlink" title="如何一眼判断时间复杂度"></a>如何一眼判断时间复杂度</h2><ul>
-<li>循环减半的过程 –&gt;<code>O(logn)</code></li>
-<li>几次循环就是<code>n</code>的几次方的复杂度</li>
+<h1 id="AES"><a href="#AES" class="headerlink" title="AES"></a>AES</h1><p>加密数据长度无限制</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#3.6安装  pip3 install pycryptodome</span></div><div class="line"><span class="comment">#mac     pip3 install pycrypto</span></div></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line"><span class="comment">############################### 加密 ##############################</span></div><div class="line"> </div><div class="line"><span class="keyword">from</span> Crypto.Cipher <span class="keyword">import</span> AES</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">encrypt</span><span class="params">(message)</span>:</span></div><div class="line">    key = <span class="string">b'dfdsdfsasdfdsdfs'</span>  <span class="comment"># key必须是16的整数倍</span></div><div class="line">    cipher = AES.new(key, AES.MODE_CBC, key)  <span class="comment"># 创建对象</span></div><div class="line">    <span class="comment"># ----------------------------------------------</span></div><div class="line">    <span class="comment"># 先转成字节,把数据拼够16字节的整数倍</span></div><div class="line">    ba_data = bytearray(message, encoding=<span class="string">'utf-8'</span>)  <span class="comment"># 把数据转成bytearray(byte的数组),bytearray只能追加数字,默认把数字转成字节</span></div><div class="line">    v1 = len(ba_data)</div><div class="line">    v2 = v1 % <span class="number">16</span></div><div class="line">    <span class="keyword">if</span> v2 == <span class="number">0</span>: <span class="comment"># 保证收据长度是 16 的时候数据还是加密的</span></div><div class="line">        v3 = <span class="number">16</span></div><div class="line">    <span class="keyword">else</span>:</div><div class="line">        v3 = <span class="number">16</span> - v2  <span class="comment"># v3是追加的长度</span></div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(v3):</div><div class="line">        ba_data.append(v3)  <span class="comment"># bytearray只能追加数字,默认把数字转成字节</span></div><div class="line">    final_data = ba_data.decode(<span class="string">'utf-8'</span>)</div><div class="line">    <span class="comment"># ----------------------------------------------</span></div><div class="line">    msg = cipher.encrypt(final_data)  <span class="comment"># 要加密的字符串，必须是16个字节或16个字节的倍数,加密后是byte格式</span></div><div class="line">    <span class="keyword">return</span> msg</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">############################### 解密 ##############################</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">decrypt</span><span class="params">(msg)</span>:</span></div><div class="line">    key = <span class="string">b'dfdsdfsasdfdsdfs'</span></div><div class="line">    cipher = AES.new(key, AES.MODE_CBC, key)</div><div class="line">    result = cipher.decrypt(msg)  <span class="comment"># 把加密后的字节解密成不加密的字节</span></div><div class="line">    data = result[<span class="number">0</span>:-result[<span class="number">-1</span>]]</div><div class="line">    <span class="keyword">return</span> str(data, encoding=<span class="string">'utf-8'</span>)</div></pre></td></tr></table></figure>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><ul>
+<li><a href="https://github.com/sfbahr/PyCrypto-Wheels" target="_blank" rel="external">https://github.com/sfbahr/PyCrypto-Wheels</a></li>
 </ul>
-<h2 id="时间复杂度排序"><a href="#时间复杂度排序" class="headerlink" title="时间复杂度排序"></a>时间复杂度排序</h2><ul>
-<li>常见的时间复杂度</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">O(1)&lt;O(logn)&lt;O(n)&lt;O(nlogn)&lt;O(n²)&lt;O(n²logn)&lt;O(n³)</div></pre></td></tr></table></figure>
-<ul>
-<li>不常见的时间复杂度</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">O(n!) O(2n) O(nn) …</div></pre></td></tr></table></figure>
-<pre><code>几秒钟/O(1)
-几分钟/O(n)
-几小时/O(n²) // 2 平方
-高级： 函数 见进阶
-</code></pre><h2 id="判断时间复杂度"><a href="#判断时间复杂度" class="headerlink" title="判断时间复杂度"></a>判断时间复杂度</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 1    O(1)  时间复杂度</span></div><div class="line">print(<span class="string">'Hello World'</span>)</div><div class="line">print(<span class="string">'Hello Python'</span>)</div><div class="line">print(<span class="string">'Hello Algorithm'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 2    O(n²) 时间复杂度</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">    print(<span class="string">'Hello World'</span>)</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">        print(<span class="string">'Hello World'</span>)</div><div class="line"></div><div class="line"><span class="comment"># 3    O(n²) 时间复杂度</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(n):</div><div class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(i):</div><div class="line">        print(<span class="string">'Hello World'</span>)</div></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 以2为底64的对数</span></div><div class="line">n = <span class="number">64</span></div><div class="line"><span class="keyword">while</span> n &gt; <span class="number">1</span>:</div><div class="line">    print(n)</div><div class="line">    n = n // <span class="number">2</span></div><div class="line"><span class="comment"># 时间复杂度 O(log2n) / O(logn)</span></div><div class="line"><span class="comment"># 每次少一半</span></div></pre></td></tr></table></figure>
-<p><img src="https://i.imgur.com/A0jhF7s.jpg" alt=""></p>
-<h1 id="空间复杂度"><a href="#空间复杂度" class="headerlink" title="空间复杂度"></a>空间复杂度</h1><blockquote>
-<p>用来评估算法内存占用大小的式子    S(n) = O(n^2) 表示内存占用<br>时间复杂度比空间复杂度更重要</p>
-</blockquote>
-<ul>
-<li>空间换时间</li>
-</ul>
-<p>一个列表就是 O(n)<br>二维列表复杂度就是 O(n²)<br>…</p>
 
       
     </div>
@@ -414,8 +366,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/Charles-Response-error.html" rel="next" title="Charles: Response 出现乱码">
-                <i class="fa fa-chevron-left"></i> Charles: Response 出现乱码
+              <a href="/2018/01/GV-python-api.html" rel="next" title="基于 GV 的 Python api">
+                <i class="fa fa-chevron-left"></i> 基于 GV 的 Python api
               </a>
             
           </div>
@@ -424,8 +376,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/list-search.html" rel="prev" title="列表查找">
-                列表查找 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/01/google-voice-keep.html" rel="prev" title="google voice keep">
+                google voice keep <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -603,7 +555,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#时间复杂度"><span class="nav-number">1.</span> <span class="nav-text">时间复杂度</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#如何一眼判断时间复杂度"><span class="nav-number">1.1.</span> <span class="nav-text">如何一眼判断时间复杂度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#时间复杂度排序"><span class="nav-number">1.2.</span> <span class="nav-text">时间复杂度排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#判断时间复杂度"><span class="nav-number">1.3.</span> <span class="nav-text">判断时间复杂度</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#空间复杂度"><span class="nav-number">2.</span> <span class="nav-text">空间复杂度</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#RSA"><span class="nav-number">1.</span> <span class="nav-text">RSA</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">1.1.</span> <span class="nav-text">参考资料</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AES"><span class="nav-number">2.</span> <span class="nav-text">AES</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装"><span class="nav-number">2.1.</span> <span class="nav-text">安装</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -760,9 +712,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://cvno.github.io/2017/09/algorithm-complexity.html';
-          this.page.identifier = '2017/09/algorithm-complexity.html';
-          this.page.title = '时间复杂度与空间复杂度';
+          this.page.url = 'https://cvno.github.io/2018/01/aes-rsa-jiami-jiemi.html';
+          this.page.identifier = '2018/01/aes-rsa-jiami-jiemi.html';
+          this.page.title = '加密解密-[AES-RSA]';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cvno.disqus.com/embed.js';
