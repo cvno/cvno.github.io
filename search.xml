@@ -48,6 +48,9 @@
 <blockquote>
 <p>Git: <a href="https://github.com/cvno/GV-Python-API" target="_blank" rel="external">code here</a></p>
 </blockquote>
+<h1 id="2018-02-01"><a href="#2018-02-01" class="headerlink" title="2018-02-01"></a>2018-02-01</h1><ul>
+<li>修复重写某些方法时的 bug</li>
+</ul>
 <h1 id="2018-01-15-代码发布"><a href="#2018-01-15-代码发布" class="headerlink" title="2018-01-15 代码发布"></a>2018-01-15 代码发布</h1><p>功能列表:</p>
 <ul>
 <li>发送 SMS</li>

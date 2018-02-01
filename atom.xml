@@ -75,12 +75,15 @@
     <link href="https://cvno.github.io/2018/01/GV-python-api.html"/>
     <id>https://cvno.github.io/2018/01/GV-python-api.html</id>
     <published>2018-01-15T05:25:59.000Z</published>
-    <updated>2018-02-01T02:38:18.000Z</updated>
+    <updated>2018-02-01T06:59:43.000Z</updated>
     
     <content type="html"><![CDATA[<p>使用 Python3 来操作 Google Voice 的 API。 </p>
 <blockquote>
 <p>Git: <a href="https://github.com/cvno/GV-Python-API" target="_blank" rel="external">code here</a></p>
 </blockquote>
+<h1 id="2018-02-01"><a href="#2018-02-01" class="headerlink" title="2018-02-01"></a>2018-02-01</h1><ul>
+<li>修复重写某些方法时的 bug</li>
+</ul>
 <h1 id="2018-01-15-代码发布"><a href="#2018-01-15-代码发布" class="headerlink" title="2018-01-15 代码发布"></a>2018-01-15 代码发布</h1><p>功能列表:</p>
 <ul>
 <li>发送 SMS</li>
