@@ -1,7 +1,7 @@
 ---
 title: Python:消息队列Rabbitmq基本使用
 date: 2017-12-18 14:24:45
-tags: Rabbitmq
+tags: rabbitmq
 ---
 
 

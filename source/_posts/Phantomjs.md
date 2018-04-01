@@ -1,7 +1,7 @@
 ---
 title: Phantomjs
 date: 2018-01-04 11:49:30
-tags: Phantomjs
+tags: phantomjs
 categories:
 keywords:
 description: 使用 Phantomjs 过程中遇到的问题

@@ -2,8 +2,6 @@
 title: 数据结构：树
 date: 2017-12-25 15:04:18
 tags: 
-- 树
-- 二叉树
 categories: 数据结构
 keywords: 树，二叉树
 description: 认识树与二叉树
