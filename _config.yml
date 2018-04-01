@@ -78,6 +78,7 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: github
-  repository: https://github.com/cvno/cvno.github.io.git
-  branch: dev
+  type: git
+  repo: https://github.com/cvno/cvno.github.io.git
+  branch: master
+  message: ....
