@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/UA0m4Lc.jpg?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/IA5LPo2.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/ub6Qj0U.png?v=5.1.3">
+
+
+
+
+
+
+  <meta name="keywords" content="Hello, cvno" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="man builtin 查看内置命令source 执行 sh 文件unset 卸载函数alias 别名unalias 卸载别名hash 缓存命令路径touch {1..10}.txt  建立 10 个文件 12345678function test() &amp;#123;    # 交互，输入的字符赋值给 name    read -p &apos;please input your hostname&apos; nam">
+<meta property="og:type" content="article">
+<meta property="og:title" content="linux bash">
+<meta property="og:url" content="http://yoursite.com/2017/05/21/linux-shell.html">
+<meta property="og:site_name" content="CVNO-Blog">
+<meta property="og:description" content="man builtin 查看内置命令source 执行 sh 文件unset 卸载函数alias 别名unalias 卸载别名hash 缓存命令路径touch {1..10}.txt  建立 10 个文件 12345678function test() &amp;#123;    # 交互，输入的字符赋值给 name    read -p &apos;please input your hostname&apos; nam">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-04-01T13:23:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="linux bash">
+<meta name="twitter:description" content="man builtin 查看内置命令source 执行 sh 文件unset 卸载函数alias 别名unalias 卸载别名hash 缓存命令路径touch {1..10}.txt  建立 10 个文件 12345678function test() &amp;#123;    # 交互，输入的字符赋值给 name    read -p &apos;please input your hostname&apos; nam">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"Gemini"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/05/21/linux-shell.html"/>
+
+
+
+
+
+  <title>linux bash | CVNO-Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-111334129-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CVNO-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/05/21/linux-shell.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cvno">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CVNO-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">linux bash</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-05-21T00:38:20+08:00">
+                2017-05-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/linux/" itemprop="url" rel="index">
+                    <span itemprop="name">linux</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <a id="more"></a>
+<p><code>man builtin</code> 查看内置命令<br><code>source</code> 执行 sh 文件<br><code>unset</code> 卸载函数<br><code>alias</code> 别名<br><code>unalias</code> 卸载别名<br><code>hash</code> 缓存命令路径<br><code>touch {1..10}.txt</code>  建立 10 个文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">test</span></span>() &#123;</span><br><span class="line">    <span class="comment"># 交互，输入的字符赋值给 name</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">'please input your hostname'</span> name</span><br><span class="line">    <span class="comment"># 设置主机名为 name 的值，shell 中 $name 来使用变量</span></span><br><span class="line">    hostnamectl <span class="built_in">set</span>-hostname <span class="variable">$name</span>;</span><br><span class="line">    <span class="comment"># 查看主机名</span></span><br><span class="line">    hostname;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h1><h2 id="取命令的执行结果"><a href="#取命令的执行结果" class="headerlink" title="`\` 取命令的执行结果"></a>`\<cmd>` 取命令的执行结果</cmd></h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line"><span class="comment"># anaconda-post.log bin dev etc home lib lib64 media mnt opt proc Python-3.6.1</span></span><br><span class="line">res=`ls`    <span class="comment"># 把 ls 命令的结果赋值给 res</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$res</span>    <span class="comment"># 显示 res 这个变量的值</span></span><br><span class="line"><span class="comment"># anaconda-post.log bin dev etc home lib lib64 media mnt opt proc Python-3.6.1</span></span><br></pre></td></tr></table></figure>
+<h2 id="同-弥补缺憾"><a href="#同-弥补缺憾" class="headerlink" title="$() 同  弥补缺憾"></a>$() 同 <code></code> 弥补缺憾</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">res=`<span class="built_in">echo</span> `ls`` <span class="comment">#嵌套使用后无法达到预想的效果：取echo 一堆文件名的效果。</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$res</span> <span class="comment"># ls</span></span><br><span class="line">res=$(<span class="built_in">echo</span> $(ls)) <span class="comment">#替代方案</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$res</span></span><br><span class="line"><span class="comment"># anaconda-post.log bin dev etc home lib lib64 media mnt opt proc Python-3.6.1</span></span><br></pre></td></tr></table></figure>
+<h2 id="，加目录"><a href="#，加目录" class="headerlink" title="~ ，加目录"></a>~ ，加目录</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~</span><br><span class="line"><span class="built_in">pwd</span> <span class="comment"># /root</span></span><br></pre></td></tr></table></figure>
+<h2 id="字符通配，匹配括号内之一"><a href="#字符通配，匹配括号内之一" class="headerlink" title="[ ] 字符通配，匹配括号内之一"></a>[ ] 字符通配，匹配括号内之一</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls [abc].txt <span class="comment"># a.txt B.txt c.txt</span></span><br><span class="line">ls [abc][a].txt <span class="comment"># aa.txt</span></span><br><span class="line">ls [a-z].txt  <span class="comment"># A.txt ... z.txt</span></span><br><span class="line">ls [a-Z][0-9][a-x] <span class="comment"># a1C.txt</span></span><br></pre></td></tr></table></figure>
+<h2 id="范围"><a href="#范围" class="headerlink" title="{ } 范围"></a>{ } 范围</h2><blockquote>
+<p>括号内的开头和结尾必须是空格</p>
+</blockquote>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">touch &#123;1..10&#125;.txt</span><br><span class="line"><span class="comment"># 10.txt  1.txt  2.txt  3.txt  4.txt  5.txt  6.txt  7.txt  8.txt  9.txt</span></span><br><span class="line">touch &#123;a..z&#125;.txt</span><br><span class="line"><span class="comment">#a.txt  c.txt  e.txt  g.txt  i.txt  k.txt  m.txt  o.txt  q.txt  s.txt  u.txt  w.txt  y.txt</span></span><br><span class="line"><span class="comment">#b.txt  d.txt  f.txt  h.txt  j.txt  l.txt  n.txt  p.txt  r.txt  t.txt  v.txt  x.txt  z.txt</span></span><br></pre></td></tr></table></figure>
+<h2 id="！-非，取反"><a href="#！-非，取反" class="headerlink" title="！ 非，取反"></a>！ 非，取反</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ls [!0-9].txt</span><br><span class="line">a.txt  b.txt  c.txt  d.txt  e.txt  f.txt</span><br></pre></td></tr></table></figure>
+<h2 id="上一条码命令是否执行成功"><a href="#上一条码命令是否执行成功" class="headerlink" title="$?  上一条码命令是否执行成功"></a>$?  上一条码命令是否执行成功</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br><span class="line"><span class="built_in">echo</span> $? <span class="comment"># 0 执行成功</span></span><br><span class="line">sss</span><br><span class="line"><span class="built_in">echo</span> $? <span class="comment"># 127</span></span><br></pre></td></tr></table></figure>
+<h2 id=""><a href="#" class="headerlink" title="$"></a>$</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="comment"># 变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$res</span></span><br><span class="line"><span class="built_in">echo</span> $[1+10]    <span class="comment"># 11</span></span><br><span class="line"><span class="built_in">echo</span> $[10%3]    <span class="comment"># 1  取模</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>&amp; 后台运行</p>
+</li>
+<li><p>&amp;&amp; 与运算</p>
+</li>
+</ul>
+<h1 id="固话命令的方式"><a href="#固话命令的方式" class="headerlink" title="固话命令的方式"></a>固话命令的方式</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 执行顺序</span></span><br><span class="line">/etc/profile    <span class="comment"># 1 环境变量</span></span><br><span class="line">/etc/profile.d/&lt;可执行文件&gt;  <span class="comment"># 2</span></span><br><span class="line">/root/.bash_profile     <span class="comment"># 3  当前用户家目录下</span></span><br><span class="line">/root/.bashrc    <span class="comment"># 4</span></span><br><span class="line">/root/bashrc    <span class="comment"># 5</span></span><br><span class="line">/etc/bashrc     <span class="comment"># 6</span></span><br></pre></td></tr></table></figure>
+<h1 id="正则表达式"><a href="#正则表达式" class="headerlink" title="正则表达式"></a>正则表达式</h1><h2 id="grep"><a href="#grep" class="headerlink" title="grep"></a>grep</h2><p><code>-n</code> 显示行号<br><code>-o</code> 只显示匹配的内容<br><code>-i</code> 忽略大小写<br><code>-q</code> 静默<br><code>-v</code> 取反，其它行<br><code>-w</code> 单词<br><code>-l</code> 过滤成功显示文件路径<br><code>-A</code> 显示匹配成功后的几行 &lt;要加参数 n&gt;<br><code>-B</code> 显示匹配成功前的几行 &lt;要加参数 n&gt;<br><code>-C</code> 显示匹配成功的附近几行 &lt;要加参数 n&gt;<br><code>-c</code> 显示匹配成功的数目</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">grep <span class="string">'root'</span> /etc/passwd</span><br><span class="line"><span class="comment">#root:x:0:0:root:/root:/bin/bash</span></span><br><span class="line"><span class="comment">#operator:x:11:0:operator:/root:/sbin/nologin</span></span><br><span class="line">grep -i <span class="string">'hello'</span> a.txt</span><br><span class="line"><span class="comment"># 正则</span></span><br><span class="line">grep <span class="string">'bash$'</span> /etc/passwd <span class="comment"># bash 结尾</span></span><br><span class="line">grep <span class="string">'^root'</span> /etc/passwd <span class="comment"># root 开头</span></span><br><span class="line">grep <span class="string">'^b.n'</span> /etc/passwd <span class="comment"># b 开头 中间任意一个字符 n 结尾的</span></span><br><span class="line">egrep -e <span class="string">'he'</span> -e <span class="string">'ha'</span> a.txt <span class="comment"># egrep 'h(e|a)' a.txt</span></span><br><span class="line">grep -r <span class="string">'root'</span> /<span class="built_in">test</span> <span class="comment"># 查找包含 root 内容文件及内容显示出来</span></span><br><span class="line">grep -r <span class="string">'root'</span> /<span class="built_in">test</span> <span class="comment"># 查找包含 root 文件的文件路径</span></span><br></pre></td></tr></table></figure>
+<p><em>注：最好用 <code>egrep</code></em></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.cnblogs.com/OldJack/p/6607155.html" target="_blank" rel="noopener">http://www.cnblogs.com/OldJack/p/6607155.html</a></li>
+<li><a href="http://www.cnblogs.com/linhaifeng/p/6592572.html" target="_blank" rel="noopener">http://www.cnblogs.com/linhaifeng/p/6592572.html</a></li>
+</ul>
+<h1 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h1><p>流式编辑器</p>
+<p><code>-n</code> 静默模式，不输出<br><code>-e</code> 指定多个规则，同<code>grep</code><br><code>-i</code> 对文件直接进行修改</p>
+<p>文件形式规则<code>pattern.sed</code>记录规则</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 核心</span></span><br><span class="line">sed <span class="string">''</span> <span class="built_in">test</span> <span class="comment"># 没有修改</span></span><br><span class="line">sed -n <span class="string">''</span> <span class="built_in">test</span>  <span class="comment"># 静默模式，不输出</span></span><br><span class="line">sed -f pattern.sed <span class="built_in">test</span> <span class="comment"># 文件形式</span></span><br><span class="line">sed <span class="string">'3d'</span> <span class="built_in">test</span> <span class="comment"># 删除第 3 行</span></span><br><span class="line">sed <span class="string">'1,3d'</span> <span class="built_in">test</span> <span class="comment"># 删除 1 2 3 行</span></span><br><span class="line">sed <span class="string">'1d;3d;'</span> <span class="built_in">test</span> <span class="comment"># 删除 1 行和 3行</span></span><br><span class="line">sed -n <span class="string">'3p'</span> <span class="built_in">test</span> <span class="comment"># 打印第三行</span></span><br><span class="line">sed <span class="string">'3c 111'</span> <span class="built_in">test</span> <span class="comment"># 修改第三行为 111</span></span><br><span class="line">sed <span class="string">'3a 222'</span> <span class="built_in">test</span> <span class="comment"># 追加一行 222</span></span><br><span class="line">sed <span class="string">'3i 333'</span> <span class="built_in">test</span> <span class="comment"># 在第 3 行前面插入 333</span></span><br><span class="line"><span class="comment"># 正则</span></span><br><span class="line">sed <span class="string">'/^root/d'</span> /etc/passwd <span class="comment"># 删除以 root 开头的行</span></span><br><span class="line">sed <span class="string">'/ai$/d'</span> <span class="built_in">test</span> <span class="comment"># 删除以 ai 结尾的行</span></span><br><span class="line">sed <span class="string">'/ai/d'</span> <span class="built_in">test</span> <span class="comment"># 删除有 ai 的行</span></span><br><span class="line">sed <span class="string">'/ai.*$/d'</span> <span class="built_in">test</span>   <span class="comment"># 同上</span></span><br><span class="line">sed <span class="string">'/^s/c 1111'</span> <span class="built_in">test</span> <span class="comment"># 把 s 开头的行改为 1111</span></span><br><span class="line"><span class="comment"># 常用</span></span><br><span class="line">sed <span class="string">'s/root/sb/'</span> <span class="built_in">test</span> <span class="comment"># 匹配所有的 root 改为 sb；如果一行有多个，只改一个</span></span><br><span class="line">sed <span class="string">'s/root/sb/g'</span> <span class="built_in">test</span> <span class="comment"># 匹配所有的 root 改为 sb；更改多个</span></span><br><span class="line">sed <span class="string">'/blex/s/sb/SB/g'</span> <span class="built_in">test</span> <span class="comment"># 把blex 这一行的 sb 改为 SB</span></span><br><span class="line"><span class="comment"># 所有 sed 都使用 sed -r</span></span><br><span class="line"><span class="comment"># 把 blex 这一行的 sb 改为 SB  </span></span><br><span class="line">sed -r <span class="string">'/^[0-9][a-Z]xsb$/s/sb/SB/g'</span> text</span><br><span class="line">sed -r <span class="string">'/^[0-9]([a-Z]+)xsb$/s/sb/SB/g'</span> text <span class="comment"># 效果同上</span></span><br><span class="line">sed -r <span class="string">'/^[0-9]([a-Z]&#123;3&#125;)xsb$/s/sb/SB/g'</span> text <span class="comment"># 效果同上</span></span><br><span class="line"><span class="comment"># 正则 （）部分概念   \1\2 正则匹配多个部分概念</span></span><br><span class="line">sed -r <span class="string">'s/^([a-Z]+)([^a-Z])/\2/g'</span> /etc/passwd  <span class="comment"># 匹配第一个单词并去掉</span></span><br><span class="line">sed -r <span class="string">'s/([^a-Z])([a-Z]+)$/\1/g'</span> /etc/passwd <span class="comment"># 匹配最后一个单词</span></span><br><span class="line">sed -r <span class="string">'s/^([a-Z])([^a-Z]+)([a-Z])([^a-Z]+)/\3\2\1\4/g'</span>  <span class="comment"># 第一个单词和第二个单词换位置</span></span><br></pre></td></tr></table></figure>
+<p><em>注意：</em></p>
+<ul>
+<li>正则分多个部分</li>
+<li>不一定非得 /// 只要是无意义的三个（如：###）</li>
+</ul>
+<h1 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h1><p><code>-F</code> 执行分隔符，默认为空格或多个空格<br><code>NF</code> 分成几段内容<br><code>$NF</code> 取最后一段内容<br><code>NR</code> 行号</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">awk -F: <span class="string">'&#123;print $1&#125;'</span> /etc/passwd    <span class="comment"># 取第一个部分</span></span><br><span class="line"><span class="comment"># $0 是取所有</span></span><br><span class="line">awk -F: <span class="string">'&#123;print $1,NF&#125;'</span> /etc/passwd</span><br><span class="line"><span class="comment"># root 7</span></span><br><span class="line">awk -F: <span class="string">'&#123;print $NF&#125;'</span> /etc/passwd <span class="comment"># 取最后一段内容</span></span><br><span class="line">awk -F: <span class="string">'NR==1&#123;print $1,NR&#125;'</span> /etc/passwd    <span class="comment"># 行定位 只显示第一行</span></span><br><span class="line"><span class="comment"># root 1</span></span><br><span class="line">awk -F: <span class="string">'NR&lt;=3&#123;print $1,NR&#125;'</span> /etc/passwd    <span class="comment"># 只要前 3 行</span></span><br><span class="line">awk -F: <span class="string">'NR&lt;=3&#123;print $1,"---",NR&#125;'</span> /etc/passwd  <span class="comment"># 小段内容之间的分隔</span></span><br><span class="line"><span class="comment"># and</span></span><br><span class="line">awk -F: <span class="string">'NR&gt;=3 &amp;&amp; NR&lt;=5&#123;print $1,"---",NR&#125;'</span> /etc/passwd <span class="comment"># 取几行到几行之间的</span></span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">awk -F: <span class="string">'NR&lt;=2 || NR&gt;=7&#123;print $1,"---",NR&#125;'</span> /etc/passwd</span><br><span class="line"></span><br><span class="line"><span class="comment"># 正则定址</span></span><br><span class="line">awk -F: <span class="string">'/nologin$/&#123;print $1&#125;'</span> /etc/passwd  <span class="comment"># 获取所有不能登录的用户名</span></span><br><span class="line">awk -F: <span class="string">'$1~/^r.*t$/&#123;print $3&#125;'</span> /etc/passwd <span class="comment"># 某一段内容来匹配正则</span></span><br><span class="line">awk -F: <span class="string">'$1=="root"/^r.*t$/&#123;print $3&#125;'</span> /etc/passwd <span class="comment"># 第一段内容匹配 root</span></span><br><span class="line">awk -F: <span class="string">'$3&gt;=7&#123;print NR,$1&#125;'</span> /etc/passwd <span class="comment"># uid 大于 7 的用户名</span></span><br><span class="line"><span class="comment"># 通过变量类传递</span></span><br><span class="line">count=7</span><br><span class="line">awk -v x=<span class="variable">$count</span> -F: <span class="string">'$3&gt;=x&#123;print NR,$1&#125;'</span> /etc/passwd <span class="comment"># 活 的代码</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>示例</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取网卡地址</span></span><br><span class="line">ifconfig | awk <span class="string">'NR==2&#123;print $2&#125;'</span>    <span class="comment"># 172.17.0.2</span></span><br><span class="line">ip=`ifconfig | awk <span class="string">'NR==2&#123;print $2&#125;'</span>`</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$ip</span>    <span class="comment"># 172.17.0.2</span></span><br></pre></td></tr></table></figure>
+<h1 id="shell-脚本"><a href="#shell-脚本" class="headerlink" title="shell 脚本"></a>shell 脚本</h1><ul>
+<li>系统变量</li>
+</ul>
+<p><code>env</code> 系统环境变量<br><code>set</code> 所有变量<br><code>PS1</code> shell 显示的用户</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> money=1000   <span class="comment"># 定义全局变量</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>变量</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">varname = value <span class="comment"># 声明变量</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$varanme</span>   <span class="comment"># 显示变量值</span></span><br><span class="line"><span class="built_in">unset</span> varname   <span class="comment"># 删除变量</span></span><br><span class="line">money=10</span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$money</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;money&#125;</span>0000 <span class="comment"># 100000  # 变量边界</span></span><br><span class="line">测试命令 <span class="built_in">test</span> []</span><br><span class="line">[ -d /etc ]  <span class="comment"># echo $?  查看结果</span></span><br></pre></td></tr></table></figure>
+<h2 id="if"><a href="#if" class="headerlink" title="if"></a>if</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">var=<span class="string">'/etc/passwd'</span></span><br><span class="line"><span class="comment"># 接收用户输入</span></span><br><span class="line"><span class="comment"># read -p 'please input you file path:' var</span></span><br><span class="line"><span class="keyword">if</span> [ -f <span class="variable">$var</span> ]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$var</span> is regular file"</span></span><br><span class="line"><span class="keyword">elif</span> [ -b <span class="variable">$var</span>]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$var</span> is block"</span></span><br><span class="line"><span class="keyword">elif</span> [ -d <span class="variable">$var</span> ]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$var</span> is direcotry"</span></span><br><span class="line"><span class="keyword">elif</span> [ -h <span class="variable">$var</span> ]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        <span class="built_in">echo</span> <span class="string">"<span class="variable">$var</span> is symlink"</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"<span class="variable">$var</span> is unkown"</span></span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h2 id="while"><a href="#while" class="headerlink" title="while"></a>while</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 不停的看系统内存状态</span></span><br><span class="line"><span class="keyword">while</span> :</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    free</span><br><span class="line">    sleep 0.5</span><br><span class="line">    clear</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">count=1</span><br><span class="line"><span class="keyword">while</span> [ <span class="variable">$count</span> -le 10]</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$count</span></span><br><span class="line">    ((count++))</span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> :</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">'username'</span> name</span><br><span class="line">    <span class="built_in">read</span> -p <span class="string">'passwd'</span> <span class="built_in">pwd</span></span><br><span class="line">    <span class="keyword">if</span> [ <span class="variable">$name</span> = <span class="string">'hehe'</span> -a <span class="variable">$pwd</span> = <span class="string">'123'</span> ]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">'login successful,welcome'</span></span><br><span class="line">            <span class="built_in">break</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'END'</span></span><br></pre></td></tr></table></figure>
+<h2 id="for"><a href="#for" class="headerlink" title="for"></a>for</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..100&#125;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$i</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<p><em>？shell 并发线程</em></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 检测可用ip</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> &#123;1..253&#125;</span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    ping -c1 192.168.1.<span class="variable">$i</span> &amp;&gt; /dev/null</span><br><span class="line">    <span class="keyword">if</span> [ $? -ne 0]</span><br><span class="line">        <span class="keyword">then</span></span><br><span class="line">            <span class="built_in">echo</span> <span class="string">"192.168.1.<span class="variable">$i</span>"</span></span><br><span class="line">    <span class="keyword">fi</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h2 id="case"><a href="#case" class="headerlink" title="case"></a>case</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">ead -p <span class="string">"username: "</span> -t 5 uname</span><br><span class="line"><span class="built_in">echo</span></span><br><span class="line"><span class="keyword">if</span> [[ -z <span class="variable">$uname</span> ]]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">uname=default</span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">case</span> <span class="variable">$uname</span> <span class="keyword">in</span></span><br><span class="line">root)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"welcome <span class="variable">$uname</span>"</span></span><br><span class="line">;;</span><br><span class="line">seker)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"welcome <span class="variable">$uname</span>"</span></span><br><span class="line">;;</span><br><span class="line">default)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"welcome <span class="variable">$uname</span>"</span></span><br><span class="line">;;</span><br><span class="line">*)</span><br><span class="line"><span class="built_in">echo</span> <span class="string">"no user <span class="variable">$uname</span>"</span></span><br><span class="line"><span class="keyword">esac</span></span><br></pre></td></tr></table></figure>
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">abc</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'aaa'</span>;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'bbb'</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">start</span></span>()&#123;</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">'----'</span></span><br><span class="line">    res=$[1+2]</span><br><span class="line">    <span class="built_in">return</span> <span class="variable">$res</span></span><br><span class="line">&#125;</span><br><span class="line">start <span class="comment"># 3</span></span><br></pre></td></tr></table></figure>
+<h2 id="脚本接收参数"><a href="#脚本接收参数" class="headerlink" title="脚本接收参数"></a>脚本接收参数</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$1</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$2</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$4</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$5</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;10&#125;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#test.sh</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$0</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$1</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$2</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$&#123;11&#125;</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$$'</span> $$</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$*'</span> $*</span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$@'</span> <span class="variable">$@</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$#'</span> <span class="variable">$#</span></span><br><span class="line"><span class="built_in">echo</span> <span class="string">'$?'</span> $?</span><br><span class="line"></span><br><span class="line"><span class="string">''</span><span class="string">'</span></span><br><span class="line"><span class="string">测试：python test.sh 1 2 3 4 5 6 7 8 9 10 11</span></span><br><span class="line"><span class="string">输出结果：</span></span><br><span class="line"><span class="string">./test.sh</span></span><br><span class="line"><span class="string">2</span></span><br><span class="line"><span class="string">11</span></span><br><span class="line"><span class="string">$$ 14312</span></span><br><span class="line"><span class="string">$* 1 2 3 4 5 6 7 8 9 10 11</span></span><br><span class="line"><span class="string">$@ 1 2 3 4 5 6 7 8 9 10 11</span></span><br><span class="line"><span class="string">$# 11</span></span><br><span class="line"><span class="string">$? 0</span></span><br><span class="line"><span class="string">'</span><span class="string">''</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>示例 nginx 进程自动重启</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">ps aux | grep nginx | grep -v <span class="string">'grep'</span></span><br><span class="line"><span class="keyword">if</span> [ $? -ne 0]</span><br><span class="line">    <span class="keyword">then</span></span><br><span class="line">        systemctl start nginx</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
+<h2 id="计划任务"><a href="#计划任务" class="headerlink" title="计划任务"></a>计划任务</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl status crond</span><br></pre></td></tr></table></figure>
+<h2 id="参考-1"><a href="#参考-1" class="headerlink" title="参考"></a>参考</h2><ul>
+<li><a href="http://www.cnblogs.com/linhaifeng/p/6602149.html" target="_blank" rel="noopener">http://www.cnblogs.com/linhaifeng/p/6602149.html</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/05/20/linux-process.html" rel="next" title="linux 进程管理">
+                <i class="fa fa-chevron-left"></i> linux 进程管理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/05/24/linux-permissions.html" rel="prev" title="linux 权限">
+                linux 权限 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cvno</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cvno" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/cvno/cvno.github.io" title="Repository" target="_blank" rel="external nofollow">Repository</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.cvno.me/categories/Project/" title="Project" target="_blank" rel="external nofollow">Project</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#元字符"><span class="nav-number">1.</span> <span class="nav-text">元字符</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#取命令的执行结果"><span class="nav-number">1.1.</span> <span class="nav-text">`\` 取命令的执行结果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#同-弥补缺憾"><span class="nav-number">1.2.</span> <span class="nav-text">$() 同  弥补缺憾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#，加目录"><span class="nav-number">1.3.</span> <span class="nav-text">~ ，加目录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#字符通配，匹配括号内之一"><span class="nav-number">1.4.</span> <span class="nav-text">[ ] 字符通配，匹配括号内之一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#范围"><span class="nav-number">1.5.</span> <span class="nav-text">{ } 范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#！-非，取反"><span class="nav-number">1.6.</span> <span class="nav-text">！ 非，取反</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#上一条码命令是否执行成功"><span class="nav-number">1.7.</span> <span class="nav-text">$?  上一条码命令是否执行成功</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#"><span class="nav-number">1.8.</span> <span class="nav-text">$</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#固话命令的方式"><span class="nav-number">2.</span> <span class="nav-text">固话命令的方式</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正则表达式"><span class="nav-number">3.</span> <span class="nav-text">正则表达式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#grep"><span class="nav-number">3.1.</span> <span class="nav-text">grep</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.2.</span> <span class="nav-text">参考</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#sed"><span class="nav-number">4.</span> <span class="nav-text">sed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#awk"><span class="nav-number">5.</span> <span class="nav-text">awk</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#shell-脚本"><span class="nav-number">6.</span> <span class="nav-text">shell 脚本</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#if"><span class="nav-number">6.1.</span> <span class="nav-text">if</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#while"><span class="nav-number">6.2.</span> <span class="nav-text">while</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#for"><span class="nav-number">6.3.</span> <span class="nav-text">for</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#case"><span class="nav-number">6.4.</span> <span class="nav-text">case</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#函数"><span class="nav-number">6.5.</span> <span class="nav-text">函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#脚本接收参数"><span class="nav-number">6.6.</span> <span class="nav-text">脚本接收参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#计划任务"><span class="nav-number">6.7.</span> <span class="nav-text">计划任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考-1"><span class="nav-number">6.8.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cvno</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/05/21/linux-shell.html';
+          this.page.identifier = '2017/05/21/linux-shell.html';
+          this.page.title = 'linux bash';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cvno.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

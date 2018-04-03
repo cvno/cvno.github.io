@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/UA0m4Lc.jpg?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/IA5LPo2.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/ub6Qj0U.png?v=5.1.3">
+
+
+
+
+
+
+  <meta name="keywords" content="rabbitmq," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="为什么用Rabbitmq instead of python queue ?">
+<meta name="keywords" content="rabbitmq">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python:消息队列Rabbitmq基本使用">
+<meta property="og:url" content="http://yoursite.com/2017/12/18/rabbitmq-apply.html">
+<meta property="og:site_name" content="CVNO-Blog">
+<meta property="og:description" content="为什么用Rabbitmq instead of python queue ?">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/6vYEGPV.jpg">
+<meta property="og:image" content="https://i.imgur.com/mK7MEC5.jpg">
+<meta property="og:image" content="https://i.imgur.com/1EuVNfF.jpg">
+<meta property="og:updated_time" content="2018-04-01T14:19:01.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Python:消息队列Rabbitmq基本使用">
+<meta name="twitter:description" content="为什么用Rabbitmq instead of python queue ?">
+<meta name="twitter:image" content="https://i.imgur.com/6vYEGPV.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"Gemini"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/12/18/rabbitmq-apply.html"/>
+
+
+
+
+
+  <title>Python:消息队列Rabbitmq基本使用 | CVNO-Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-111334129-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CVNO-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/12/18/rabbitmq-apply.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cvno">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CVNO-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Python:消息队列Rabbitmq基本使用</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-12-18T14:24:45+08:00">
+                2017-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>为什么用Rabbitmq instead of python queue ?</p>
+<a id="more"></a>
+<blockquote>
+<p>是因为python queue 不能跨进程 </p>
+</blockquote>
+<p><strong>队列的作用:</strong>    </p>
+<pre><code>1. 存储消息、数据
+2. 保证消息顺序 
+3. 保证数据的交付
+</code></pre><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 斐波那契数列</span></span><br><span class="line">1 1 2 3 5 8 13 ...</span><br><span class="line"><span class="comment"># 启动rabbitmq，并验证启动情况 </span></span><br><span class="line">rabbitmq-server --detached &amp;ps aux |grep rabbitmq</span><br><span class="line"><span class="comment"># 以服务的方式启动</span></span><br><span class="line">service rabbitmq-server start</span><br><span class="line"><span class="comment"># 启用维护插件</span></span><br><span class="line">rabbitmq-plugins <span class="built_in">enable</span> rabbitmq_management </span><br><span class="line"><span class="comment"># 重启</span></span><br><span class="line">service rabbitmq-server restart</span><br><span class="line"></span><br><span class="line"><span class="comment"># erroe</span></span><br><span class="line">pika.exceptions.ProbableAuthenticationError</span><br><span class="line"><span class="comment"># 解决方法</span></span><br><span class="line"><span class="comment"># 写入信息 并保存/关闭防火墙 'systemctl stop filewallf'</span></span><br><span class="line">vim /etc/rabbitmq/rabbitmq.config</span><br><span class="line">[&#123;rabbit, [&#123;loopback_users, []&#125;]&#125;].</span><br><span class="line"><span class="comment"># 查看当前队列</span></span><br><span class="line">rabbitmqctl list_queues</span><br></pre></td></tr></table></figure>
+<h2 id="基本使用实现"><a href="#基本使用实现" class="headerlink" title="基本使用实现"></a>基本使用实现</h2><h3 id="发送端"><a href="#发送端" class="headerlink" title="发送端"></a>发送端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建连接</span></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(<span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明消息队列</span></span><br><span class="line">channel.queue_declare(queue=<span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 发送消息到上面声明的hello队列，</span></span><br><span class="line"><span class="comment"># 其中exchange表示交换器，能精确指定消息应该发送到哪个队列，</span></span><br><span class="line"><span class="comment"># routing_key设置为队列的名称，</span></span><br><span class="line"><span class="comment"># body就是发送的内容，</span></span><br><span class="line">channel.basic_publish(exchange=<span class="string">''</span>,routing_key=<span class="string">'hello'</span>,body=<span class="string">'Hello World!'</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">'[x] Sent "Hello World!"'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># sh命令</span></span><br><span class="line"><span class="comment"># 用 rabbitmqctl list_queues 查看队列</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Listing queues</span></span><br><span class="line"><span class="string">hello	1</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/6vYEGPV.jpg" alt=""></p>
+<h3 id="接收端"><a href="#接收端" class="headerlink" title="接收端"></a>接收端</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建连接</span></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(<span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 声明消息队列</span></span><br><span class="line">channel.queue_declare(queue=<span class="string">'hello'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 接收消息 回调函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">callbcak</span><span class="params">(ch,method,properties,body)</span>:</span></span><br><span class="line">    print(<span class="string">"Received %r"</span>%(body))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 告诉rabbitmq使用callback来接收信息</span></span><br><span class="line">channel.basic_consume(callbcak,queue=<span class="string">'hello'</span>,no_ack=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#开始接收信息，并进入阻塞状态，队列里有信息才会调用callback进行处理。按ctrl+c退出。</span></span><br><span class="line">channel.start_consuming()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 终端会阻塞住</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">Received b'Hello World!'</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<h2 id="工作队列"><a href="#工作队列" class="headerlink" title="工作队列"></a>工作队列</h2><h3 id="消息不丢失"><a href="#消息不丢失" class="headerlink" title="消息不丢失"></a>消息不丢失</h3><h4 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">5</span>):</span><br><span class="line">    msg = <span class="string">' '</span>.join(sys.argv[<span class="number">1</span>:])<span class="keyword">or</span> <span class="string">'Hello World! %s'</span> % time.time()</span><br><span class="line">    channel.basic_publish(exchange=<span class="string">''</span>,</span><br><span class="line">                          routing_key=<span class="string">'hello'</span>,</span><br><span class="line">                          body=bytes(msg,encoding=<span class="string">'utf8'</span>),)</span><br></pre></td></tr></table></figure>
+<h4 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h4><ul>
+<li><code>no_ack=False</code> 消费者退出不消息不丢失</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 修改回调函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">callbcak</span><span class="params">(ch, method, properties, body)</span>:</span></span><br><span class="line">    print(<span class="string">"Received %r"</span> % (body))</span><br><span class="line">    time.sleep(<span class="number">5</span>)</span><br><span class="line">    print(<span class="string">"[x] Done"</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="消息持久化"><a href="#消息持久化" class="headerlink" title="消息持久化"></a>消息持久化</h2><ul>
+<li>消息持久化存储,</li>
+</ul>
+<blockquote>
+<p>虽然消息反馈机制，但是如果rabbitmq自身挂掉的话，那么任务还是会丢失。所以需要将任务持久化存储起来。声明持久化存储：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 原队列</span></span><br><span class="line">channel.queue_declare(queue=<span class="string">'hello'</span>, durable=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>但是这个程序会执行错误，因为hello这个队列已经存在，并且是非持久化的，rabbitmq不允许使用不同的参数来重新定义存在的队列。重新定义一个队列</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新定义一个队列</span></span><br><span class="line">channel.queue_declare(queue=<span class="string">'task_queue'</span>, durable=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<p>在发送任务的时候，用delivery_mode=2来标记任务为持久化存储：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">channel.basic_publish(exchange=<span class="string">''</span>,</span><br><span class="line">       routing_key=<span class="string">"task_queue"</span>,</span><br><span class="line">       body=message,</span><br><span class="line">       properties=pika.BasicProperties(</span><br><span class="line">          delivery_mode = <span class="number">2</span>, <span class="comment"># make message persistent</span></span><br><span class="line">       ))</span><br></pre></td></tr></table></figure>
+<h3 id="公平调度"><a href="#公平调度" class="headerlink" title="公平调度"></a>公平调度</h3><p><code>prefetch_count = 1</code></p>
+<p>虽然每个工作者是依次分配到任务，但是每个任务不一定一样。可能有的任务比较重，执行时间比较久；有的任务比较轻，执行时间比较短。如果能公平调度就最好了，使用basic_qos设置prefetch_count=1，使得rabbitmq不会在同一时间给工作者分配多个任务，即只有工作者完成任务之后，才会再次接收到任务。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">channel.basic_qos(prefetch_count=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>new_task.py完整代码</li>
+</ul>
+<blockquote>
+<p>发送者/生产者</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">    host=<span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line">channel.queue_declare(queue=<span class="string">'task_queue'</span>, durable=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">message = <span class="string">' '</span>.join(sys.argv[<span class="number">1</span>:]) <span class="keyword">or</span> <span class="string">"Hello World!"</span></span><br><span class="line">channel.basic_publish(exchange=<span class="string">''</span>,</span><br><span class="line">                      routing_key=<span class="string">'task_queue'</span>,</span><br><span class="line">                      body=message,</span><br><span class="line">                      properties=pika.BasicProperties(</span><br><span class="line">                          delivery_mode=<span class="number">2</span>,  <span class="comment"># make message persistent</span></span><br><span class="line">                      ))</span><br><span class="line">print(<span class="string">" [x] Sent %r"</span> % (message,))</span><br><span class="line">connection.close()</span><br></pre></td></tr></table></figure>
+<ul>
+<li>worker.py完整代码</li>
+</ul>
+<blockquote>
+<p>接受者/消费者</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(host=<span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line">channel.queue_declare(queue=<span class="string">'task_queue'</span>, durable=<span class="keyword">True</span>)</span><br><span class="line">print(<span class="string">' [*] Waiting for messages. To exit press CTRL+C'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(ch, method, properties, body)</span>:</span></span><br><span class="line">    print(<span class="string">" [x] Received %r"</span> % (body,))</span><br><span class="line">    time.sleep(<span class="number">6</span>)</span><br><span class="line">    print(<span class="string">" [x] Done"</span>,ch.basic_ack(delivery_tag=method.delivery_tag))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">channel.basic_qos(prefetch_count=<span class="number">1</span>)</span><br><span class="line">channel.basic_consume(callback,</span><br><span class="line">                      queue=<span class="string">'task_queue'</span>)</span><br><span class="line"></span><br><span class="line">channel.start_consuming()</span><br></pre></td></tr></table></figure>
+<h2 id="广播"><a href="#广播" class="headerlink" title="广播"></a>广播</h2><p>广播交换机的工作原理：消息发送端先将消息发送给交换机，交换机再将消息发送到绑定的消息队列，而后每个接收端都能从各自的消息队列里接收到信息。</p>
+<p><img src="https://i.imgur.com/mK7MEC5.jpg" alt=""></p>
+<h3 id="消费者-接收端receive-py代码分析"><a href="#消费者-接收端receive-py代码分析" class="headerlink" title="消费者/接收端receive.py代码分析"></a>消费者/接收端receive.py代码分析</h3><p>和最早的receive.py相比，主要是做了两个改动：</p>
+<ul>
+<li>定义交换机</li>
+<li>不使用hello队列了，随机生成一个临时队列，并绑定到交换机上</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">    <span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义交换机</span></span><br><span class="line">channel.exchange_declare(exchange=<span class="string">'messages'</span>, type=<span class="string">'fanout'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 随机生成队列，并绑定到交换机上</span></span><br><span class="line"><span class="comment"># 参数'exclusive=True'表示当接收端退出时，销毁临时产生的队列，这样就不会占用资源。</span></span><br><span class="line">result = channel.queue_declare(exclusive=<span class="keyword">True</span>)</span><br><span class="line">queue_name = result.method.queue</span><br><span class="line">channel.queue_bind(exchange=<span class="string">'messages'</span>, queue=queue_name)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(ch, method, properties, body)</span>:</span></span><br><span class="line">    print(<span class="string">" [x] Received %r"</span> % (body,))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">channel.basic_consume(callback, queue=queue_name, no_ack=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">' [*] Waiting for messages. To exit press CTRL+C'</span>)</span><br><span class="line">channel.start_consuming()</span><br></pre></td></tr></table></figure>
+<p>执行<code>rabbitmqctl list_queues</code></p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">task_queue	0</span><br><span class="line">hello	5</span><br><span class="line"><span class="comment"># 定义了交换机</span></span><br><span class="line">amq.gen-K0M17k_3LVYO0b7m0s-K1g	0</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/1EuVNfF.jpg" alt=""></p>
+<h3 id="生产者-发送端send-py代码分析"><a href="#生产者-发送端send-py代码分析" class="headerlink" title="生产者/发送端send.py代码分析"></a>生产者/发送端send.py代码分析</h3><p>和最早的send.py相比，也只做了两个改动：</p>
+<ul>
+<li>定义交换机</li>
+<li>不是将消息发送到hello队列，而是发送到交换机</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">    <span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义交换机</span></span><br><span class="line"><span class="comment"># type='fanout' 表示广播的意思</span></span><br><span class="line">channel.exchange_declare(exchange=<span class="string">'messages'</span>, type=<span class="string">'fanout'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将消息发送到交换机</span></span><br><span class="line"><span class="comment"># basic_publish方法的参数exchange被设定为相应交换机，</span></span><br><span class="line"><span class="comment"># 因为是要广播出去，发送到所有队列，所以routing_key就不需要设定了。</span></span><br><span class="line">channel.basic_publish(exchange=<span class="string">'messages'</span>, routing_key=<span class="string">''</span>, body=<span class="string">'Hello World!'</span>)</span><br><span class="line">print(<span class="string">" [x] Sent 'Hello World!'"</span>)</span><br><span class="line">connection.close()</span><br></pre></td></tr></table></figure>
+<p>exchange如果为空，表示是使用匿名的交换机，在上面交换机信息的图片中可以看到有amq.*这样的交换机，就是系统默认的交换机了。routing_key在使用匿名交换机的时候才需要指定，表示发送到哪个队列的意思。第一篇的例子演示了这个功能。</p>
+<p>打开另外一个终端，执行send.py，可以观察到receive.py接收到了消息。如果有多个终端执行receive.py，那么每个receive.py都会接收到消息。</p>
+<h2 id="组播-路由"><a href="#组播-路由" class="headerlink" title="组播/路由"></a>组播/路由</h2><h3 id="生产者-send-py代码分析"><a href="#生产者-send-py代码分析" class="headerlink" title="生产者/send.py代码分析"></a>生产者/send.py代码分析</h3><p>和广播相比，改动点主要在两个方面：</p>
+<ul>
+<li>设定交换机的类型（type）为direct。上一篇是设置为fanout，表示广播的意思，会将消息发送到所有接收端，这里设置为direct表示要根据设定的路由键来发送消息。</li>
+<li>发送信息时设置发送的路由键。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">    <span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义交换机，设置类型为direct</span></span><br><span class="line">channel.exchange_declare(exchange=<span class="string">'messages'</span>, type=<span class="string">'direct'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义三个路由键</span></span><br><span class="line">routings = [<span class="string">'warning'</span>, <span class="string">'error'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将消息依次发送到交换机，并设置路由键</span></span><br><span class="line"><span class="keyword">for</span> routing <span class="keyword">in</span> routings:</span><br><span class="line">    message = <span class="string">'%s message.'</span> % routing</span><br><span class="line">    channel.basic_publish(exchange=<span class="string">'messages'</span>,</span><br><span class="line">                          routing_key=routing,</span><br><span class="line">                          body=message)</span><br><span class="line">    print(message)</span><br><span class="line"></span><br><span class="line">connection.close()</span><br></pre></td></tr></table></figure>
+<h3 id="消费者-receive-py代码分析"><a href="#消费者-receive-py代码分析" class="headerlink" title="消费者/receive.py代码分析"></a>消费者/receive.py代码分析</h3><p>和广播相比，改动点主要在三个方面：</p>
+<ul>
+<li>设定交换机的类型（type）为direct。</li>
+<li>增加命令行获取参数功能，参数即为路由键。</li>
+<li>将队列绑定到交换机上时，设定路由键。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika, sys</span><br><span class="line"></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">    <span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义交换机，设置类型为direct</span></span><br><span class="line">channel.exchange_declare(exchange=<span class="string">'messages'</span>, type=<span class="string">'direct'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从命令行获取路由键参数，如果没有，则设置为info</span></span><br><span class="line">routings = sys.argv[<span class="number">1</span>:]</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> routings:</span><br><span class="line">    routings = [<span class="string">'info'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成临时队列，并绑定到交换机上，设置路由键</span></span><br><span class="line">result = channel.queue_declare(exclusive=<span class="keyword">True</span>)</span><br><span class="line">queue_name = result.method.queue</span><br><span class="line"><span class="keyword">for</span> routing <span class="keyword">in</span> routings:</span><br><span class="line">    channel.queue_bind(exchange=<span class="string">'messages'</span>,</span><br><span class="line">                       queue=queue_name,</span><br><span class="line">                       routing_key=routing)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(ch, method, properties, body)</span>:</span></span><br><span class="line">    print(<span class="string">" [x] Received %r"</span> % (body,))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">channel.basic_consume(callback, queue=queue_name, no_ack=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">' [*] Waiting for messages. To exit press CTRL+C'</span>)</span><br><span class="line">channel.start_consuming()</span><br></pre></td></tr></table></figure>
+<p>打开两个终端，一个运行代码python receive.py info warning，表示只接收info和warning的消息。另外一个终端运行send.py，可以观察到接收终端只接收到了info和warning的消息。如果打开多个终端运行receive.py，并传入不同的路由键参数，可以看到更明显的效果。</p>
+<p>当接收端正在运行时，可以使用rabbitmqctl list_bindings来查看绑定情况。</p>
+<h2 id="按规则发送-正则"><a href="#按规则发送-正则" class="headerlink" title="按规则发送/正则"></a>按规则发送/正则</h2><p>上面路由键/组播的功能，通过设置路由键，可以将消息发送到相应的队列，这里的路由键是要完全匹配，比如info消息的只能发到路由键为info的消息队列。</p>
+<p>路由键模糊匹配，就是可以使用正则表达式，和常用的正则表示式不同，这里的话“#”表示所有、全部的意思；“*”只匹配到一个词。看完示例就能明白了。</p>
+<h3 id="send-py代码分析"><a href="#send-py代码分析" class="headerlink" title="send.py代码分析"></a>send.py代码分析</h3><p>因为要进行路由键模糊匹配，所以交换机的类型要设置为topic，设置为topic，就可以使用#，*的匹配符号了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">    <span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义交换机，设置类型为topic</span></span><br><span class="line">channel.exchange_declare(exchange=<span class="string">'messages'</span>, type=<span class="string">'topic'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义路由键</span></span><br><span class="line"><span class="comment"># 四种类型的消息</span></span><br><span class="line">routings = [<span class="string">'happy.work'</span>, <span class="string">'happy.life'</span>, <span class="string">'sad.work'</span>, <span class="string">'sad.life'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将消息依次发送到交换机，并设定路由键</span></span><br><span class="line"><span class="keyword">for</span> routing <span class="keyword">in</span> routings:</span><br><span class="line">    message = <span class="string">'%s message.'</span> % routing</span><br><span class="line">    channel.basic_publish(exchange=<span class="string">'messages'</span>,</span><br><span class="line">                          routing_key=routing,</span><br><span class="line">                          body=message)</span><br><span class="line">    print(message)</span><br><span class="line"></span><br><span class="line">connection.close()</span><br></pre></td></tr></table></figure>
+<h3 id="receive-py代码分析"><a href="#receive-py代码分析" class="headerlink" title="receive.py代码分析"></a>receive.py代码分析</h3><p>类型要设定为topic就可以了。从命令行接收参数的功能稍微调整了一下，没有参数时报错退出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika, sys</span><br><span class="line"></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">    <span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义交换机，设置类型为topic</span></span><br><span class="line">channel.exchange_declare(exchange=<span class="string">'messages'</span>, type=<span class="string">'topic'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 从命令行获取路由参数，如果没有，则报错退出</span></span><br><span class="line">routings = sys.argv[<span class="number">1</span>:]</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> routings:</span><br><span class="line">    <span class="comment"># print(&gt;&gt; sys.stderr, "Usage: %s [routing_key]..." % (sys.argv[0],))</span></span><br><span class="line">    print(sys.stderr, <span class="string">"Usage: %s [routing_key]..."</span> % (sys.argv[<span class="number">0</span>],))</span><br><span class="line">    exit()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成临时队列，并绑定到交换机上，设置路由键</span></span><br><span class="line">result = channel.queue_declare(exclusive=<span class="keyword">True</span>)</span><br><span class="line">queue_name = result.method.queue</span><br><span class="line"><span class="keyword">for</span> routing <span class="keyword">in</span> routings:</span><br><span class="line">    channel.queue_bind(exchange=<span class="string">'messages'</span>,</span><br><span class="line">                       queue=queue_name,</span><br><span class="line">                       routing_key=routing)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">callback</span><span class="params">(ch, method, properties, body)</span>:</span></span><br><span class="line">    print(<span class="string">" [x] Received %r"</span> % (body,))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">channel.basic_consume(callback, queue=queue_name, no_ack=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">print(<span class="string">' [*] Waiting for messages. To exit press CTRL+C'</span>)</span><br><span class="line">channel.start_consuming()</span><br></pre></td></tr></table></figure>
+<h3 id="实验运行"><a href="#实验运行" class="headerlink" title="实验运行"></a>实验运行</h3><p>打开多个终端,分别传入不同的规则,观察结果<br>如:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">python3 receive_topic.py <span class="string">"#"</span></span><br><span class="line">python3 receive_topic.py <span class="string">"happy.*"</span></span><br><span class="line">python3 receive_topic.py <span class="string">"*.work"</span></span><br></pre></td></tr></table></figure>
+<h3 id="难点"><a href="#难点" class="headerlink" title="难点"></a>难点</h3><p>1、发送信息时，如果不设置路由键，那么路由键设置为”*”的接收端是否能接收到消息？</p>
+<blockquote>
+<p>发送信息时，如果不设置路由键，默认是表示广播出去，理论上所有接收端都可以收到消息，但是笔者试了下，路由键设置为”*”的接收端收不到任何消息。</p>
+</blockquote>
+<blockquote>
+<p>只有发送消息时，设置路由键为一个词，路由键设置为”*”的接收端才能收到消息。在这里，每个词使用”.”符号分开的。</p>
+</blockquote>
+<p>2、发送消息时，如果路由键设置为”..”，那么路由键设置为”#.*”的接收端是否能接收到消息？如果发送消息时，路由键设置为一个词呢？</p>
+<blockquote>
+<p>两种情况，笔者都测试过了，可以的。</p>
+</blockquote>
+<p>3、”a.*.#” 和”a.#”的区别</p>
+<blockquote>
+<ul>
+<li>“a.#”只要字符串开头的一个词是a就可以了，比如a、a.haha、a.haha.haha。而这样的词是不行的，如abs、abc、abc.haha。</li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li>“a.<em>.#”必须要满足a.</em>的字符串才可以，比如a.、a.haha、a.haha.haha。而这样的词是不行的，如a。</li>
+</ul>
+</blockquote>
+<h2 id="远程结果返回RPC"><a href="#远程结果返回RPC" class="headerlink" title="远程结果返回RPC"></a>远程结果返回RPC</h2><p>Remote Producre Call<br>处理方法描述：</p>
+<blockquote>
+<p>发送端在发送信息前，产生一个接收消息的临时队列，该队列用来接收返回的结果。其实在这里接收端、发送端的概念已经比较模糊了，因为发送端也同样要接收消息，接收端同样也要发送消息，所以这里笔者使用另外的示例来演示这一过程。</p>
+</blockquote>
+<h3 id="compute-py代码分析"><a href="#compute-py代码分析" class="headerlink" title="compute.py代码分析"></a>compute.py代码分析</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接rabbitmq服务器</span></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">    host=<span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义队列</span></span><br><span class="line">channel.queue_declare(queue=<span class="string">'compute_queue'</span>)</span><br><span class="line">print(<span class="string">' [*] Waiting for n'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将n值加1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increase</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> n + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义接收到消息的处理方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(ch, method, properties, body)</span>:</span></span><br><span class="line">    print(<span class="string">" [.] increase(%s)"</span> % (body,))</span><br><span class="line"></span><br><span class="line">    response = increase(int(body))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将计算结果发送回控制中心</span></span><br><span class="line">    ch.basic_publish(exchange=<span class="string">''</span>,</span><br><span class="line">                     routing_key=properties.reply_to,</span><br><span class="line">                     body=str(response))</span><br><span class="line">    ch.basic_ack(delivery_tag=method.delivery_tag)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">channel.basic_qos(prefetch_count=<span class="number">1</span>)</span><br><span class="line">channel.basic_consume(request, queue=<span class="string">'compute_queue'</span>)</span><br><span class="line"></span><br><span class="line">channel.start_consuming()</span><br></pre></td></tr></table></figure>
+<h3 id="center-py代码分析"><a href="#center-py代码分析" class="headerlink" title="center.py代码分析"></a>center.py代码分析</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Center</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">            host=<span class="string">'10.211.55.10'</span>))</span><br><span class="line"></span><br><span class="line">        self.channel = self.connection.channel()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 定义接收返回消息的队列</span></span><br><span class="line">        result = self.channel.queue_declare(exclusive=<span class="keyword">True</span>)</span><br><span class="line">        self.callback_queue = result.method.queue</span><br><span class="line"></span><br><span class="line">        self.channel.basic_consume(self.on_response,</span><br><span class="line">                                   no_ack=<span class="keyword">True</span>,</span><br><span class="line">                                   queue=self.callback_queue)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义接收到返回消息的处理方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_response</span><span class="params">(self, ch, method, props, body)</span>:</span></span><br><span class="line">        self.response = body</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        self.response = <span class="keyword">None</span></span><br><span class="line">        <span class="comment"># 发送计算请求，并声明返回队列</span></span><br><span class="line">        self.channel.basic_publish(exchange=<span class="string">''</span>,</span><br><span class="line">                                   routing_key=<span class="string">'compute_queue'</span>,</span><br><span class="line">                                   properties=pika.BasicProperties(</span><br><span class="line">                                       reply_to=self.callback_queue,</span><br><span class="line">                                   ),</span><br><span class="line">                                   body=str(n))</span><br><span class="line">        <span class="comment"># 接收返回的数据</span></span><br><span class="line">        <span class="keyword">while</span> self.response <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            self.connection.process_data_events()</span><br><span class="line">        <span class="keyword">return</span> int(self.response)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">center = Center()</span><br><span class="line"></span><br><span class="line">print(<span class="string">" [x] Requesting increase(30)"</span>)</span><br><span class="line">response = center.request(<span class="number">30</span>)</span><br><span class="line">print(<span class="string">" [.] Got %r"</span> % (response,))</span><br></pre></td></tr></table></figure>
+<p>上面代码定义了接收返回数据的队列和处理方法，并且在发送请求的时候将该队列赋值给<code>reply_to</code>，在计算节点代码中就是通过这个参数来获取返回队列的。</p>
+<h2 id="相互关联编号correlation-id"><a href="#相互关联编号correlation-id" class="headerlink" title="相互关联编号correlation id"></a>相互关联编号correlation id</h2><p><code>correlation id</code>运行原理：</p>
+<blockquote>
+<p>控制中心发送计算请求时设置correlation id，而后计算节点将计算结果，连同接收到的correlation id一起返回，这样控制中心就能通过correlation id来标识请求。其实correlation id也可以理解为请求的唯一标识码。</p>
+</blockquote>
+<p>示例内容：</p>
+<blockquote>
+<p>控制中心开启多个线程，每个线程都发起一次计算请求，通过correlation id，每个线程都能准确收到相应的计算结果。</p>
+</blockquote>
+<h3 id="compute-py代码分析-1"><a href="#compute-py代码分析-1" class="headerlink" title="compute.py代码分析"></a>compute.py代码分析</h3><p>和上面相比，只需修改一个地方：</p>
+<blockquote>
+<p>将计算结果发送回控制中心时，增加参数correlation_id的设定，该参数的值其实是从控制中心发送过来的，这里只是再次发送回去。代码如下：</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika</span><br><span class="line"></span><br><span class="line"><span class="comment"># 连接rabbitmq服务器</span></span><br><span class="line">connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">    host=<span class="string">'10.211.55.10'</span>))</span><br><span class="line">channel = connection.channel()</span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义队列</span></span><br><span class="line">channel.queue_declare(queue=<span class="string">'compute_queue'</span>)</span><br><span class="line">print(<span class="string">' [*] Waiting for n'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将n值加1</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">increase</span><span class="params">(n)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> n + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 定义接收到消息的处理方法</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(ch, method, props, body)</span>:</span></span><br><span class="line">    print(<span class="string">" [.] increase(%s)"</span> % (body,))</span><br><span class="line"></span><br><span class="line">    response = increase(int(body))</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 将计算结果发送回控制中心，增加correlation_id的设定</span></span><br><span class="line">    ch.basic_publish(exchange=<span class="string">''</span>,</span><br><span class="line">                     routing_key=props.reply_to,</span><br><span class="line">                     properties=pika.BasicProperties(correlation_id= \</span><br><span class="line">                                                         props.correlation_id),</span><br><span class="line">                     body=str(response))</span><br><span class="line">    ch.basic_ack(delivery_tag=method.delivery_tag)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">channel.basic_qos(prefetch_count=<span class="number">1</span>)</span><br><span class="line">channel.basic_consume(request, queue=<span class="string">'compute_queue'</span>)</span><br><span class="line"></span><br><span class="line">channel.start_consuming()</span><br></pre></td></tr></table></figure>
+<h3 id="center-py代码分析-1"><a href="#center-py代码分析-1" class="headerlink" title="center.py代码分析"></a>center.py代码分析</h3><p>控制中心代码稍微复杂些，其中比较关键的有三个地方：</p>
+<ul>
+<li>使用python的uuid来产生唯一的correlation_id。</li>
+<li>发送计算请求时，设定参数correlation_id。</li>
+<li>定义一个字典来保存返回的数据，并且键值为相应线程产生的correlation_id。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pika, threading, uuid</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 自定义线程类，继承threading.Thread</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyThread</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, func, num)</span>:</span></span><br><span class="line">        super(MyThread, self).__init__()</span><br><span class="line">        self.func = func</span><br><span class="line">        self.num = num</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">" [x] Requesting increase(%d)"</span> % self.num)</span><br><span class="line">        response = self.func(self.num)</span><br><span class="line">        print(<span class="string">" [.] increase(%d)=%d"</span> % (self.num, response))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 控制中心类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Center</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.connection = pika.BlockingConnection(pika.ConnectionParameters(</span><br><span class="line">            host=<span class="string">'10.211.55.10'</span>))</span><br><span class="line"></span><br><span class="line">        self.channel = self.connection.channel()</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 定义接收返回消息的队列</span></span><br><span class="line">        result = self.channel.queue_declare(exclusive=<span class="keyword">True</span>)</span><br><span class="line">        self.callback_queue = result.method.queue</span><br><span class="line"></span><br><span class="line">        self.channel.basic_consume(self.on_response,</span><br><span class="line">                                   no_ack=<span class="keyword">True</span>,</span><br><span class="line">                                   queue=self.callback_queue)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 返回的结果都会存储在该字典里</span></span><br><span class="line">        self.response = &#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义接收到返回消息的处理方法</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">on_response</span><span class="params">(self, ch, method, props, body)</span>:</span></span><br><span class="line">        self.response[props.correlation_id] = body</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">request</span><span class="params">(self, n)</span>:</span></span><br><span class="line">        corr_id = str(uuid.uuid4())     <span class="comment">#  产生 id</span></span><br><span class="line">        self.response[corr_id] = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line">        <span class="comment"># 发送计算请求，并设定返回队列和correlation_id</span></span><br><span class="line">        self.channel.basic_publish(exchange=<span class="string">''</span>,</span><br><span class="line">                                   routing_key=<span class="string">'compute_queue'</span>,</span><br><span class="line">                                   properties=pika.BasicProperties(</span><br><span class="line">                                       reply_to=self.callback_queue,</span><br><span class="line">                                       correlation_id=corr_id,</span><br><span class="line">                                   ),</span><br><span class="line">                                   body=str(n))</span><br><span class="line">        <span class="comment"># 接收返回的数据</span></span><br><span class="line">        <span class="keyword">while</span> self.response[corr_id] <span class="keyword">is</span> <span class="keyword">None</span>:</span><br><span class="line">            self.connection.process_data_events()</span><br><span class="line">        <span class="keyword">return</span> int(self.response[corr_id])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">center = Center()</span><br><span class="line"><span class="comment"># 发起5次计算请求</span></span><br><span class="line">nums = [<span class="number">10</span>, <span class="number">20</span>, <span class="number">30</span>, <span class="number">40</span>, <span class="number">50</span>]</span><br><span class="line">threads = []</span><br><span class="line"><span class="keyword">for</span> num <span class="keyword">in</span> nums:</span><br><span class="line">    threads.append(MyThread(center.request, num))</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.start()</span><br><span class="line"><span class="keyword">for</span> thread <span class="keyword">in</span> threads:</span><br><span class="line">    thread.join()</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p><a href="http://blog.csdn.net/chenjiebin/article/details/8253433" target="_blank" rel="noopener">http://blog.csdn.net/chenjiebin/article/details/8253433</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/rabbitmq/" rel="tag"># rabbitmq</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/01/basis-of-cryptography.html" rel="next" title="密码学基础">
+                <i class="fa fa-chevron-left"></i> 密码学基础
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/12/18/hexo-ERROR-Process-failed-posts.html" rel="prev" title="hexo: ERROR Process failed: _posts/*">
+                hexo: ERROR Process failed: _posts/* <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cvno</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cvno" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/cvno/cvno.github.io" title="Repository" target="_blank" rel="external nofollow">Repository</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.cvno.me/categories/Project/" title="Project" target="_blank" rel="external nofollow">Project</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本使用实现"><span class="nav-number">1.</span> <span class="nav-text">基本使用实现</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发送端"><span class="nav-number">1.1.</span> <span class="nav-text">发送端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#接收端"><span class="nav-number">1.2.</span> <span class="nav-text">接收端</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工作队列"><span class="nav-number">2.</span> <span class="nav-text">工作队列</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消息不丢失"><span class="nav-number">2.1.</span> <span class="nav-text">消息不丢失</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者"><span class="nav-number">2.1.1.</span> <span class="nav-text">生产者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费者"><span class="nav-number">2.1.2.</span> <span class="nav-text">消费者</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息持久化"><span class="nav-number">3.</span> <span class="nav-text">消息持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#公平调度"><span class="nav-number">3.1.</span> <span class="nav-text">公平调度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#广播"><span class="nav-number">4.</span> <span class="nav-text">广播</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#消费者-接收端receive-py代码分析"><span class="nav-number">4.1.</span> <span class="nav-text">消费者/接收端receive.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者-发送端send-py代码分析"><span class="nav-number">4.2.</span> <span class="nav-text">生产者/发送端send.py代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组播-路由"><span class="nav-number">5.</span> <span class="nav-text">组播/路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者-send-py代码分析"><span class="nav-number">5.1.</span> <span class="nav-text">生产者/send.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消费者-receive-py代码分析"><span class="nav-number">5.2.</span> <span class="nav-text">消费者/receive.py代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#按规则发送-正则"><span class="nav-number">6.</span> <span class="nav-text">按规则发送/正则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#send-py代码分析"><span class="nav-number">6.1.</span> <span class="nav-text">send.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#receive-py代码分析"><span class="nav-number">6.2.</span> <span class="nav-text">receive.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实验运行"><span class="nav-number">6.3.</span> <span class="nav-text">实验运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#难点"><span class="nav-number">6.4.</span> <span class="nav-text">难点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#远程结果返回RPC"><span class="nav-number">7.</span> <span class="nav-text">远程结果返回RPC</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#compute-py代码分析"><span class="nav-number">7.1.</span> <span class="nav-text">compute.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#center-py代码分析"><span class="nav-number">7.2.</span> <span class="nav-text">center.py代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相互关联编号correlation-id"><span class="nav-number">8.</span> <span class="nav-text">相互关联编号correlation id</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#compute-py代码分析-1"><span class="nav-number">8.1.</span> <span class="nav-text">compute.py代码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#center-py代码分析-1"><span class="nav-number">8.2.</span> <span class="nav-text">center.py代码分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">9.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cvno</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2017/12/18/rabbitmq-apply.html';
+          this.page.identifier = '2017/12/18/rabbitmq-apply.html';
+          this.page.title = 'Python:消息队列Rabbitmq基本使用';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cvno.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

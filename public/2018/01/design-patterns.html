@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/UA0m4Lc.jpg?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/IA5LPo2.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/ub6Qj0U.png?v=5.1.3">
+
+
+
+
+
+
+  <meta name="keywords" content="Hello, cvno" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="设计模式就是设计的套路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://yoursite.com/2018/01/design-patterns.html">
+<meta property="og:site_name" content="CVNO-Blog">
+<meta property="og:description" content="设计模式就是设计的套路">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/pgobtQV.jpg">
+<meta property="og:image" content="https://i.imgur.com/fW3OyP8.jpg">
+<meta property="og:image" content="https://i.imgur.com/z8IFFM0.jpg">
+<meta property="og:image" content="https://i.imgur.com/Drh1aHu.jpg">
+<meta property="og:image" content="https://i.imgur.com/JOPSOGt.jpg">
+<meta property="og:image" content="https://i.imgur.com/59PiTXw.jpg">
+<meta property="og:image" content="https://i.imgur.com/PFRWJ87.jpg">
+<meta property="og:image" content="https://i.imgur.com/TCdmacp.jpg">
+<meta property="og:image" content="https://i.imgur.com/o9AR9Wq.jpg">
+<meta property="og:image" content="https://i.imgur.com/P23pGAX.jpg">
+<meta property="og:image" content="https://i.imgur.com/T3L7jr1.jpg">
+<meta property="og:image" content="https://i.imgur.com/GX4zMoi.jpg">
+<meta property="og:updated_time" content="2018-04-01T13:23:35.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式">
+<meta name="twitter:description" content="设计模式就是设计的套路">
+<meta name="twitter:image" content="https://i.imgur.com/pgobtQV.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"Gemini"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/01/design-patterns.html"/>
+
+
+
+
+
+  <title>设计模式 | CVNO-Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-111334129-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CVNO-Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/01/design-patterns.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="cvno">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CVNO-Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">设计模式</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-01-03T16:18:23+08:00">
+                2018-01-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+              <div class="post-description">
+                  设计模式就是设计的套路
+              </div>
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="什么是设计模式"><a href="#什么是设计模式" class="headerlink" title="什么是设计模式"></a>什么是设计模式</h1><p>Christopher Alexander:“每一个模式描述了一个在我们周围不断重复发生的问题，以及该问题的解决方案的核心。这样你就能一次又一次地使用该方案而不必做重复劳动。”</p>
+<p>每一个设计模式系统地命名、解释和评价了面向对象系统中一个重要的和重复出现的设计。</p>
+<p>GoF（Gang of Four）</p>
+<p>设计模式四个基本要素：模式名称、问题、解决方案、效果</p>
+<p>面向对象的三大特性: </p>
+<ul>
+<li>封装：把数据和函数包装在类里 类的边界限制了一些外界的访问</li>
+<li>继承：复用</li>
+<li>多态：多态语言</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 封装</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.__test = x <span class="comment"># 私有变量</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">gettest</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__test</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">settest</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        self.__test = x</span><br><span class="line"></span><br><span class="line"><span class="comment"># 继承：复用</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># override 重写 覆写</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">settest</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.__test = x + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 多态 python 是一种多态语言</span></span><br><span class="line"><span class="comment"># 一个函数的多种表现</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 重载 python 不支持</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(x, y)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x+y</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(x, y, z)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> x+y+z</span><br><span class="line"></span><br><span class="line">test(<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line">test(<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h2><p>一种特殊的类（抽象类），声明了若干方法，要求继承该接口的类必须实现这些方法。目的就是对外保持一致</p>
+<p><strong>作用：</strong>限制继承接口的类的方法的名称及调用方式；隐藏了类的内部实现。</p>
+<p>接口就是一种抽象的基类（父类），限制继承它的类必须实现接口中定义的某些方法</p>
+<p>其实就是限制程序员的东西, 不能乱写, 按照定的规范去写</p>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-intergace-py" target="_blank" rel="noopener">示例</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 接口的两种写法</span></span><br><span class="line"><span class="comment"># 1.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError <span class="comment"># 限制  子类必须实现</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'B.test'</span>)</span><br><span class="line"><span class="comment"># 2. 抽象类不能实例化        </span></span><br><span class="line"><span class="keyword">from</span> abs <span class="keyword">import</span> bastractmethod,ABCMeta  </span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(metaclass=ABCMeta)</span>:</span>    <span class="comment"># 抽象类</span></span><br><span class="line"><span class="meta">    @abstractmethod </span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(self)</span>:</span>    <span class="comment"># 抽象方法   必须在子类实现</span></span><br><span class="line">        <span class="keyword">raise</span> NotImplementedError <span class="comment"># 限制  子类必须实现</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">test</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'B.test'</span>)</span><br><span class="line"></span><br><span class="line">a = B() <span class="comment"># 不能实例化</span></span><br><span class="line">b = C() <span class="comment"># 可以实例化</span></span><br></pre></td></tr></table></figure>
+<h1 id="设计模式六大原则"><a href="#设计模式六大原则" class="headerlink" title="设计模式六大原则"></a>设计模式六大原则</h1><h2 id="开闭原则"><a href="#开闭原则" class="headerlink" title="开闭原则"></a>开闭原则</h2><p>一个软件实体如类、模块和函数应该对扩展开放，对修改关闭。即软件实体应尽量在不修改原有代码的情况下进行扩展。</p>
+<h2 id="里氏（Liskov）替换原则"><a href="#里氏（Liskov）替换原则" class="headerlink" title="里氏（Liskov）替换原则"></a>里氏（Liskov）替换原则</h2><p>所有引用基类（父类）的地方必须能透明地使用其子类的对象。功能保持一致</p>
+<h2 id="依赖倒置原则"><a href="#依赖倒置原则" class="headerlink" title="依赖倒置原则"></a>依赖倒置原则</h2><p>高层模块不应该依赖低层模块，二者都应该依赖其抽象；抽象不应该依赖细节；细节应该依赖抽象。换言之，<strong>要针对接口（抽象）编程，而不是针对实现（实例）编程。</strong></p>
+<h2 id="接口隔离原则"><a href="#接口隔离原则" class="headerlink" title="接口隔离原则"></a>接口隔离原则</h2><p>使用多个专门的接口，而不使用单一的总接口，即客户端不应该依赖那些它不需要的接口。（多继承）<a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-0x02-py" target="_blank" rel="noopener">示例</a></p>
+<h2 id="迪米特法则"><a href="#迪米特法则" class="headerlink" title="迪米特法则"></a>迪米特法则</h2><p>一个软件实体应当尽可能少地与其他实体发生相互作用。<strong>解耦</strong></p>
+<p><em>五大原则没有这个迪米特法则</em></p>
+<h2 id="单一职责原则"><a href="#单一职责原则" class="headerlink" title="单一职责原则"></a>单一职责原则</h2><p>不要存在多于一个导致类变更的原因。通俗的说，即一个类只负责一项职责。 一个类（class）只干一件事</p>
+<ul>
+<li>合成复用原则</li>
+</ul>
+<p>尽量使用合成／聚合的方式，而不是继承。<a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-0x03-py" target="_blank" rel="noopener">示例</a></p>
+<p><code>合成</code> <code>复用</code> <code>继承</code> 的使用分情况而定</p>
+<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><h2 id="创建型模式"><a href="#创建型模式" class="headerlink" title="创建型模式"></a>创建型模式</h2><h3 id="工厂方法模式"><a href="#工厂方法模式" class="headerlink" title="工厂方法模式"></a>工厂方法模式</h3><p>定义一个用于创建对象的接口（工厂接口），让子类决定实例化哪一个产品类。<br><strong>角色：</strong></p>
+<ul>
+<li>抽象工厂角色（Creator）</li>
+<li>具体工厂角色（Concrete Creator）</li>
+<li>抽象产品角色（Product）</li>
+<li>具体产品角色（Concrete Product）</li>
+</ul>
+<p>工厂方法模式相比简单工厂模式将每个具体产品都对应了一个具体工厂。</p>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-factory_method-py" target="_blank" rel="noopener">示例</a></p>
+<p><img src="https://i.imgur.com/pgobtQV.jpg" alt="工厂方法模式"></p>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>需要生产多种、大量复杂对象的时候</li>
+<li>需要降低耦合度的时候</li>
+<li>当系统中的产品种类需要经常扩展的时候</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>每个具体产品都对应一个具体工厂类，不需要修改工厂类代码</li>
+<li>隐藏了对象创建的实现细节</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>每增加一个具体产品类，就必须增加一个相应的具体工厂类</li>
+</ul>
+<h4 id="简单工厂模式"><a href="#简单工厂模式" class="headerlink" title="简单工厂模式"></a>简单工厂模式</h4><p>不直接向客户端暴露对象创建的实现细节，而是通过一个工厂类来负责创建产品类的实例。<br><strong>角色：</strong></p>
+<ul>
+<li>工厂角色（Creator）</li>
+<li>抽象产品角色（Product）</li>
+<li>具体产品角色（Concrete Product）</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>隐藏了对象创建的实现细节</li>
+<li>客户端不需要修改代码</li>
+</ul>
+<p><strong>缺点：</strong><br>违反了单一职责原则，将创建逻辑集中到一个工厂类里<br>当添加新产品时，需要修改工厂类代码，违反了开闭原则</p>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-factory-py" target="_blank" rel="noopener">示例</a></p>
+<h3 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h3><p>比如: 数据库连接</p>
+<p>好的单列模式会写一个基类（<a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-singleton-py" target="_blank" rel="noopener">示例</a>）</p>
+<p>单例（Singleton）: 保证一个类只有一个实例，并提供一个访问它的全局访问点。</p>
+<p>适用场景:</p>
+<ul>
+<li>当类只能有一个实例而且客户可以从一个众所周知的访问点访问它时</li>
+</ul>
+<p>优点:</p>
+<ul>
+<li>对唯一实例的受控访问</li>
+<li>单例相当于全局变量，但防止了命名空间被污染</li>
+</ul>
+<p>与单例模式功能相似的概念：全局变量、静态变量（方法）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span>:</span></span><br><span class="line">    test = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">A.test = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">a = A()</span><br><span class="line">print(a.test)</span><br><span class="line"><span class="comment"># a.test = 1 # 对象变量的修改不会影响到类的静态变量</span></span><br><span class="line"></span><br><span class="line">b = A()</span><br><span class="line">print(b.test)</span><br></pre></td></tr></table></figure>
+<h3 id="抽象工厂模式"><a href="#抽象工厂模式" class="headerlink" title="抽象工厂模式"></a>抽象工厂模式</h3><p>定义一个工厂类接口，让工厂子类来创建一系列相关或相互依赖的对象。<br><strong>例：</strong>生产一部手机，需要<code>手机壳</code>、<code>CPU</code>、<code>操作系统</code>三类对象进行组装，其中每类对象都有不同的种类。对每个具体工厂，分别生产一部手机所需要的三个对象。</p>
+<p><strong>角色：</strong></p>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-abstract_factory-py" target="_blank" rel="noopener">示例</a></p>
+<ul>
+<li>抽象工厂角色（Creator）</li>
+<li>具体工厂角色（Concrete Creator）</li>
+<li>抽象产品角色（Product）</li>
+<li>具体产品角色（Concrete Product）</li>
+<li>客户端（Client)</li>
+</ul>
+<p>相比工厂方法模式，抽象工厂模式中的每个具体工厂都生产一套产品。</p>
+<p><img src="https://i.imgur.com/fW3OyP8.jpg" alt="抽象工厂模式"></p>
+<p>适用场景：</p>
+<ul>
+<li>系统要独立于产品的创建与组合时</li>
+<li>强调一系列相关的产品对象的设计以便进行联合使用时</li>
+<li>提供一个产品类库，想隐藏产品的具体实现时</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>将客户端与类的具体实现相分离</li>
+<li>每个工厂创建了一个完整的产品系列，使得易于交换产品系列</li>
+<li>有利于产品的一致性（即产品之间的约束关系）</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>难以支持新种类的（抽象）产品</li>
+</ul>
+<h3 id="建造者模式"><a href="#建造者模式" class="headerlink" title="建造者模式"></a>建造者模式</h3><p>将一个复杂对象的构建与它的表示分离，使得同样的构建过程可以创建不同的表示。</p>
+<p><strong>角色：</strong></p>
+<ul>
+<li>抽象建造者（Builder）</li>
+<li>具体建造者（Concrete Builder）</li>
+<li>指挥者（Director）</li>
+<li>产品（Product）</li>
+</ul>
+<p>建造者模式与抽象工厂模式相似，也用来创建复杂对象。主要区别是建造者模式着重一步步构造一个复杂对象，而抽象工厂模式着重于多个系列的产品对象。</p>
+<p><img src="https://i.imgur.com/z8IFFM0.jpg" alt="建造者模式"></p>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-builder-py" target="_blank" rel="noopener">示例</a></p>
+<p>适用场景：</p>
+<ul>
+<li>当创建复杂对象的算法（Director）应该独立于该对象的组成部分（Builder）时</li>
+<li>当构造过程允许被构造的对象有不同的表示时（不同Builder）。</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>隐藏了一个产品的内部结构和装配过程</li>
+<li>将构造代码与表示代码分开</li>
+<li>可以对构造过程进行更精细的控制</li>
+</ul>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="https://i.imgur.com/Drh1aHu.jpg" alt="小结"></p>
+<p>使用 Abstract Factory（抽象工厂）、<del>Prototype（原型模式）</del> 或 Builder（建造者） 的设计甚至比使用 Factory Method（工厂方法） 的那些设计更灵活，但它们也更加复杂。通常，设计以使用 Factory Method（简单工厂也可以） 开始，并且当设计者发现需要更大的灵活性时，设计便会向其他创建型模式演化。当你在设计标准之间进行权衡的时候，了解多个模式可以给你提供更多的选择余地。</p>
+<p><strong>也就是说，不用一开始就选好模式，先从简单的模式开始，如果需要频繁的改代码，就用工厂方法，等等…… 一步一步递进</strong></p>
+<p>依赖于继承的创建型模式：工厂方法模式<br>依赖于组合的创建性模式：抽象工厂模式、创建者模式</p>
+<h2 id="结构型模式"><a href="#结构型模式" class="headerlink" title="结构型模式"></a>结构型模式</h2><h3 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h3><p>将一个类的接口转换成客户希望的另一个接口。适配器模式使得原本由于接口不兼容而不能一起工作的那些类可以一起工作。<br>角色：</p>
+<ul>
+<li>目标接口（Target）</li>
+<li>待适配的类（Adaptee）</li>
+<li>适配器（Adapter）(套壳)</li>
+</ul>
+<p>两种实现方式：</p>
+<ul>
+<li>类适配器：使用多继承</li>
+<li>对象适配器：使用组合</li>
+</ul>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-singleton-py" target="_blank" rel="noopener">示例</a></p>
+<p><img src="https://i.imgur.com/JOPSOGt.jpg" alt="适配器模式"></p>
+<p><strong>适用场景：</strong><br>想使用一个已经存在的类，而它的接口不符合你的要求<br>（对象适配器）想使用一些已经存在的子类，但不可能对每一个都进行子类化以匹配它们的接口。对象适配器可以适配它的父类接口。</p>
+<p><img src="https://i.imgur.com/59PiTXw.jpg" alt=""></p>
+<p>类适配器和对象适配器有不同的权衡。</p>
+<p><strong>类适配器</strong></p>
+<ul>
+<li>用一个具体的 Adapter 类对 Adaptee 和 Target 进行匹配。结果是当我们想要匹配一个类以及所有它的子类时，类 Adapter 将不能胜任工作。</li>
+<li>使得 Adapter 可以重定义 Adaptee 的部分行为，因为 Adapter 是 Adaptee 的一个子类。</li>
+<li>仅仅引入（继承）了一个对象，并不需要额外的指针以间接得到 adaptee。</li>
+</ul>
+<p><strong>对象适配器则</strong></p>
+<ul>
+<li>允许一个 Adapter 与多个 Adaptee-即 Adaptee 本身以及它的所有子类（如果有子类的话）一同时工作。Adapter 也可以一次给所有的 Adaptee 添加功能。</li>
+<li>使得重定义 Adaptee 的行为比较困难。这就需要生成 Adaptee 的子类并且使得 Adapter 引用这个子类而不是引用 Adaptee 本身。</li>
+</ul>
+<h3 id="组合模式"><a href="#组合模式" class="headerlink" title="组合模式"></a>组合模式</h3><p>将对象组合成树形结构以表示“部分-整体”的层次结构。组合模式使得用户对单个对象和组合对象的使用具有一致性。</p>
+<p>二叉树的结构<br><strong>角色：</strong></p>
+<ul>
+<li>抽象组件（Component）</li>
+<li>叶子组件（Leaf）</li>
+<li>复合组件（Composite）</li>
+<li>客户端（Client）</li>
+</ul>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-composite-py" target="_blank" rel="noopener">示例</a></p>
+<p><img src="https://i.imgur.com/PFRWJ87.jpg" alt="组合模式"></p>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>表示对象的“部分-整体”层次结构（特别是结构是递归的）</li>
+<li>希望用户忽略组合对象与单个对象的不同，用户统一地使用组合结构中的所有对象</li>
+</ul>
+<p>优点：</p>
+<ul>
+<li>定义了包含基本对象和组合对象的类层次结构</li>
+<li>简化客户端代码，即客户端可以一致地使用组合对象和单个对象</li>
+<li>更容易增加新类型的组件</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>很难限制组合中的组件</li>
+</ul>
+<h3 id="代理模式"><a href="#代理模式" class="headerlink" title="代理模式"></a>代理模式</h3><p>为其他对象提供一种代理以控制对这个对象的访问。<br><strong>角色：</strong></p>
+<ul>
+<li>抽象实体（Subject）</li>
+<li>实体（RealSubject）</li>
+<li>代理（Proxy）</li>
+</ul>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-daili-py" target="_blank" rel="noopener">示例</a></p>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>远程代理：为远程的对象提供代理</li>
+<li>虚代理：根据需要创建很大的对象</li>
+<li>保护代理：控制对原始对象的访问，用于对象有不同访问权限时</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>远程代理：可以隐藏对象位于远程地址空间的事实</li>
+<li>虚代理：可以进行优化，例如根据要求创建对象</li>
+<li>保护代理：允许在访问一个对象时有一些附加的内务处理</li>
+</ul>
+<p><img src="https://i.imgur.com/TCdmacp.jpg" alt="代理模式"></p>
+<h2 id="行为型模式"><a href="#行为型模式" class="headerlink" title="行为型模式"></a>行为型模式</h2><h3 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h3><p>使多个对象都有机会处理请求，从而避免请求的发送者和接收者之间的耦合关系。将这些对象连成一条链，并沿着这条链传递该请求，直到有一个对象处理它为止。</p>
+<p><strong>角色：</strong></p>
+<ul>
+<li>抽象处理者（Handler）</li>
+<li>具体处理者（ConcreteHandler）</li>
+<li>客户端（Client）</li>
+</ul>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-chain_of_responsibility-py" target="_blank" rel="noopener">示例</a></p>
+<p><strong>例：</strong><br>请假部门批准：leader -&gt; 部门经理 -&gt; 总经理<br>Javascript事件浮升机制</p>
+<p><img src="https://i.imgur.com/o9AR9Wq.jpg" alt="责任链模式"></p>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>有多个对象可以处理一个请求，哪个对象处理由运行时决定</li>
+<li>在不明确接收者的情况下，向多个对象中的一个提交一个请求</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>降低耦合度：一个对象无需知道是其他哪一个对象处理其请求</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>请求不保证被接收：链的末端没有处理或链配置错误</li>
+</ul>
+<h3 id="迭代器模式"><a href="#迭代器模式" class="headerlink" title="迭代器模式"></a>迭代器模式</h3><p>提供一种方法顺序访问一个聚合对象中的各个元素，而又不需要暴露该对象的内部表示</p>
+<p>实现方法：<code>__iter__</code>、<code>__next__</code></p>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-iterator-py" target="_blank" rel="noopener">示例</a></p>
+<p>适用于封装数据结构,这种结构类似与列表,或树,封装数据类型,不让外人知道是怎么存的</p>
+<h3 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h3><p>定义对象间的一种一对多的依赖关系,当一个对象的状态发生改变时, 所有依赖于它的对象都得到通知并被自动更新。观察者模式又称“发布-订阅”模式</p>
+<p><strong>角色：</strong></p>
+<ul>
+<li>抽象主题（Subject）</li>
+<li>具体主题（ConcreteSubject）——发布者</li>
+<li>抽象观察者（Observer）</li>
+<li>具体观察者（ConcreteObserver）——订阅者</li>
+</ul>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-iterator-py" target="_blank" rel="noopener">示例</a></p>
+<p><img src="https://i.imgur.com/P23pGAX.jpg" alt="观察者模式"></p>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>当一个抽象模型有两方面，其中一个方面依赖于另一个方面。将这两者封装在独立对象中以使它们可以各自独立地改变和复用。</li>
+<li>当对一个对象的改变需要同时改变其它对象，而不知道具体有多少对象有待改变。</li>
+<li>当一个对象必须通知其它对象，而它又不能假定其它对象是谁。换言之，你不希望这些对象是紧密耦合的。</li>
+</ul>
+<p><strong>优点：</strong></p>
+<ul>
+<li>目标和观察者之间的耦合最小</li>
+<li>支持广播通信</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>多个观察者之间互不知道对方存在，因此一个观察者对主题的修改可能造成错误的更新。</li>
+</ul>
+<h3 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h3><p>定义一系列的算法，把它们一个个封装起来，并且使它们可相互替换。本模式使得算法可独立于使用它的客户而变化。</p>
+<p><strong>角色：</strong></p>
+<ul>
+<li>抽象策略（Strategy）</li>
+<li>具体策略（ConcreteStrategy）</li>
+<li>上下文（Context）</li>
+</ul>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-strategy-py" target="_blank" rel="noopener">示例</a></p>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>许多相关的类仅仅是行为有异</li>
+<li>需要使用一个算法的不同变体</li>
+<li>算法使用了客户端无需知道的数据</li>
+<li>一个类中的多种行为以多个条件语句的形式存在，可以将这些行为封装如不同的策略类中。</li>
+</ul>
+<p><img src="https://i.imgur.com/T3L7jr1.jpg" alt="策略模式"></p>
+<p><strong>优点：</strong></p>
+<ul>
+<li>定义了一系列可重用的算法和行为</li>
+<li>消除了一些条件语句</li>
+<li>可以提供相同行为的不同实现</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>客户必须了解不同的策略</li>
+<li>策略与上下文之间的通信开销</li>
+<li>增加了对象的数目</li>
+</ul>
+<h3 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h3><p>定义一个操作中的算法的骨架，而将一些步骤延迟到子类中。模板方法使得子类可以不改变一个算法的结构即可重定义该算法的某些特定步骤。</p>
+<p><strong>角色：</strong></p>
+<ul>
+<li>抽象类（AbstractClass）：定义抽象的原子操作（钩子操作）；实现一个模板方法作为算法的骨架。</li>
+<li>具体类（ConcreteClass）：实现原子操作</li>
+</ul>
+<p><a href="https://gist.github.com/cvno/7f92b3a09c119f30d02460817f3de9cf#file-template_method-py" target="_blank" rel="noopener">示例</a></p>
+<p><img src="https://i.imgur.com/GX4zMoi.jpg" alt="模板方法模式"></p>
+<p><strong>适用场景：</strong></p>
+<ul>
+<li>一次性实现一个算法的不变的部分</li>
+<li>各个子类中的公共行为应该被提取出来并集中到一个公共父类中以避免代码重复</li>
+<li>控制子类扩展</li>
+</ul>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p><em>设计模式可互相嵌套, 如: 策略模式的算法写成单例模式比较好; </em></p>
+<ul>
+<li><p>创建型模式都是对象怎么创建</p>
+</li>
+<li><p>结构型模式是怎么把类组织在一起</p>
+<ol>
+<li>适配器模式类写坏了, 和其他类不适配</li>
+<li>组合模式是几个类怎么表现一样, 叶子节点和复合节点怎么表现一样</li>
+<li>代理模式提供几种代理, 以控制加权限, 或加内容</li>
+</ol>
+</li>
+<li><p>行为型模式是怎么做事, 方法函数怎么做</p>
+<ol>
+<li>责任链模式, 一个一个传下去</li>
+<li>迭代器模式, 一个一个拿元素处理 （应用面狭小）</li>
+<li>观察者模式, 一个一个更新</li>
+</ol>
+</li>
+</ul>
+<h2 id="加深理解"><a href="#加深理解" class="headerlink" title="加深理解"></a>加深理解</h2><p>工厂模式是什么？有什么用？怎么用？什么好处？</p>
+<p><del>哪个工厂模式,简单工厂模式，工厂方法模式还是抽象工厂模式。</del></p>
+<p><strong>简单工厂模式</strong>就是把所有产品的创建细节都隐藏在一个工厂里，也就是把要创建的这个类的对象的创建细节隐藏在工厂里，这就叫简单工厂。</p>
+<p><strong>问题：</strong>因为这个类所有的产品创建细节都隐藏在一个工厂里，那如果要加产品，就需要改工厂的代码，这个就不符合开闭原则。简单工厂的一个类，承载了很多产品的创建，所以不符合<strong>单一职责原则</strong>。就需要从简单工厂升级到工厂方法模式。</p>
+<hr>
+<p><strong>工厂方法模式</strong>就是是一个产品，一种产品的创建过程，它隐藏在一个单独的工厂里，每一个产品对应一个工厂，同样, 产品的创建过程隐藏在这个工厂里，</p>
+<p><strong>需要的注意的是：</strong>有多个工厂的时候，我们需要一个工厂的接口<del>–<strong>抽象工厂</strong>，</del>也就是工厂方法模式。工厂方法模式还是把对象的创建过程隐藏在了工厂里。它和之前简单工厂相比的话，一个产品对应一个工厂，加新产品的话，只需要再加一个工厂就可以了，不需要修改工厂代码。缺点就是加一个产品需要添加两类。类写的比较多，这是工厂方法模式。</p>
+<hr>
+<p><strong>抽象工厂模式</strong>和跟前面的两个就不太一样，它是生产一个产品系列，或者叫一套产品，生产一套产品的时候，一个工厂负责生产一套。<br>好处: </p>
+<ul>
+<li>第一，把对象的创建细节隐藏在工厂里, </li>
+<li>第二, 可以保持产品系列的一致性，也就是加约束。</li>
+</ul>
+<p>比如：苹果的IOS只能加苹果的手机壳，苹果CPU, 这就叫一致性，小产品之间的约束。</p>
+<h2 id="设计模式大全"><a href="#设计模式大全" class="headerlink" title="设计模式大全"></a>设计模式大全</h2><ul>
+<li>创建型模式：<ol>
+<li>工厂方法模式</li>
+<li>抽象工厂模式</li>
+<li>创建者模式</li>
+<li>原型模式</li>
+<li>单例模式</li>
+</ol>
+</li>
+<li>结构型模式<ol>
+<li>适配器模式</li>
+<li>桥模式</li>
+<li>组合模式</li>
+<li>装饰模式</li>
+<li>外观模式</li>
+<li>享元模式</li>
+<li>代理模式</li>
+</ol>
+</li>
+<li>行为型模式<ol>
+<li>解释器模式</li>
+<li>责任链模式</li>
+<li>命令模式</li>
+<li>迭代器模式</li>
+<li>中介者模式</li>
+<li>备忘录模式</li>
+<li>观察者模式</li>
+<li>状态模式</li>
+<li>策略模式</li>
+<li>访问者模式</li>
+<li>模板方法模式</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/django-admin-cn.html" rel="next" title="设置django admin 显示为中文">
+                <i class="fa fa-chevron-left"></i> 设置django admin 显示为中文
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/01/Phantomjs.html" rel="prev" title="Phantomjs">
+                Phantomjs <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">cvno</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cvno" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/cvno/cvno.github.io" title="Repository" target="_blank" rel="external nofollow">Repository</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://blog.cvno.me/categories/Project/" title="Project" target="_blank" rel="external nofollow">Project</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是设计模式"><span class="nav-number">1.</span> <span class="nav-text">什么是设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#接口"><span class="nav-number">1.1.</span> <span class="nav-text">接口</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式六大原则"><span class="nav-number">2.</span> <span class="nav-text">设计模式六大原则</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#开闭原则"><span class="nav-number">2.1.</span> <span class="nav-text">开闭原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#里氏（Liskov）替换原则"><span class="nav-number">2.2.</span> <span class="nav-text">里氏（Liskov）替换原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#依赖倒置原则"><span class="nav-number">2.3.</span> <span class="nav-text">依赖倒置原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#接口隔离原则"><span class="nav-number">2.4.</span> <span class="nav-text">接口隔离原则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#迪米特法则"><span class="nav-number">2.5.</span> <span class="nav-text">迪米特法则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#单一职责原则"><span class="nav-number">2.6.</span> <span class="nav-text">单一职责原则</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设计模式"><span class="nav-number">3.</span> <span class="nav-text">设计模式</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建型模式"><span class="nav-number">3.1.</span> <span class="nav-text">创建型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#工厂方法模式"><span class="nav-number">3.1.1.</span> <span class="nav-text">工厂方法模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单工厂模式"><span class="nav-number">3.1.1.1.</span> <span class="nav-text">简单工厂模式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单例模式"><span class="nav-number">3.1.2.</span> <span class="nav-text">单例模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#抽象工厂模式"><span class="nav-number">3.1.3.</span> <span class="nav-text">抽象工厂模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#建造者模式"><span class="nav-number">3.1.4.</span> <span class="nav-text">建造者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">3.1.5.</span> <span class="nav-text">小结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结构型模式"><span class="nav-number">3.2.</span> <span class="nav-text">结构型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#适配器模式"><span class="nav-number">3.2.1.</span> <span class="nav-text">适配器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组合模式"><span class="nav-number">3.2.2.</span> <span class="nav-text">组合模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理模式"><span class="nav-number">3.2.3.</span> <span class="nav-text">代理模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#行为型模式"><span class="nav-number">3.3.</span> <span class="nav-text">行为型模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#责任链模式"><span class="nav-number">3.3.1.</span> <span class="nav-text">责任链模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器模式"><span class="nav-number">3.3.2.</span> <span class="nav-text">迭代器模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#观察者模式"><span class="nav-number">3.3.3.</span> <span class="nav-text">观察者模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#策略模式"><span class="nav-number">3.3.4.</span> <span class="nav-text">策略模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模板方法模式"><span class="nav-number">3.3.5.</span> <span class="nav-text">模板方法模式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#加深理解"><span class="nav-number">4.1.</span> <span class="nav-text">加深理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#设计模式大全"><span class="nav-number">4.2.</span> <span class="nav-text">设计模式大全</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">cvno</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" href="https://hexo.io" rel="external nofollow">Hexo</a></div>
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://yoursite.com/2018/01/design-patterns.html';
+          this.page.identifier = '2018/01/design-patterns.html';
+          this.page.title = '设计模式';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cvno.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
