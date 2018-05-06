@@ -81,4 +81,4 @@ deploy:
   type: git
   repo: https://github.com/cvno/cvno.github.io.git
   branch: master
-  message: fix permalink > del :day
+  message: add new active
