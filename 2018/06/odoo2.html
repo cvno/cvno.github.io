@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+
+
+
+
+<html class="theme-next gemini" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.3" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.imgur.com/UA0m4Lc.jpg?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="https://i.imgur.com/IA5LPo2.png?v=5.1.3">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="https://i.imgur.com/ub6Qj0U.png?v=5.1.3">
+
+
+
+
+
+
+  <meta name="keywords" content="视图, 模型" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="odoo视图(view: tree, form, search, notebook)，模型(models: Many2one, One2many, Many2many)">
+<meta name="keywords" content="视图, 模型">
+<meta property="og:type" content="article">
+<meta property="og:title" content="odoo（二）">
+<meta property="og:url" content="https://cvno.github.io/2018/06/odoo2.html">
+<meta property="og:site_name" content="&gt;_&lt;">
+<meta property="og:description" content="odoo视图(view: tree, form, search, notebook)，模型(models: Many2one, One2many, Many2many)">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="https://i.imgur.com/h2t9dLN.jpg">
+<meta property="og:image" content="https://i.imgur.com/cxDIlZS.jpg">
+<meta property="og:image" content="https://i.imgur.com/E8qG2sg.jpg">
+<meta property="og:image" content="https://i.imgur.com/ulCa40g.jpg">
+<meta property="og:image" content="https://i.imgur.com/G7cCZSC.jpg">
+<meta property="og:image" content="https://i.imgur.com/6hs7014.jpg">
+<meta property="og:image" content="https://i.imgur.com/9Tj5UHz.jpg">
+<meta property="og:image" content="https://i.imgur.com/gEJHFVd.jpg">
+<meta property="og:updated_time" content="2018-07-04T08:11:09.800Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="odoo（二）">
+<meta name="twitter:description" content="odoo视图(view: tree, form, search, notebook)，模型(models: Many2one, One2many, Many2many)">
+<meta name="twitter:image" content="https://i.imgur.com/h2t9dLN.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.3',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"Gemini"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://cvno.github.io/2018/06/odoo2.html"/>
+
+
+
+
+
+  <title>odoo（二） | >_<</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-111334129-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">>_<</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Categories
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://cvno.github.io/2018/06/odoo2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content=">_<">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">odoo（二）</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-06-05T15:18:49+08:00">
+                2018-06-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/06/odoo2.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/06/odoo2.html" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><code>odoo</code>视图(<strong>view</strong>: <code>tree</code>, <code>form</code>, <code>search</code>, <code>notebook</code>)，模型(<strong>models</strong>: <code>Many2one</code>, <code>One2many</code>, <code>Many2many</code>)</p>
+<a id="more"></a>
+<h1 id="Menus-docs"><a href="#Menus-docs" class="headerlink" title="Menus docs"></a>Menus <a href="https://www.odoo.com/documentation/11.0/howtos/backend.html#actions-and-menus" target="_blank" rel="noopener">docs</a></h1><p>菜单也是用<code>xml</code>来配置</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span><br><span class="line"><span class="comment">&lt;!-- 如果有中文的话必须加上上面这个声明 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">odoo</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">record</span> <span class="attr">model</span>=<span class="string">"ir.actions.act_window"</span> <span class="attr">id</span>=<span class="string">"course_list_action"</span>&gt;</span>            定义视图    <span class="tag">&lt;/<span class="name">record</span>&gt;</span>    <span class="tag">&lt;<span class="name">menuitem</span> 定义菜单/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">odoo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>id</code>识别用的，唯一</li>
+<li><code>name</code>在页面显示出来的文字</li>
+<li><code>parent</code> 上级菜单是谁（<code>id</code>）</li>
+<li><code>action</code> 对应的菜单（属于一个集合）</li>
+<li><code>sequence</code>菜单的排序</li>
+</ul>
+<h1 id="Views-docs"><a href="#Views-docs" class="headerlink" title="Views docs"></a>Views <a href="https://www.odoo.com/documentation/11.0/howtos/backend.html#basic-views" target="_blank" rel="noopener">docs</a></h1><p><code>xml</code>视图里面添加<code>view</code>的时候可以添加<code>html</code>标签，但必须是闭合的</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><p><a href="https://www.odoo.com/documentation/11.0/howtos/backend.html#view-inheritance" target="_blank" rel="noopener">视图文档</a><br>和<code>Models</code>继承差不多，多了<code>inherits_id</code>指向要改写的<code>view</code>，</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;field name=&quot;inherits_id&quot; ref=&quot;id_tags_list&quot; /&gt;</span><br></pre></td></tr></table></figure>
+<p>在<code>arch</code>里面用<code>xpath</code>定位改写元素<br><img src="https://i.imgur.com/h2t9dLN.jpg" alt=""></p>
+<h1 id="Models-docs"><a href="#Models-docs" class="headerlink" title="Models docs"></a>Models <a href="https://www.odoo.com/documentation/11.0/howtos/backend.html#model-fields" target="_blank" rel="noopener">docs</a></h1><p>数据表模型，<br>先自己的<code>models</code>中重写别的<code>models</code>的时候需要在<code>__manifest__.py</code>把依赖关系，加入到自己模块的<code>__manifest__.py</code>的<code>depends</code>中。</p>
+<p><code>Many2one</code>直接关联已经存在的表（文章与分类的关系<code>FK</code>）| 单一的记录<br><code>One2many</code>虚拟的关系（）| 一系列的记录<br><code>Many2many</code>odoo 会再建立一张单独的关系表（一个文章多个标签，标签下多个文章）<br><code>ondelete=&#39;set null&#39;</code>如果关联的表删除了就把这个字段设置为空<br><code>ondelete=&#39;cascade&#39;</code>如果它关联<code>Many2one</code>的表被删除了，当前这表就会清空相关的全部数据<br><code>string</code> 字段的别名<br><code>index</code> 字段是否创建索引</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name = fields.Char(    string=<span class="string">'Name'</span>,    default=<span class="keyword">lambda</span> self: self._get_default_name(),)<span class="meta">@api.model</span><span class="function"><span class="keyword">def</span> <span class="title">_get_default_name</span><span class="params">(self)</span>:</span>    <span class="keyword">return</span> <span class="string">"test"</span></span><br></pre></td></tr></table></figure>
+<p><strong>PS</strong>: <code>res.users</code>可以登录的用户信息表；<code>res.partner</code>这张表里面的用户没有登录权限；<code>res.users</code> 可以对应到 <code>res.partner</code> 某条记录</p>
+<h2 id="继承和扩展"><a href="#继承和扩展" class="headerlink" title="继承和扩展"></a>继承和扩展</h2><p><a href="https://www.odoo.com/documentation/11.0/reference/orm.html#odoo.models.Model._inherit" target="_blank" rel="noopener">改写 Models</a></p>
+<ul>
+<li>经典继承</li>
+<li>原型继承（拷贝一个出来）</li>
+<li>委托继承</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">self.env.cr.commit()    # 提交数据</span><br><span class="line">self.env[&apos;model&apos;].search([])    # 取一条记录</span><br></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li><code>inheritance</code>视图（view），模型（models）的改写</li>
+<li><code>domain</code>在<code>models</code>中过滤<code>Many2one</code>字段</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">domain=[&apos;|&apos;, (&apos;instructor&apos;, &apos;=&apos;, True),</span><br><span class="line">             (&apos;category_id.name&apos;, &apos;ilike&apos;, &quot;Teacher&quot;)])</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>_compute_seats</code>报名与座位的比例，<code>xml</code>的<code>fiels</code>需要加<code>widget=”progressbar”</code></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@api.depends(&apos;seats&apos;, &apos;attendee_ids&apos;)</span><br><span class="line">def _taken_seats(self):</span><br><span class="line">    for r in self:</span><br><span class="line">        if not r.seats:</span><br><span class="line">            r.taken_seats = 0.0</span><br><span class="line">        else:</span><br><span class="line">            r.taken_seats = 100.0 * len(r.attendee_ids) / r.seats</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/cxDIlZS.jpg" alt=""></p>
+<ul>
+<li>默认值<code>default</code>是在<code>models</code>的<code>field</code>中来定义</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">name = fields.Char(default=&quot;Unknown&quot;)</span><br><span class="line">user_id = fields.Many2one(&apos;res.users&apos;, default=lambda self: self.env.user)</span><br><span class="line">start_date = fields.Date(default=fields.Date.today)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>active</code>是<code>odoo</code>中的内置规则，可能是显示的<code>tree</code>视图中，或者根本不显示</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">active = fields.Boolean(default=True)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>onchange</code>乘积，比如商品数量和价格的关系，或者数据小于某个阀值的时候弹出警告<a href="mailto:`@api.onchange" target="_blank" rel="noopener">`@api.onchange</a>`</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">@api.onchange(&apos;seats&apos;, &apos;attendee_ids&apos;)</span><br><span class="line">def _verify_valid_seats(self):</span><br><span class="line">    if self.seats &lt; 0:</span><br><span class="line">        return &#123;</span><br><span class="line">            &apos;warning&apos;: &#123;</span><br><span class="line">                &apos;title&apos;: &quot;Incorrect &apos;seats&apos; value&quot;,</span><br><span class="line">                &apos;message&apos;: &quot;The number of available seats may not be negative&quot;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;</span><br><span class="line">    if self.seats &lt; len(self.attendee_ids):</span><br><span class="line">        return &#123;</span><br><span class="line">            &apos;warning&apos;: &#123;</span><br><span class="line">                &apos;title&apos;: &quot;Too many attendees&quot;,</span><br><span class="line">                &apos;message&apos;: &quot;Increase seats or remove excess attendees&quot;,</span><br><span class="line">            &#125;,</span><br><span class="line">        &#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><a href="mailto:`@api.constrains" target="_blank" rel="noopener">`@api.constrains</a>`模型限制，把值限制的可控的范围内</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">模型限制</span><br><span class="line">@api.constrains(&apos;instructor_id&apos;, &apos;attendee_ids&apos;)</span><br><span class="line">def _check_instructor_not_in_attendees(self):</span><br><span class="line">    for r in self:</span><br><span class="line">        if r.instructor_id and r.instructor_id in r.attendee_ids:</span><br><span class="line">            raise exceptions.ValidationError(&quot;A session&apos;s instructor can&apos;t be an attendee&quot;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"># 在数据库中限制</span><br><span class="line">    _sql_constraints = [</span><br><span class="line">        (&apos;name_description_check&apos;,</span><br><span class="line">         &apos;CHECK(name != description)&apos;,</span><br><span class="line">         &quot;The title of the course should not be the description&quot;),</span><br><span class="line"></span><br><span class="line">        (&apos;name_unique&apos;,</span><br><span class="line">         &apos;UNIQUE(name)&apos;, # 唯一不可重复</span><br><span class="line">         &quot;The course title must be unique&quot;),</span><br><span class="line">    ]</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 拷贝的时候限制</span><br><span class="line">    @api.multi</span><br><span class="line">    def copy(self, default=None):</span><br><span class="line">        default = dict(default or &#123;&#125;)</span><br><span class="line"></span><br><span class="line">        copied_count = self.search_count(</span><br><span class="line">            [(&apos;name&apos;, &apos;=like&apos;, u&quot;Copy of &#123;&#125;%&quot;.format(self.name))])</span><br><span class="line">        if not copied_count:</span><br><span class="line">            new_name = u&quot;Copy of &#123;&#125;&quot;.format(self.name)</span><br><span class="line">        else:</span><br><span class="line">            new_name = u&quot;Copy of &#123;&#125; (&#123;&#125;)&quot;.format(self.name, copied_count)</span><br><span class="line"></span><br><span class="line">        default[&apos;name&apos;] = new_name</span><br><span class="line">        return super(Course, self).copy(default)</span><br></pre></td></tr></table></figure>
+<h1 id="高级视图"><a href="#高级视图" class="headerlink" title="高级视图"></a>高级视图</h1><ul>
+<li>显示的时候不同的值显示不同的颜色</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 在这里的比较符号要用 html 的 小于5 天的，或者大于 15 天的--&gt;</span><br><span class="line">&lt;tree string=&quot;Session Tree&quot; decoration-info=&quot;duration&amp;lt;5&quot; decoration-danger=&quot;duration&amp;gt;15&quot;&gt;</span><br><span class="line">&lt;!-- 该字段不形式在 tree 视图中  --&gt;</span><br><span class="line">&lt;field name=&quot;duration&quot; invisible=&quot;1&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://i.imgur.com/E8qG2sg.jpg" alt=""></p>
+<h2 id="日历视图"><a href="#日历视图" class="headerlink" title="日历视图"></a>日历视图</h2><p><a href="https://www.odoo.com/documentation/11.0/howtos/backend.html#calendars" target="_blank" rel="noopener">docs</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- calendar view--&gt;</span><br><span class="line">&lt;!-- color 不同的值颜色不一样 --&gt;</span><br><span class="line">&lt;!-- date_start  日历中的开始时间 --&gt;</span><br><span class="line">&lt;!-- end_date 结束时间 --&gt;</span><br><span class="line">&lt;calendar string=&quot;Ideas&quot; date_start=&quot;invent_date&quot; color=&quot;inventor_id&quot;&gt;</span><br><span class="line">    &lt;field name=&quot;name&quot;/&gt;</span><br><span class="line">&lt;/calendar&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="搜索视图"><a href="#搜索视图" class="headerlink" title="搜索视图"></a>搜索视图</h2><p><a href="https://www.odoo.com/documentation/11.0/howtos/backend.html#id4" target="_blank" rel="noopener">docs</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- filter_domain 字段 --&gt;</span><br><span class="line">&lt;field name=&quot;description&quot; string=&quot;Name or description&quot;</span><br><span class="line">           filter_domain=&quot;[&apos;|&apos;, (&apos;name&apos;, &apos;ilike&apos;, self), (&apos;description&apos;, &apos;ilike&apos;, self)]&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;!-- filter 标签 --&gt;</span><br><span class="line">&lt;!-- domain 添加过滤条件 --&gt;</span><br><span class="line">&lt;filter name=&quot;my_courses&quot; string=&quot;My Courses&quot; domain=&quot;[(&apos;responsible_id&apos;, &apos;=&apos;, uid)]&quot;/&gt;</span><br><span class="line">&lt;!-- context 添加分组条件 要在 group  标签中--&gt;</span><br><span class="line">&lt;filter name=&quot;by_responsible&quot; string=&quot;Responsible&quot; context=&quot;&#123;&apos;group_by&apos;: &apos;responsible_id&apos;&#125;&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><em>ps: Pycharm <code>find in path</code> 可以很方便的查找</em></p>
+<p><img src="https://i.imgur.com/ulCa40g.jpg" alt="筛选器"><br><img src="https://i.imgur.com/G7cCZSC.jpg" alt="分组"></p>
+<h2 id="甘特图"><a href="#甘特图" class="headerlink" title="甘特图"></a>甘特图</h2><p><a href="https://www.odoo.com/documentation/11.0/howtos/backend.html#gantt" target="_blank" rel="noopener">docs</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;gantt string=&quot;Session Gantt&quot;</span><br><span class="line">                       date_start=&quot;start_date&quot; date_delay=&quot;hours&quot;</span><br><span class="line">                       default_group_by=&apos;instructor_id&apos;&gt;</span><br><span class="line">                    &lt;!-- &lt;field name=&quot;name&quot;/&gt; this is not required after Odoo 10.0 --&gt;</span><br><span class="line">                &lt;/gantt&gt;</span><br></pre></td></tr></table></figure>
+<p><em>ps: xml 某些配置在删掉的时候还是会在数据库中的，还是会报错，要给个空值给覆盖掉或者直接去数据库中删除</em></p>
+<p><img src="https://i.imgur.com/6hs7014.jpg" alt=""></p>
+<h2 id="图表视图"><a href="#图表视图" class="headerlink" title="图表视图"></a>图表视图</h2><p><a href="https://www.odoo.com/documentation/11.0/howtos/backend.html#graph-views" target="_blank" rel="noopener">docs</a></p>
+<figure class="highlight py"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 如果是计算字段必须加 store=True</span></span><br><span class="line">attendees_count = fields.Integer(</span><br><span class="line">        string=<span class="string">"Attendees count"</span>, compute=<span class="string">'_get_attendees_count'</span>, store=<span class="keyword">True</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="看板视图"><a href="#看板视图" class="headerlink" title="看板视图"></a>看板视图</h2><p><a href="https://www.odoo.com/documentation/11.0/howtos/backend.html#kanban" target="_blank" rel="noopener">docs</a></p>
+<p><img src="https://i.imgur.com/9Tj5UHz.jpg" alt="展开 "><br><img src="https://i.imgur.com/gEJHFVd.jpg" alt="收拢"></p>
+<h2 id="改写视图"><a href="#改写视图" class="headerlink" title="改写视图"></a>改写视图</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--# 直接重写--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">'inherit_id'</span> <span class="attr">ref</span>=<span class="string">'需要改写的 view'</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--# 在后面添加--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">xpath</span> <span class="attr">expr</span>=<span class="string">"field[@name='目标ID'"</span> <span class="attr">position</span>=<span class="string">"after"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">field</span> <span class="attr">name</span>=<span class="string">"idea_ids"</span> <span class="attr">string</span>=<span class="string">"Number of ideas"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">xpath</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 还有替换、修改属性值、请看官网 View inheritance--&gt;</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/odoo/" rel="tag"># odoo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/06/odoo1.html" rel="next" title="odoo（一）">
+                <i class="fa fa-chevron-left"></i> odoo（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/06/odoo-workflow.html" rel="prev" title="odoo-workflow">
+                odoo-workflow <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      
+        <div id="gitment-container"></div>
+      
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name"></p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          <div class="links-of-author motion-element">
+            
+              
+                <span class="links-of-author-item">
+                  <a href="https://github.com/cvno" target="_blank" title="GitHub">
+                    
+                      <i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+            
+          </div>
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://github.com/cvno/cvno.github.io" title="Repository" target="_blank" rel="external nofollow">Repository</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/categories/Project/" title="Project" target="_blank" rel="external nofollow">Project</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="/2018/03/marklinks.html" title="Collect" target="_blank" rel="external nofollow">Collect</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Menus-docs"><span class="nav-number">1.</span> <span class="nav-text">Menus docs</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Views-docs"><span class="nav-number">2.</span> <span class="nav-text">Views docs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">2.1.</span> <span class="nav-text">继承</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Models-docs"><span class="nav-number">3.</span> <span class="nav-text">Models docs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#继承和扩展"><span class="nav-number">3.1.</span> <span class="nav-text">继承和扩展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#高级视图"><span class="nav-number">4.</span> <span class="nav-text">高级视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#日历视图"><span class="nav-number">4.1.</span> <span class="nav-text">日历视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索视图"><span class="nav-number">4.2.</span> <span class="nav-text">搜索视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#甘特图"><span class="nav-number">4.3.</span> <span class="nav-text">甘特图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图表视图"><span class="nav-number">4.4.</span> <span class="nav-text">图表视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#看板视图"><span class="nav-number">4.5.</span> <span class="nav-text">看板视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#改写视图"><span class="nav-number">4.6.</span> <span class="nav-text">改写视图</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder"></span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.3"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.3"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.3"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.3"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.3"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+<!-- LOCAL: You can save these files to your site and update links -->
+    
+        
+        <link rel="stylesheet" href="https://aimingoo.github.io/gitmint/style/default.css">
+        <script src="https://aimingoo.github.io/gitmint/dist/gitmint.browser.js"></script>
+    
+<!-- END LOCAL -->
+
+    
+      <style>
+        a.gitment-editor-footer-tip { display: none; }
+        .gitment-container.gitment-footer-container { display: none; }
+      </style>
+    
+
+    
+      <script type="text/javascript">
+      function renderGitment(){
+        var gitment = new Gitmint({
+            id: window.location.pathname, 
+            owner: 'cvno',
+            repo: 'cvno.github.io',
+            
+            lang: "zh-CN" || navigator.language || navigator.systemLanguage || navigator.userLanguage,
+            
+            oauth: {
+            
+            
+                client_secret: '186f1577ac241eb0cbface076e85c644893cdddf',
+            
+                client_id: 'a4820b8d877556a3e83b'
+            }});
+        gitment.render('gitment-container');
+      }
+
+      
+      renderGitment();
+      
+      </script>
+    
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- 页面点击小红心 -->
+  <script type="text/javascript" src="/js/src/love.js"></script>
+</body>
+</html>
