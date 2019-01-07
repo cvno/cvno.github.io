@@ -64,7 +64,7 @@
 
 
 
-  <meta name="keywords" content="Hello, cvno" />
+  <meta name="keywords" content="linux," />
 
 
 
@@ -75,17 +75,18 @@
 
 
 
-<meta name="description" content="基础命令linux 命令分为三部分：命令本身 选项 参数 12345678910111213141516171819202122232425262728293031lsof -i:8000  # 查看端口占用whowhoamidatecalclearsupasswdman # 帮助passwd --help # 查看帮助ls -dl /tmp # 查看目录本身的详细信息 !cat   # 执行此">
+<meta name="description" content="linux 常用姿势">
+<meta name="keywords" content="linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="linux 基础命令">
 <meta property="og:url" content="https://cvno.github.io/2017/05/linux-cmd.html">
 <meta property="og:site_name" content="&gt;_&lt;">
-<meta property="og:description" content="基础命令linux 命令分为三部分：命令本身 选项 参数 12345678910111213141516171819202122232425262728293031lsof -i:8000  # 查看端口占用whowhoamidatecalclearsupasswdman # 帮助passwd --help # 查看帮助ls -dl /tmp # 查看目录本身的详细信息 !cat   # 执行此">
+<meta property="og:description" content="linux 常用姿势">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-03T06:44:14.371Z">
+<meta property="og:updated_time" content="2019-01-07T14:37:57.956Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="linux 基础命令">
-<meta name="twitter:description" content="基础命令linux 命令分为三部分：命令本身 选项 参数 12345678910111213141516171819202122232425262728293031lsof -i:8000  # 查看端口占用whowhoamidatecalclearsupasswdman # 帮助passwd --help # 查看帮助ls -dl /tmp # 查看目录本身的详细信息 !cat   # 执行此">
+<meta name="twitter:description" content="linux 常用姿势">
 
 
 
@@ -330,28 +331,6 @@
           </span>
 
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/linux/" itemprop="url" rel="index">
-                    <span itemprop="name">linux</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
 
           
             
@@ -375,6 +354,10 @@
           
 
           
+              <div class="post-description">
+                  linux 常用姿势
+              </div>
+          
 
         </div>
       </header>
@@ -389,8 +372,7 @@
       
 
       
-        <a id="more"></a>
-<h1 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h1><p>linux 命令分为三部分：<code>命令本身</code> <code>选项</code> <code>参数</code></p>
+        <h1 id="基础命令"><a href="#基础命令" class="headerlink" title="基础命令"></a>基础命令</h1><p>linux 命令分为三部分：<code>命令本身</code> <code>选项</code> <code>参数</code></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">lsof -i:8000  <span class="comment"># 查看端口占用</span></span><br><span class="line">who</span><br><span class="line">whoami</span><br><span class="line">date</span><br><span class="line">cal</span><br><span class="line">clear</span><br><span class="line">su</span><br><span class="line">passwd</span><br><span class="line">man <span class="comment"># 帮助</span></span><br><span class="line">passwd --<span class="built_in">help</span> <span class="comment"># 查看帮助</span></span><br><span class="line">ls -dl /tmp <span class="comment"># 查看目录本身的详细信息 </span></span><br><span class="line">!cat   <span class="comment"># 执行此命令上一次的执行</span></span><br><span class="line"><span class="built_in">echo</span> 123 &gt; /tmp/a.txt  <span class="comment"># 覆盖写</span></span><br><span class="line"><span class="built_in">echo</span> 123 &gt;&gt; /tmp/b.txt <span class="comment"># 追加写</span></span><br><span class="line">df</span><br><span class="line">firefox &amp;  <span class="comment"># 后台运行程序</span></span><br><span class="line"><span class="built_in">echo</span> /etc/passwd &amp;&gt; /dev/null <span class="comment"># 定向到黑洞文件</span></span><br><span class="line">cat a.txt | sort | uniq <span class="comment"># 去重</span></span><br><span class="line">cat a.txt | sort | uniq -c <span class="comment"># 查看去了多少重</span></span><br><span class="line">cat /etc/passwd | cut -d: -f1,3 <span class="comment"># 指定分隔符 ：，输出第 1，3 部分</span></span><br><span class="line">du -sh /boot/   <span class="comment"># 62M	/root 查看文件夹大小</span></span><br><span class="line"><span class="comment"># find</span></span><br><span class="line">find / -<span class="built_in">type</span> f  <span class="comment"># 查找普通文件</span></span><br><span class="line">find / -name <span class="string">'*.txt'</span> <span class="comment"># 查找以 txt 后缀的文件</span></span><br><span class="line">find / -size +30M  <span class="comment"># 找大小大于 30M 的文件</span></span><br><span class="line">find / -size -30M  <span class="comment"># 找大小小于 30M 的文件</span></span><br><span class="line">find / -size +10M -size -30M <span class="comment"># 大于 10M 小于 30M 的文件</span></span><br><span class="line">find / -size +2M -<span class="built_in">type</span> f -name \*.txt</span><br><span class="line"><span class="comment"># 创建一个指定类型的文件</span></span><br><span class="line">dd <span class="keyword">if</span>=/dev/zero of=/a.txt bs=20M count=1</span><br><span class="line"><span class="built_in">echo</span> -e <span class="string">"asdf\nwerwer"</span>  <span class="comment"># 解析换行符</span></span><br></pre></td></tr></table></figure>
 <h1 id="tar（打包）"><a href="#tar（打包）" class="headerlink" title="tar（打包）"></a>tar（打包）</h1><p>在 linux 系统中，文件的后缀名没有任何特殊意义</p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">touch a.txt b.txt c.txt</span><br><span class="line"><span class="comment"># 打包 c-&gt;新建 f-&gt;文件名 v-&gt;打包过程</span></span><br><span class="line">tar cvf text.tar a.txt b.txt c.txt</span><br><span class="line"><span class="comment"># 查看 tar 文件内容 -t</span></span><br><span class="line"><span class="comment"># f-&gt; 查看哪一个文件</span></span><br><span class="line">tar -tf test.tar</span><br><span class="line"><span class="comment"># 解包 x-&gt;解 f-&gt;需要解包的文件 v-&gt;解包过程</span></span><br><span class="line"><span class="comment"># 默认为当前目录</span></span><br><span class="line">tar xvf test.tar</span><br><span class="line"><span class="comment"># 解压缩 -C（大写）指定解压目录</span></span><br><span class="line">tar xvf test.tar -C /bak    <span class="comment"># 解压到指定目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># ------ 压缩 gzip（效率） -------</span></span><br><span class="line">gzip a.txt <span class="comment"># 压缩</span></span><br><span class="line">gunzip a.txt.gz <span class="comment"># 解压缩</span></span><br><span class="line"><span class="comment"># 打包并压缩</span></span><br><span class="line">tar cvzf test1.tar.gz a.txt b.txt c.txt</span><br><span class="line"><span class="comment"># 解压缩包</span></span><br><span class="line">tar xvf test1.tar.gz -C /test1</span><br><span class="line"></span><br><span class="line"><span class="comment"># ------ 压缩 bzip2（质量，压缩率高） -------</span></span><br><span class="line">bzip2 a.txt</span><br><span class="line"><span class="comment"># 打包并压缩</span></span><br><span class="line">tar cvjf test2.tar.bz2 a.txt b.txt c.txt</span><br><span class="line"><span class="comment"># 解压缩包</span></span><br><span class="line">tar xvf test1.tar.gz -C /test2</span><br></pre></td></tr></table></figure>
@@ -428,6 +410,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linux/" rel="tag"># linux</a>
+          
+        </div>
       
 
       
@@ -533,7 +521,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -544,7 +532,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -555,7 +543,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -640,7 +628,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

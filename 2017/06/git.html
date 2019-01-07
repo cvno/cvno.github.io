@@ -78,14 +78,14 @@
 <meta name="description" content="git操作">
 <meta name="keywords" content="git, branch, tag, 分支, 标签">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git">
+<meta property="og:title" content="git 操作">
 <meta property="og:url" content="https://cvno.github.io/2017/06/git.html">
 <meta property="og:site_name" content="&gt;_&lt;">
 <meta property="og:description" content="git操作">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-31T02:27:23.184Z">
+<meta property="og:updated_time" content="2018-11-18T09:28:10.250Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git">
+<meta name="twitter:title" content="git 操作">
 <meta name="twitter:description" content="git操作">
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <title>git | >_<</title>
+  <title>git 操作 | >_<</title>
   
 
 
@@ -308,7 +308,7 @@
 
         
         
-          <h2 class="post-title" itemprop="name headline">git</h2>
+          <h2 class="post-title" itemprop="name headline">git 操作</h2>
         
 
         <div class="post-meta">
@@ -372,7 +372,7 @@
       
 
       
-        <h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除本地分支</span></span><br><span class="line">git branch -d bug</span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br><span class="line">git push origin --delete bug</span><br><span class="line"><span class="comment"># 重命名分支</span></span><br><span class="line">git branch -m old new</span><br></pre></td></tr></table></figure>
+        <h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 删除本地分支</span></span><br><span class="line">git branch -d bug</span><br><span class="line"><span class="comment"># 删除远程分支</span></span><br><span class="line">git push origin --delete bug</span><br><span class="line"><span class="comment"># 重命名分支</span></span><br><span class="line">git branch -m old new</span><br><span class="line"><span class="comment"># 撤销 commit</span></span><br><span class="line">git reset HEAD~</span><br><span class="line"><span class="comment"># clone 指定分支</span></span><br><span class="line">git <span class="built_in">clone</span> -b branchname https://**</span><br><span class="line"><span class="comment"># 添加远程地址</span></span><br><span class="line">git remote add origin https://***.git</span><br></pre></td></tr></table></figure>
 <h1 id="stash-开发"><a href="#stash-开发" class="headerlink" title="stash 开发"></a>stash 开发</h1><p>紧急模式，用来临时修复<code>bug</code></p>
 <figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 保存到临时的地方</span></span><br><span class="line">git stash</span><br><span class="line"><span class="comment"># 查看临时暂存的地方</span></span><br><span class="line">git stash list</span><br><span class="line"><span class="comment"># 回归正常的开发</span></span><br><span class="line">git stash pop</span><br></pre></td></tr></table></figure>
 <h1 id="创建标签"><a href="#创建标签" class="headerlink" title="创建标签"></a>创建标签</h1><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建 tag</span></span><br><span class="line">git tag -a v1.6 -m <span class="string">'msg: my version 1.4'</span></span><br><span class="line"><span class="comment"># 查看 tag</span></span><br><span class="line">git tag</span><br><span class="line"><span class="comment"># 提交</span></span><br><span class="line">git push origin v1.6</span><br><span class="line"><span class="comment"># 提交所有 tag</span></span><br><span class="line">git push origin --tags</span><br><span class="line"><span class="comment"># 删除本地 tag</span></span><br><span class="line">git tag -d v1.6</span><br><span class="line"><span class="comment"># 删除线上 tag</span></span><br><span class="line">git push origin --delete v1.6</span><br></pre></td></tr></table></figure>
@@ -425,8 +425,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/07/django-rest-framwork.html" rel="prev" title="Django rest framwork">
-                Django rest framwork <i class="fa fa-chevron-right"></i>
+              <a href="/2017/07/django-rest-framwork.html" rel="prev" title="Django rest framwork 快速使用">
+                Django rest framwork 快速使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -510,7 +510,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -521,7 +521,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -532,7 +532,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -617,7 +617,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

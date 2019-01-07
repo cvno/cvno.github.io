@@ -83,7 +83,7 @@
 <meta property="og:site_name" content="&gt;_&lt;">
 <meta property="og:description" content="virtualenv 它不会影响真实的 python 解释器的包，它会后续需要安装的包保存在虚拟目录下面">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-08-10T03:07:25.439Z">
+<meta property="og:updated_time" content="2018-09-12T14:10:52.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python 虚拟环境">
 <meta name="twitter:description" content="virtualenv 它不会影响真实的 python 解释器的包，它会后续需要安装的包保存在虚拟目录下面">
@@ -378,6 +378,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip freeze -l &gt; packages.txt</span><br></pre></td></tr></table></figure>
 <h2 id="Exit"><a href="#Exit" class="headerlink" title="Exit"></a>Exit</h2><p>退出虚拟环境</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">deactivate</span><br></pre></td></tr></table></figure>
+<h1 id="wrapper"><a href="#wrapper" class="headerlink" title="wrapper"></a>wrapper</h1><p><code>virtualenv</code>虚拟环境管理</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">pip install virtualenvwrapper</span><br><span class="line">workon  <span class="comment"># 列出 virtualenv 虚拟环境</span></span><br><span class="line">mkvirtualenv <span class="built_in">test</span>   <span class="comment"># 新建虚拟环境</span></span><br><span class="line">mkvirtualenv --python=* <span class="built_in">test</span>   <span class="comment"># 新建虚拟环境</span></span><br></pre></td></tr></table></figure>
 <h1 id="Win-Anaconda"><a href="#Win-Anaconda" class="headerlink" title="Win Anaconda"></a>Win Anaconda</h1><p><code>Windows</code>环境下的<code>Anaconda</code>双版本共存，以及环境切换</p>
 <ul>
 <li><a href="https://blog.csdn.net/qq_22073849/article/details/61927062" target="_blank" rel="noopener">windows下安装双版本anaconda</a></li>
@@ -422,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/07/django-rest-framwork.html" rel="next" title="Django rest framwork">
-                <i class="fa fa-chevron-left"></i> Django rest framwork
+              <a href="/2017/07/django-rest-framwork.html" rel="next" title="Django rest framwork 快速使用">
+                <i class="fa fa-chevron-left"></i> Django rest framwork 快速使用
               </a>
             
           </div>
@@ -517,7 +519,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -528,7 +530,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">categories</span>
                 </a>
               </div>
@@ -539,7 +541,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">35</span>
+                  <span class="site-state-item-count">47</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -604,7 +606,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#virtualenv"><span class="nav-number">1.</span> <span class="nav-text">virtualenv</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install"><span class="nav-number">1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create"><span class="nav-number">1.2.</span> <span class="nav-text">Create</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load"><span class="nav-number">1.3.</span> <span class="nav-text">Load</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exit"><span class="nav-number">1.4.</span> <span class="nav-text">Exit</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Win-Anaconda"><span class="nav-number">2.</span> <span class="nav-text">Win Anaconda</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Anaconda-使用"><span class="nav-number">2.1.</span> <span class="nav-text">Anaconda 使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#virtualenv"><span class="nav-number">1.</span> <span class="nav-text">virtualenv</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Install"><span class="nav-number">1.1.</span> <span class="nav-text">Install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Create"><span class="nav-number">1.2.</span> <span class="nav-text">Create</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Load"><span class="nav-number">1.3.</span> <span class="nav-text">Load</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Exit"><span class="nav-number">1.4.</span> <span class="nav-text">Exit</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wrapper"><span class="nav-number">2.</span> <span class="nav-text">wrapper</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Win-Anaconda"><span class="nav-number">3.</span> <span class="nav-text">Win Anaconda</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Anaconda-使用"><span class="nav-number">3.1.</span> <span class="nav-text">Anaconda 使用</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -624,7 +626,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>
